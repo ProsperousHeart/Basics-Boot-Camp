@@ -9,18 +9,18 @@ This repo is for my Python Basics Bootcamp students.
 
 In our first week, you will be installing python and learning basic syntax.
 
-1. [Introduction]("Week 1/Python_Basics_01_-_Introduction.ipynb") - including installing Python
-2. [Basic Statements](Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
-3. [Variables & Garbage Collection](Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
-4. [Operators](Python_Basics_04_-_Operators.ipynb)
-5. [Decision Making](Python_Basics_05_-_Decision_Making.ipynb)
-6. [Sequences](Python_Basics_06_-_Sequences.ipynb)
-7. [Variable Type:  NUMBERS](Python_Basics_07_-_Variable_Type_NUMBERS.ipynb)
-8. [Variable Type:  STRING](Python_Basics_08_-_Variable_Type_STRING.ipynb)
-9. [Variable Type:  LIST](Python_Basics_09_-_Variable_Type_LIST.ipynb)
-10. [Variable Type:  TUPLE](Python_Basics_10_-_Variable_Type_TUPLE.ipynb)
-11. [Variable Type:  DICTIONARY](Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
-12. [Type Conversions](Python_Basics_12_-_Type_Conversions.ipynb)
+1. [Introduction](Week_1/Python_Basics_01_-_Introduction.ipynb) - including installing Python
+2. [Basic Statements](Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
+3. [Variables & Garbage Collection](Week_1/Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
+4. [Operators](Week_1/Python_Basics_04_-_Operators.ipynb)
+5. [Decision Making](Week_1/Python_Basics_05_-_Decision_Making.ipynb)
+6. [Sequences](Week_1/Python_Basics_06_-_Sequences.ipynb)
+7. [Variable Type:  NUMBERS](Week_1/Python_Basics_07_-_Variable_Type_NUMBERS.ipynb)
+8. [Variable Type:  STRING](Week_1/Python_Basics_08_-_Variable_Type_STRING.ipynb)
+9. [Variable Type:  LIST](Week_1/Python_Basics_09_-_Variable_Type_LIST.ipynb)
+10. [Variable Type:  TUPLE](Week_1/Python_Basics_10_-_Variable_Type_TUPLE.ipynb)
+11. [Variable Type:  DICTIONARY](Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
+12. [Type Conversions](Week_1/Python_Basics_12_-_Type_Conversions.ipynb)
 
 ## Week 2
 
