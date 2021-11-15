@@ -1,15 +1,15 @@
-# Basics-Boot-Camp
-This repo is for my Python Basics Bootcamp students.
-
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
-# Cisco DevNet Create - Camp Create
-
-Thank you for participating in the [2019 DevNet Create](https://developer.cisco.com/devnetcreate/2019/campcreate) at [Cisco DevNet Camp Create](https://devnetcreate.io/2019)!
+# Python Basics Boot Camp
+This repo is for my Python Basics Bootcamp students.
 
 # Table Of Contents
 
-1. [Introduction](Python_Basics_01_-_Introduction.ipynb) - including installing Python
+## Week 1
+
+In our first week, you will be installing python and learning basic syntax.
+
+1. [Introduction](Week 1/Python_Basics_01_-_Introduction.ipynb) - including installing Python
 2. [Basic Statements](Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
 3. [Variables & Garbage Collection](Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
 4. [Operators](Python_Basics_04_-_Operators.ipynb)
@@ -21,10 +21,16 @@ Thank you for participating in the [2019 DevNet Create](https://developer.cisco.
 10. [Variable Type:  TUPLE](Python_Basics_10_-_Variable_Type_TUPLE.ipynb)
 11. [Variable Type:  DICTIONARY](Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
 12. [Type Conversions](Python_Basics_12_-_Type_Conversions.ipynb)
+
+## Week 2
+
 13. [Iterators & Generators](Python_Basics_13_-_Iterators_And_Generators.ipynb)
 14. [Functions](Python_Basics_14_-_Functions.ipynb)
 15. [Scope Of Variables](Python_Basics_15_-_Scope_Of_Variables.ipynb)
 16. [Modules](Python_Basics_16_-_Modules.ipynb)
+
+## Week 3
+
 17. [Input & Output](Python_Basics_17_-_Input_&_Output.ipynb)
 18. [Exceptions & Assertions](Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
 19. [Additional Links](Python_Basics_19_-_Additional_Links.ipynb)
@@ -38,4 +44,6 @@ The following links to [my cheatsheets](https://github.com/ProsperousHeart/cheat
 
 # Contact Info
 
-If you have any questions about this training, feel free to contact me [on my LinkedIn](https://linkedin.com/in/kkeeton/) profile.
+If you have any questions about this training, be usre to leverage our Discord server or Facebook group.
+
+You can also contact me [on my LinkedIn](https://linkedin.com/in/kkeeton/) profile.
