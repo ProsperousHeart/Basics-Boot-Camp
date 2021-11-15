@@ -30,18 +30,18 @@ You can read about [week 1 homework](Week_1/HW/) in the respective [README](Week
 
 ## Week 2
 
-13. [Iterators & Generators](Week_2/Python_Basics_13_-_Iterators_And_Generators.ipynb)
-14. [Functions](Week_2/Python_Basics_14_-_Functions.ipynb)
-15. [Scope Of Variables](Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb)
-16. [Modules](Week_2/Python_Basics_16_-_Modules.ipynb)
+1. [Iterators & Generators](Week_2/Python_Basics_13_-_Iterators_And_Generators.ipynb)
+2. [Functions](Week_2/Python_Basics_14_-_Functions.ipynb)
+3. [Scope Of Variables](Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb)
+4. [Modules](Week_2/Python_Basics_16_-_Modules.ipynb)
 
 You can read about [week 2 homework](Week_2/HW/) in the respective [README](Week_2/HW/README.MD).
 
 ## Week 3
 
-17. [Input & Output](Week_3/Python_Basics_17_-_Input_&_Output.ipynb)
-18. [Exceptions & Assertions](Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
-19. [Additional Links](Week_3/Python_Basics_19_-_Additional_Links.ipynb)
+1. [Input & Output](Week_3/Python_Basics_17_-_Input_&_Output.ipynb)
+2. [Exceptions & Assertions](Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
+3. [Additional Links](Week_3/Python_Basics_19_-_Additional_Links.ipynb)
 
 You can read about [week 3 homework](Week_3/HW/) in the respective [README](Week_3/HW/README.MD).
 
