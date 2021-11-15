@@ -9,7 +9,7 @@ This repo is for my Python Basics Bootcamp students.
 
 In our first week, you will be installing python and learning basic syntax.
 
-1. [Introduction](Week 1/Python_Basics_01_-_Introduction.ipynb) - including installing Python
+1. [Introduction]("Week 1/Python_Basics_01_-_Introduction.ipynb") - including installing Python
 2. [Basic Statements](Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
 3. [Variables & Garbage Collection](Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
 4. [Operators](Python_Basics_04_-_Operators.ipynb)
