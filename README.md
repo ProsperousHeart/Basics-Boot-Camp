@@ -8,9 +8,11 @@ Within this repo, you will receive access to the training materials & homework a
 - access to the training materials & homework assignments
 - opportunity to showcase your work
 - an introduction to collaboration with GitHub
+
 While this information is freely available online, the bootcamp experience is only available to those who have secured a seat. You can do so [here](https://prosperousheart.com/python-bootcamp), if enrollment is currently open.
 
 **Enrollment For Nov 2021 closes:**  Nov 19, 2021
+
 Once you have enrolled, you will reeive an email with additional instructions - including how to access our Discord server & Facebook group.
 
 ## Important Dates
