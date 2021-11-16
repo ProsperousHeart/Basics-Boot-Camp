@@ -1,7 +1,25 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
 # Python Basics Boot Camp
+
 This repo is for my Python Basics Bootcamp students.
+
+Within this repo, you will receive access to the training materials & homework assignments. This is a public repo to provide you with:
+- access to the training materials & homework assignments
+- opportunity to showcase your work
+- an introduction to collaboration with GitHub
+While this information is freely available online, the bootcamp experience is only available to those who have secured a seat. You can do so [here](https://prosperousheart.com/python-bootcamp), if enrollment is currently open.
+
+**Enrollment For Nov 2021 closes:**  Nov 19, 2021
+Once you have enrolled, you will reeive an email with additional instructions - including how to access our Discord server & Facebook group.
+
+## Important Dates
+
+This section will outline the current or upcoming bootcamp dates:
+1. Nov 20, 2021:  Session 1 + HW 1 - basic python to familiarize you with working in a py file, GitHub, etc
+2. Nov 27, 2021:  Session 2 + HW 2 - iterators/generators, functions + modules, etc
+3. Dec 4, 2021:  Session 3 + HW 3 - input/output, exceptions/assertions, error checking, etc
+4. BONUS - Dec 18, 2021:  Social Media For Professional Networking + Programming Q&A
 
 # Table Of Contents
 
