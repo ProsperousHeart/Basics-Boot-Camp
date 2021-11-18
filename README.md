@@ -13,7 +13,7 @@ While this information is freely available online, the bootcamp experience is on
 
 **Enrollment For Nov 2021 closes:**  Nov 19, 2021
 
-Once you have enrolled, you will reeive an email with additional instructions - including how to access our Discord server & Facebook group.
+Once you have enrolled, you will receive an email with additional instructions - including how to access our Discord server & Facebook group.
 
 ## Important Dates
 
@@ -46,7 +46,7 @@ In our first week, you will be installing python and learning basic syntax.
 11. [Variable Type:  DICTIONARY](Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
 12. [Type Conversions](Week_1/Python_Basics_12_-_Type_Conversions.ipynb)
 
-You can read about [week 1 homework](Week_1/HW/) in the respective [README](Week_1/HW/README.MD).
+You can read about [week 1 homework](Week_1/HW_wk1/) in the respective [README](Week_1/HW_wk1/README.MD).
 
 ## Week 2
 
@@ -72,8 +72,40 @@ The following links to [my cheatsheets](https://github.com/ProsperousHeart/cheat
 - how to [setup your environment variables](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/SetEnvVars.md)
 - how to [setup a virtual environment](https://github.com/ProsperousHeart/cheatsheets/blob/master/Tools/VirtualEnvironments.md) (process is [here](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/virtualenvs.md))
 
+# Implementation (Why Homework?)
+
+In all actuality, I could data dump this entire bootcamp for you in 1 hour. But it would be REALLY fast! And with any skill, programming takes time to master - let alone understand the basics. So with each week's training, you will have opportunities with which to implement what you learn.
+
+Repetition is the mother of all skill, after all. You create new neural pathways when you learn new things. You create stronger pathways when you create muscle memory (habit) until it seems second nature.
+
+So let's make it fun!
+
+## Overall Objective
+
+The best way to learn is by doing something you already enjoy doing or have interest in.
+
+While I will have assignments for you to complete relating to each week's lessons, be sure to come to this bootcamp thinking about your daily tasks.
+- Are there documents you would like to merge together?
+- Are there any data story telling or projections you need to make?
+- Is there software you would like to emulate or create your own version of?
+- Is there something you'd like to do in the realm of philanthropy that your future programming skills could help others?
+
+If you are unable to think of a project, feel free to ask myself or the community. We can brainstorm interesting projects that will provide you with real world experience in:
+1. setting up a project process ([CRISP-DM](https://www.datascience-pm.com/crisp-dm-2/) for example)
+2. potential collaboration with others on a "team project"
+3. familiarizing yourself with tools you may use in a future role
+
+... and more!
+
+You can learn more about each week's assignments here:
+1. [Week 1 HW](Week_1/HW_wk1)
+2. [Week 2 HW](Week_2/HW)
+3. [Week 3 HW](Week_3/HW)
+
+There will be time after each week's training for live Q&A or to answer questions received during the week.
+
 # Contact Info
 
-If you have any questions about this training, be usre to leverage our Discord server or Facebook group.
+If you have any questions about this training, be sure to leverage our Discord server or Facebook group.
 
 You can also contact me [on my LinkedIn](https://linkedin.com/in/kkeeton/) profile.

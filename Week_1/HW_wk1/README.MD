@@ -22,6 +22,6 @@ So we currently have the following opportunities for you to get your questions a
 
 1. **_Contact support_** - please see your welcome email for this email address 
 
-2. **_Facebook Group_** - this group is only for students who took this bootcamp
+2. **_Facebook Group_** - this group is only for students who took this bootcamp (link sent in your welcome email)
 
 3. **_[Discord Server](https://prosperousheart.com/discord-invite)_** - this is a public server, but there is a special section just for bootcamp students.
