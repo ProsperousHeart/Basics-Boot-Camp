@@ -72,6 +72,8 @@ The following links to [my cheatsheets](https://github.com/ProsperousHeart/cheat
 - how to [setup your environment variables](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/SetEnvVars.md)
 - how to [setup a virtual environment](https://github.com/ProsperousHeart/cheatsheets/blob/master/Tools/VirtualEnvironments.md) (process is [here](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/virtualenvs.md))
 
+You may also benefit from learning how to [configure a Python interpreter](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html#add-existing-interpreter) - if you decide to use PyCharm.
+
 # Implementation (Why Homework?)
 
 In all actuality, I could data dump this entire bootcamp for you in 1 hour. But it would be REALLY fast! And with any skill, programming takes time to master - let alone understand the basics. So with each week's training, you will have opportunities with which to implement what you learn.

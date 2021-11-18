@@ -4,7 +4,17 @@ Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
 # Week 1 Homework Outline
 
+## Calculator
+
 TBD
+
+## Rock Paper Scissors
+
+TBD
+
+## Planning For Personal Project
+
+This is the part of the bootcamp where you take your knowledge & apply to a real world scenario. In this instance, you are simply determining requirements.
 
 # How To Submit Homework
 
