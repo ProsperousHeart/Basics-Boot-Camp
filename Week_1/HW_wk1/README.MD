@@ -22,6 +22,8 @@ The intention behind this bootcamp is to give you a basic foundation of python p
 
 While you may always email me your code, it is going to be much better for you if you learn how to utilize Github - specifically [collaborating with pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests).
 
+All of your work will be done & put into [Week 1's Student_Files](Student_Files/).
+
 # What If I have Questions?
 
 This repo is not yet set up for [Github Discussions](https://docs.github.com/en/discussions).
