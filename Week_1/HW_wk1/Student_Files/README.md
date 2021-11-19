@@ -2,7 +2,7 @@
 
 Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
-This folder is where you will put your [implementation work for Week 1](../README.md).
+This folder is where you will put your [implementation work for Week 1](../README.MD).
 
 # What Is The Student_Files Section For?
 
