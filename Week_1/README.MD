@@ -23,4 +23,5 @@ In this section, you will find the outline of files related to this week.
 
 ## Implementation ("Homework")
 
-You will find the "business ask" in the [README](HW_wk1/README.MD) file of [Week 1 homework](HW_wk1/).
+You will find the "business asks" in the [README](HW_wk1/README.MD) file of [Week 1 homework](HW_wk1/).
+You will find the "business asks" & additional related information in the [HW folder](../HW/).
