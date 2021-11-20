@@ -2,15 +2,14 @@
 
 Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
+**OPTIONAL - [IDE](https://docs.python.org/3/using/editors.html) Use:** run your HW in an interpreter within your preferred app. This can include but is not limited to:
+- [PyCharm](https://www.jetbrains.com/pycharm/)
+- [Atom.io](https://atom.io/)
+- [vershd](https://prosperousheart.com/vershd/)
+
+_Otherwise, you can use any text editor._
+
 # Week 1 Homework Outline
-
-## Calculator
-
-TBD
-
-## Rock Paper Scissors
-
-TBD
 
 ## Planning For Personal Project
 
@@ -37,3 +36,15 @@ So we currently have the following opportunities for you to get your questions a
 2. **_Facebook Group_** - this group is only for students who took this bootcamp (link sent in your welcome email)
 
 3. **_[Discord Server](https://prosperousheart.com/discord-invite)_** - this is a public server, but there is a special section just for bootcamp students.
+
+---
+
+# Business Unit (BU) Asks
+
+This is your "homework" - or opportunities to implement what you've been learning.
+
+Just like in the real world, some information may be left out of your instructions. It is up to you, the software developer, to ensure everyone is on the same page & you understand priorities.
+
+1. Assignment #1:  [Calculator](Requirements/W1H1-Calc.md)
+
+2. Assignment #2:  [Rock, Paper, Scissors Game](Requirements/W1H2-RPS.md) 

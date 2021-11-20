@@ -14,10 +14,28 @@ You do not have to, but there are several benefits.
 
 Here are a few reasons why you should utilize this option as part of your bootcamp:
 - this is a great place to show some of your work as part of your portfolio
+
 - you will get more experience using an industry tool
+
 - you will find processes that work best for you when collaborating with others
+
 - your time to complete tasks will become shorter & more streamlined as it becomes a habit
+
 - you can see what others have done & share your own work
+
+## What About The instructor's Work?
+
+When available, you can find my answers to Week 1's homework in the [prosperousheart](prosperousheart/) folder!
+
+But **don't** cheat yourself. Really take the time to think through your problems before searching for an answer. This will be the biggest learning curve for your success - personal opinion of course.
+
+    This suggestion is based on my college experience.
+
+Why? 2 big reasons:
+
+1. to become a master faster, you must do more of the things that will help strengthen your neurons (creating a habit)
+
+2. Google will always be there - this is your time to stretch your understanding & build additional critical thinking skills
 
 # How To Submit Homework
 
