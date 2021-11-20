@@ -6,29 +6,33 @@ As of _Nov 18, 2021_ this is still under construction. It is a copy of week 1's 
 
 ## Main Requirements
 
-Your business unit has requested that you make a rock, paper, scissors
-game that employees' kids can play when they visit their parents.
-
-And they want it done in a month.
-
-That's all they want, have at it.
-
-Well ... great. So let's talk about what's possible.
+Your business unit has requested that you refine your rock, paper, scissors game from [week 1](W1H2-RPS.md).
 
 ### Base Needs
 
-Start from ground floor. What are the base requirements of a simple
-rock, paper, scissors game?
+Here's a reminder from last week:
 
-1. 2 players (at least one requires manual input)
-2. there are some number of combinations to create a tie / winner
-3. 3 options for each "player" to choose from (rock, paper, scissors)
-4. need some way to view the winner
+    Start from ground floor. What are the base requirements of a simple rock, paper, scissors game?
+
+    1. 2 players (at least one requires manual input)
+    2. there are some number of combinations to create a tie / winner
+    3. 3 options for each "player" to choose from (rock, paper, scissors)
+    4. need some way to view the winner
+
+What are the things that are likely to happen multiple times?
+
+How can you make your code expand to include your new learning?
+
+Or should you simply start from scratch?
+
+_Sometimes it is easier to start from scratch than to try to fix the original code - even your own!_
 
 ### Additional Requirements
 
-- create a new python file titled:  `W1H2-RPS.py`
+- create a new python file titled:  `W2H2-RPS.py`
 - make this python file one that can be run from a command line
+- follow the process outlined in [week 2 assignment #1](../README.MD#week-2-homework-outline) to create your bare bones infrastructure
+- once your "bare bones" are built, fill in the remaining gaps (_did your methods to resolve change over this process?_)
 
 ## Nice To Have (More Complexity)
 

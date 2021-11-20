@@ -61,9 +61,9 @@ Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
 Congratulations on completing [week 2](../Week_2) training for Python Basics!
 
-1. Watch [this training](https://www.linkedin.com/feed/update/urn:li:activity:6475399796298444800/) on "How To Think Like A Programmer" - we will have covered this in our live session. However this link also provides you with additional information.
+1. **Assignment #1:**  Watch [this training](https://www.linkedin.com/feed/update/urn:li:activity:6475399796298444800/) on "How To Think Like A Programmer" - we will have covered this in our live session. However this link also provides you with additional information.
 
-2. Assignment #2:  [Rock, Paper, Scissors Game](Requirements/W2H2-RPS.md) **_(Upleveled)_**
+2. **Assignment #2:**  [Rock, Paper, Scissors Game](Requirements/W2H2-RPS.md) **_(Upleveled)_**
 
 _Additional assignments to come..._
 
