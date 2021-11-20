@@ -13,7 +13,7 @@ The intention behind this bootcamp is to give you a basic foundation of python p
 
 While you may always email me your code, it is going to be much better for you if you learn how to utilize Github - specifically [collaborating with pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests).
 
-All of your work will be done & put into [Week 1's Student_Files](Student_Files/).
+All of your work will be done & put into [Student_Files](Student_Files/) & according to the "requirements" doc for each assignment.
 
 ## What If I have Questions?
 
@@ -55,4 +55,16 @@ Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
 1. Assignment #1:  [Calculator](Requirements/W1H1-Calc.md)
 
-2. Assignment #2:  [Rock, Paper, Scissors Game](Requirements/W1H2-RPS.md) 
+2. Assignment #2:  [Rock, Paper, Scissors Game](Requirements/W1H2-RPS.md)
+
+## Week 2 Homework Outline
+
+Congratulations on completing [week 2](../Week_2) training for Python Basics!
+
+_Assignments to come..._
+
+## Week 3 Homework Outline
+
+Congratulations on completing [week 3](../Week_3) training for Python Basics!
+
+_Assignments to come..._
