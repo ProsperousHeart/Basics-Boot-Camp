@@ -1,6 +1,6 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
-# Business Unit (BU) Asks - Week 2, Project 2:  Rock Paper Scissors (Simple)
+# Business Unit (BU) Asks - Week 2, Project 2:  Rock Paper Scissors (With Functions)
 
 As of _Nov 18, 2021_ this is still under construction. It is a copy of week 1's assignment #2 and has not yet been updated to reflect the next BU ask.
 
