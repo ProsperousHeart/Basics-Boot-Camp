@@ -46,7 +46,7 @@ In our first week, you will be installing python and learning basic syntax.
 11. [Variable Type:  DICTIONARY](Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
 12. [Type Conversions](Week_1/Python_Basics_12_-_Type_Conversions.ipynb)
 
-You can read about [week 1 homework](Week_1/HW_wk1/) in the respective [README](Week_1/HW_wk1/README.MD).
+You can check out homework assignments in the [HW folder](HW/).
 
 ## Week 2
 
@@ -55,7 +55,7 @@ You can read about [week 1 homework](Week_1/HW_wk1/) in the respective [README](
 3. [Scope Of Variables](Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb)
 4. [Modules](Week_2/Python_Basics_16_-_Modules.ipynb)
 
-You can read about [week 2 homework](Week_2/HW/) in the respective [README](Week_2/HW/README.MD).
+You can check out homework assignments in the [HW folder](HW/).
 
 ## Week 3
 
@@ -63,7 +63,7 @@ You can read about [week 2 homework](Week_2/HW/) in the respective [README](Week
 2. [Exceptions & Assertions](Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
 3. [Additional Links](Week_3/Python_Basics_19_-_Additional_Links.ipynb)
 
-You can read about [week 3 homework](Week_3/HW/) in the respective [README](Week_3/HW/README.MD).
+You can check out homework assignments in the [HW folder](HW/).
 
 ## What's Missing?
 
@@ -99,10 +99,7 @@ If you are unable to think of a project, feel free to ask myself or the communit
 
 ... and more!
 
-You can learn more about each week's assignments here:
-1. [Week 1 HW](Week_1/HW_wk1)
-2. [Week 2 HW](Week_2/HW)
-3. [Week 3 HW](Week_3/HW)
+You can check out homework assignments in the [HW folder](HW/).
 
 There will be time after each week's training for live Q&A or to answer questions received during the week.
 
