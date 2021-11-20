@@ -9,7 +9,7 @@ This folder will house the training and implementation portions for week 1.
 In this section, you will find the outline of files related to this week.
 
 1. Introduction
-2. Syntax & Basic STatements
+2. Syntax & Basic Statements
 3. Variables & Garbage Collection
 4. Operators
 5. Decision Making
