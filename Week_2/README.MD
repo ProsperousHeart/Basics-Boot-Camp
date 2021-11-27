@@ -13,6 +13,27 @@ In this section, you will find the outline of files related to this week.
 3. Scope Of Variables
 4. Modules
 
+We are not covering EVERYTHING in this week, but you will be provided additional material to subsidize the rest.
+
 ## Implementation ("Homework")
 
 You will find the "business asks" & additional related information in the [HW folder](../HW/).
+
+# Additional Resources
+
+This section is to provide you additional links that will be helpful for you when programming classes, functions, etc.
+
+1. Top-level Code Environment:  [__main__](https://docs.python.org/3/library/__main__.html)
+2. Programming FAQs:  [Objects](https://docs.python.org/3/faq/programming.html#objects)
+    _Some questions answered here are:_
+    - _What is a class?_
+    - _What is a method?_
+    - _What is self?_
+    - _How to check if an object is a subclass?_
+3. Programming FAQs:  [Modules](https://docs.python.org/3/faq/programming.html#modules)
+   _Some questions answered here are:_
+    - _What is a class?_
+    - _What is a method?_
+    - _What is self?_
+    - _How to check if an object is a subclass?_
+4. [Classes](https://docs.python.org/3/tutorial/classes.html) - this is not covered in the scope of this Python Basics Bootcamp but is essential to know

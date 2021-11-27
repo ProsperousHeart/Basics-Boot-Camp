@@ -71,6 +71,7 @@ The following links to [my cheatsheets](https://github.com/ProsperousHeart/cheat
 
 - how to [setup your environment variables](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/SetEnvVars.md)
 - how to [setup a virtual environment](https://github.com/ProsperousHeart/cheatsheets/blob/master/Tools/VirtualEnvironments.md) (process is [here](https://github.com/ProsperousHeart/cheatsheets/blob/master/Processes/virtualenvs.md))
+- [simple statements](https://docs.python.org/3/reference/simple_stmts.html) since there are way more than what I've shared in this bootcamp
 
 You may also benefit from learning how to [configure a Python interpreter](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html#add-existing-interpreter) - if you decide to use PyCharm.
 
