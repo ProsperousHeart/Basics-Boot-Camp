@@ -23,17 +23,22 @@ You will find the "business asks" & additional related information in the [HW fo
 
 This section is to provide you additional links that will be helpful for you when programming classes, functions, etc.
 
-1. Top-level Code Environment:  [__main__](https://docs.python.org/3/library/__main__.html)
-2. Programming FAQs:  [Objects](https://docs.python.org/3/faq/programming.html#objects)
+1. [Execution Model](https://docs.python.org/3/reference/executionmodel.html)
+   _Some additional info is not limited to:_
+    - _Structure of a program_
+    - _Naming & Binding_
+    - _Exceptions_ (covered in [Week 3](../Week_3))
+2. Top-level Code Environment:  [`__main__`](https://docs.python.org/3/library/__main__.html)
+3. Programming FAQs:  [Objects](https://docs.python.org/3/faq/programming.html#objects)
     _Some questions answered here are:_
     - _What is a class?_
     - _What is a method?_
     - _What is self?_
     - _How to check if an object is a subclass?_
-3. Programming FAQs:  [Modules](https://docs.python.org/3/faq/programming.html#modules)
+4. Programming FAQs:  [Modules](https://docs.python.org/3/faq/programming.html#modules)
    _Some questions answered here are:_
     - _What is a class?_
     - _What is a method?_
     - _What is self?_
     - _How to check if an object is a subclass?_
-4. [Classes](https://docs.python.org/3/tutorial/classes.html) - this is not covered in the scope of this Python Basics Bootcamp but is essential to know
+5. [Classes](https://docs.python.org/3/tutorial/classes.html) - this is not covered in the scope of this Python Basics Bootcamp but is essential to know
