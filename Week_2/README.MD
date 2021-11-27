@@ -17,7 +17,7 @@ We are not covering EVERYTHING in this week, but you will be provided additional
 
 ## Implementation ("Homework")
 
-You will find the "business asks" & additional related information in the [HW folder](../HW/).
+You will find the "business asks" & additional related information in the [HW folder](../HW).
 
 # Additional Resources
 
