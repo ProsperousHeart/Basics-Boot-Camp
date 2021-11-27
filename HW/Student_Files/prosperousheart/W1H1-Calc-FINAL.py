@@ -54,6 +54,50 @@ if __name__ == "__main__":
                 not_done = False
                 print("\nThank you, come again! ^_^")
 
+            # add numbers
+            elif usr_input == "2":
+                # consider what you would need to do if more than 2 numbers were desired
+                add1 = input("\nPlease provide your 1st of 2 numbers:\t")
+                add2 = input("Please provide your 2nd of 2 numbers:\t")
+
+                # assuming numbers ONLY provided - will error out and not catch
+                print("\n{} + {} = {}\n".format(add1,
+                                                add2,
+                                                int(add1)+int(add2)))
+
+            # multiply numbers
+            elif usr_input == "3":
+                # consider what you would need to do if more than 2 numbers were desired
+                add1 = input("\nPlease provide your 1st of 2 numbers:\t")
+                add2 = input("Please provide your 2nd of 2 numbers:\t")
+
+                # assuming numbers ONLY provided - will error out and not catch
+                print("\n{} * {} = {}\n".format(add1,
+                                                add2,
+                                                int(add1)*int(add2)))
+
+            # subtract numbers
+            elif usr_input == "4":
+                # consider what you would need to do if more than 2 numbers were desired
+                add1 = input("\nPlease provide your 1st of 2 numbers:\t")
+                add2 = input("Please provide your 2nd of 2 numbers:\t")
+
+                # assuming numbers ONLY provided - will error out and not catch
+                print("\n{} - {} = {}\n".format(add1,
+                                                add2,
+                                                int(add1)-int(add2)))
+
+            # divide numbers
+            elif usr_input == "5":
+                # consider what you would need to do if more than 2 numbers were desired
+                add1 = input("\nPlease provide your 1st of 2 numbers:\t")
+                add2 = input("Please provide your 2nd of 2 numbers:\t")
+
+                # assuming numbers ONLY provided - will error out and not catch
+                print("\n{} / {} = {}\n".format(add1,
+                                                add2,
+                                                int(add1)/int(add2)))
+
             # once all items programmed, this section will never be used
             # here to show an option while coding as a "placeholder"
             else:
