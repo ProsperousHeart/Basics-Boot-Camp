@@ -1,4 +1,5 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
+
 As this repo is meant for my students, this [CONTRIBUTING file](https://opensource.guide/starting-a-project/#writing-your-contributing-guidelines) is meant to explain how to contribute. In other words:
 - how to propose fixes to items in this repo
 - how to submit homework
