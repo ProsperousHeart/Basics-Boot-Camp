@@ -69,6 +69,6 @@ _Additional assignments to come..._
 
 Congratulations on completing [week 3](../Week_3) training for Python Basics!
 
-2. **Assignment #1:**  [Rock, Paper, Scissors Game](Requirements/W3H1-RPS.md) **_(Upleveled)_**
+2. **Assignment #1:**  [Rock, Paper, Scissors Game](Requirements/W3H1-IO.md) **_(Upleveled)_**
 
 _Assignments to come..._

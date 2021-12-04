@@ -1,6 +1,6 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
-# Business Unit (BU) Asks - Project 2:  Rock Paper Scissors (Simple)
+# Business Unit (BU) Asks - Project 2:  Rock Paper Scissors Game
 
 ## Main Requirements
 
@@ -23,10 +23,16 @@ rock, paper, scissors game?
 3. 3 options for each "player" to choose from (rock, paper, scissors)
 4. need some way to view the winner
 
+Questions to consider:
+- What are the things that are likely to happen multiple times?
+- How can you make your code expand to include your new learning?
+- If you had started this game without function planning, would you update your old code or start from scratch?
+
 ### Additional Requirements
 
 - create a new python file titled:  `W2H2-RPS.py`
 - make this python file one that can be run from a command line (Jupyter notebook is OK)
+- have them play until they no longer want to play
 - follow the process outlined in [week 2 assignment #1](../README.MD#week-2-homework-outline) to create your bare bones infrastructure
 - once your "bare bones" are built, fill in the remaining gaps (_did your methods to resolve change over this process?_)
 
