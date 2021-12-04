@@ -11,16 +11,25 @@ Within this repo, you will receive access to the training materials & homework a
 
 While this information is freely available online, the bootcamp experience is only available to those who have secured a seat. You can do so [here](https://prosperousheart.com/python-bootcamp), if enrollment is currently open.
 
-**Enrollment For Nov 2021 closes:**  Nov 19, 2021
+**Enrollment For Dec 2021 closes:**  Dec 11, 2021
 
 Once you have enrolled, you will receive an email with additional instructions - including how to access our Discord server & Facebook group.
 
 ## Important Dates
+The information mentioned below is for our live sessions. Excluding the bonus social media training for professional networking, please expect each live class to be 2 hours.
 
+### Python Basics Bootcamp - Nov 2021
 This section will outline the current or upcoming bootcamp dates:
 1. Nov 20, 2021:  Session 1 + HW 1 - basic python to familiarize you with working in a py file, GitHub, etc
 2. Nov 27, 2021:  Session 2 + HW 2 - iterators/generators, functions + modules, etc
 3. Dec 4, 2021:  Session 3 + HW 3 - input/output, exceptions/assertions, error checking, etc
+4. BONUS - Dec 18, 2021:  Social Media For Professional Networking + Programming Q&A
+
+### Python Basics Bootcamp - Dec 2021
+This section will outline the current or upcoming bootcamp dates:
+1. Dec 12, 2021:  Session 1 + HW 1 - basic python to familiarize you with working in a py file, GitHub, etc
+2. Dec 19, 2021:  Session 2 + HW 2 - iterators/generators, functions + modules, etc
+3. Dec 26, 2021:  Session 3 + HW 3 - input/output, exceptions/assertions, error checking, etc
 4. BONUS - Dec 18, 2021:  Social Media For Professional Networking + Programming Q&A
 
 # Table Of Contents
