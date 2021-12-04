@@ -1,27 +1,12 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
-# Business Unit (BU) Asks - Week 2, Project 2:  Rock Paper Scissors (With Functions)
+This is being phased out of week 3 and solely to be used for week 2 implementation work.
 
-As of _Nov 18, 2021_ this is still under construction. It is a copy of week 1's assignment #2 and has not yet been updated to reflect the next BU ask.
-
-## Main Requirements
-
-Your business unit has requested that you refine your rock, paper, scissors game from [week 1](W2H2-RPS.md).
+==============
 
 ### Base Needs
 
-Here's a reminder from last week:
 
-    Start from ground floor. What are the base requirements of a simple rock, paper, scissors game?
-
-    1. 2 players (at least one requires manual input)
-    2. there are some number of combinations to create a tie / winner
-    3. 3 options for each "player" to choose from (rock, paper, scissors)
-    4. need some way to view the winner
-
-What are the things that are likely to happen multiple times?
-
-How can you make your code expand to include your new learning?
 
 Or should you simply start from scratch?
 
@@ -31,6 +16,7 @@ _Sometimes it is easier to start from scratch than to try to fix the original co
 
 - create a new python file titled:  `W2H2-RPS.py`
 - make this python file one that can be run from a command line
+- have them play until they no longer want to play
 - follow the process outlined in [week 2 assignment #1](../README.MD#week-2-homework-outline) to create your bare bones infrastructure
 - once your "bare bones" are built, fill in the remaining gaps (_did your methods to resolve change over this process?_)
 
