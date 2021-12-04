@@ -1,7 +1,5 @@
 <a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
-
-
 # Business Unit (BU) Asks - Project 2:  Rock Paper Scissors (Simple)
 
 ## Main Requirements
@@ -27,8 +25,10 @@ rock, paper, scissors game?
 
 ### Additional Requirements
 
-- create a new python file titled:  `W1H2-RPS.py`
-- make this python file one that can be run from a command line
+- create a new python file titled:  `W2H2-RPS.py`
+- make this python file one that can be run from a command line (Jupyter notebook is OK)
+- follow the process outlined in [week 2 assignment #1](../README.MD#week-2-homework-outline) to create your bare bones infrastructure
+- once your "bare bones" are built, fill in the remaining gaps (_did your methods to resolve change over this process?_)
 
 ## Nice To Have (More Complexity)
 
