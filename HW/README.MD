@@ -53,22 +53,22 @@ Just like in the real world, some information may be left out of your instructio
 
 Congratulations on completing [week 1](../Week_1) training for Python Basics!
 
-1. Assignment #1:  [Calculator](Requirements/W1H1-Calc.md)
-
-2. Assignment #2:  [Rock, Paper, Scissors Game](Requirements/W1H2-RPS.md)
+1. **Assignment #1:**  [Calculator](Requirements/W1H1-Calc.md)
 
 ## Week 2 Homework Outline
 
 Congratulations on completing [week 2](../Week_2) training for Python Basics!
 
-1. **Assignment #1:**  Watch [this training](https://www.linkedin.com/feed/update/urn:li:activity:6475399796298444800/) on "How To Think Like A Programmer" - we will have covered this in our live session. However this link also provides you with additional information.
+1. **Assignment #1:**  Watch [this training](https://www.linkedin.com/feed/update/urn:li:activity:6475399796298444800/) on "How To Think Like A Programmer" - we were not able to cover this in our live session. However, this link also provides you with additional information.
 
-2. **Assignment #2:**  [Rock, Paper, Scissors Game](Requirements/W2H2-RPS.md) **_(Upleveled)_**
+2. **Assignment #2:**  [Rock, Paper, Scissors Game](Requirements/W2H2-RPS.md)
 
 _Additional assignments to come..._
 
 ## Week 3 Homework Outline
 
 Congratulations on completing [week 3](../Week_3) training for Python Basics!
+
+2. **Assignment #1:**  [Rock, Paper, Scissors Game](Requirements/W3H1-RPS.md) **_(Upleveled)_**
 
 _Assignments to come..._
