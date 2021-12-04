@@ -1,4 +1,7 @@
-<a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
+**Description**<br>
+Provide additional information here that you did not put in your commit. Be sure to include any links to issues or feature requests, where applicable.
+
+---
 
 More on this to come. Please be sure to utilize [task lists](https://github.blog/2013-01-09-task-lists-in-gfm-issues-pulls-comments/) where applicable.
 
