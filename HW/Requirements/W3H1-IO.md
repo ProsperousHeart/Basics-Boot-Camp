@@ -31,3 +31,12 @@ This implementation work expects you to bring in all of what you learned into th
 
 # Reminders & Additional Tips
 
+For this project you will likely be using:
+- str.rstrip()
+- module `re` ([regular expressions](https://docs.python.org/3/library/re.html) & specifically [re.search()](https://docs.python.org/3/library/re.html#re.search) ... though there are other options out there
+  - [Guru99 examples](https://www.guru99.com/python-regular-expressions-complete-tutorial.html)
+  - [Google For Education - Regular Expressions](https://developers.google.com/edu/python/regular-expressions)
+  - [Geeks For Geeks:  re.search() vs re.findall()](https://www.geeksforgeeks.org/python-regex-re-search-vs-re-findall/)
+- regex tools:
+  1. [regexr](https://regexr.com/)
+  2. [regex101](https://regex101.com/)
