@@ -27,6 +27,7 @@ from datetime import date   # https://docs.python.org/3/library/datetime.html
 # ======================================================================
 # create "globals"
 # ======================================================================
+# date.today() == "YYYY-MM-DD" ==> "YYYYMMDD"
 today = "".join(str(date.today()).split("-"))
 
 # ======================================================================
