@@ -8,3 +8,6 @@ More on this to come. Please be sure to utilize [task lists](https://github.blog
 For example:
 - [x] completed item in this commit
 - [ ] item still to complete (does this need a new issue?)
+- [x] week 1 homework 1
+- [ ] week 1 homework 2
+- [x] week 2 homework 1
