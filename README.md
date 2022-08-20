@@ -11,32 +11,59 @@ Within this repo, you will receive access to the training materials & homework a
 
 While this information is freely available online, the bootcamp experience is only available to those who have secured a seat. You can do so [here](https://prosperousheart.com/python-bootcamp), if enrollment is currently open.
 
-**Enrollment For Dec 2021 closes:**  Dec 11, 2021
+Be sure to follow this repo to be updated when doors open next.
 
-Once you have enrolled, you will receive an email with additional instructions - including how to access our Discord server & Facebook group.
+# Time Expectations
 
-## Important Dates
-The information mentioned below is for our live sessions. Excluding the bonus social media training for professional networking, please expect each live class to be 2 hours.
+## Historic Expectations
 
-### Python Basics Bootcamp - Nov 2021
-This section will outline the current or upcoming bootcamp dates:
-1. Nov 20, 2021:  Session 1 + HW 1 - basic python to familiarize you with working in a py file, GitHub, etc
-2. Nov 27, 2021:  Session 2 + HW 2 - iterators/generators, functions + modules, etc
-3. Dec 4, 2021:  Session 3 + HW 3 - input/output, exceptions/assertions, error checking, etc
-4. BONUS - Dec 18, 2021:  Social Media For Professional Networking + Programming Q&A
+The original bootcamp was about 2 hours a week for 3 weeks with a bonus 1 hour training that covered social media marketing for job hunting & networking.
 
-### Python Basics Bootcamp - Dec 2021
-This section will outline the current or upcoming bootcamp dates:
-1. Dec 12, 2021:  Session 1 + HW 1 - basic python to familiarize you with working in a py file, GitHub, etc
-2. Dec 19, 2021:  Session 2 + HW 2 - iterators/generators, functions + modules, etc
-3. Dec 26, 2021:  Session 3 + HW 3 - input/output, exceptions/assertions, error checking, etc
-4. BONUS - Dec 18, 2021:  Social Media For Professional Networking + Programming Q&A
+## Current Expectations
+
+As of 2022, we are moving to a new system that will:
+- make it easier for you to learn at your own pace
+- track your progress
+- build a community
+- create an environment where the training will be in byte-sized pieces
+
+I do not yet have an estimate on how long that might take to complete the pre-recorded course, as it is still being setup.
+
+## What Happens When I Enroll?
+
+If you enroll in just the training (no group or 1:1 live sessions) then you will be immediately able to access the basics training course.
+
+If you invested in the live coaching portion, additional details will be outlined within the program.
+
+# Training Expectations
+
+Based on my time at Cisco as a python trainer & mentor to over 3k of my peers, I came to realize you need 2 things to be successful in coding:
+1. basic knowledge of coding
+2. implementation time & experience
+
+A wonderful thing about living in this day & age is the ability to learn anything on the internet.
+
+But you must take the time to implement what you've learned.
+
+So this python basic training course is broken down into a 3 week course with implementation work for each section. (But I gave the full training in one hour once. So you could tackle the training portion in a single day.)
+
+Here is a brief overview of what to expect:
+
+1. Week 1 + HW 1 (calculator) - basic python to familiarize you with working in a py file, GitHub, etc
+2. Week 2 + HW 2 (rock, paper, scissors game) - iterators/generators, functions + modules, etc
+3. Week 3 + HW 3 (text reader & writer) - input/output, exceptions/assertions, error checking, etc
 
 # Table Of Contents
 
-Each week there will be a live training with Q&A and assigned homework to help solidify your knowledge.
+This section outlines the Jupyter notebooks that explain everything & include sections to test your understanding.
 
-You will not be graded, however you will receive feedback on your code.
+Originally, the bootcamp consisted of going through these live each week, answering questions, and covering the previous week's work. (Students received direct feedback with their work.) This made it more difficult to really dive into actual coding & ensure students understood the material.
+
+The new system is still set up similarly to this layout. Differences will be outlined as necessary.
+
+All those who purchase the course will be able to watch the trainings, see their progress, and practice using the implementation work provided.
+
+Those who upgrade to live coaching will have greater opportunity to dive into code & receive more direct feedback.
 
 ## Week 1
 
@@ -86,6 +113,8 @@ You may also benefit from learning how to [configure a Python interpreter](https
 
 For GitHub training, check out their [Learning Lab](https://lab.github.com/).
 - Trying to push a commit to GitHub but receive "`remote: Invalid username or password.`"? [Check this out](https://stackoverflow.com/a/34919582).
+
+I also have a ton more resources for those who purchase the course or coaching package!
 
 # Implementation (Why Homework?)
 
