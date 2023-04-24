@@ -61,7 +61,7 @@ logging.basicConfig(
 
 # setup logging buffer for console
 console = logging.StreamHandler()
-console.setLevel(logging.DEBUG)  # all DEBUG or higher will show on console
+console.setLevel(logging.WARN)  # all DEBUG or higher will show on console
 
 # set format easy for console to use
 formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
@@ -82,7 +82,7 @@ class Choice(object):
 
     """
 
-    def __init__(self):
+    def __init__(self, start=0):
         """
         This is the constructor function - also known
         as what happens when this class is created.
@@ -90,29 +90,39 @@ class Choice(object):
         """
 
         logger.debug('Creating new Choice class object...')
-        self.choice = 0     # could set to None, but we expect this to be INT
+        self._choice = start     # could set to None, but we expect this to be INT
         logger.debug('Completed creation of new Choice class object...')
 
-        @property
-        def choice(self):
-            """
-            This function returns the attribute:    choice
+    @property
+    def choice(self):
+        """
+        This function returns the attribute:    choice
 
-            """
+        """
 
-            logger.debug('Returning choice attribute data...')
-            return self.__choice
+        logger.debug('Returning choice attribute data...')
+        return self._choice
 
-        @choice.setter
-        def choice(self, data):
-            """
-            This function sets the attribute:   choice
+    @choice.setter
+    def choice(self, data):
+        """
+        This function sets the attribute:   choice
 
-            """
+        """
+        logger.debug("Checking input ...")
+        try:
+            data = int(data)
+        except ValueError:
+            logger.warning('Integer not provided')
+            return TypeError('Integer not provided')
+    
+        if data not in choices.keys():
+            logger.warning('Integer not provided from required input')
+            raise ValueError('Please provide a number 1-3')
 
-            logger.debug('Setting Choice class attribute for choice...')
-            self.__choice = data
-            logger.debug('Completed setting Choice class attribute for choice')
+        logger.debug('Setting Choice class attribute for choice...')
+        self._choice = data
+        logger.debug('Completed setting Choice class attribute for choice')
 
     def input(self):
         """
@@ -121,34 +131,15 @@ class Choice(object):
 
         """
 
-        def check_input(input_str: str):
-            """
-            This function checks if the input was one of the possible numbers.
-
-            """
-            if input_str is None:
-                logger.warning('This should never happen! Input was empty.')
-                return True, None
-            try:
-                val = int(input_str)
-            except ValueError as err:
-                logger.warning('Integer not provided')
-                return True, None
-            if val not in choices.keys():
-                logger.warning('Valid integer not provided')
-                return True, None
-            return False, val
-
         logger.debug('Requesting input...')
         choice_str = '1 - rock, 2 - paper, 3 - scissors'
         test_bool = True
         while test_bool:
             in_put = input('Please provide your choice ({}):  '.format(choice_str))
-            logger.debug('Attempting to check input ...')
-            test_bool_tup = check_input(in_put)
-            test_bool = test_bool_tup[0]
-        logger.debug('Input received. Returning response:  {}'.format(test_bool_tup[1]))
-        return test_bool_tup[1]
+            if in_put.isdigit() and int(in_put) in choices.keys():
+                test_bool = False
+        logger.debug('Correct input received. Returning response:  {}'.format(in_put))
+        return int(in_put)
 
 
 def get_user_input():
