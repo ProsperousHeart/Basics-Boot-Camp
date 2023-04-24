@@ -29,6 +29,8 @@ import logging
 # date.today() == "YYYY-MM-DD" ==> "YYYYMMDD"
 today = "".join(str(date.today()).split("-"))
 
+input_file = "../Files/Alice In Wonderland Text.txt"
+
 # =============================================================================
 # This section will set up logging. More information on logging can be found here:
 #   www.blog.pythonlibrary.org/2012/08/02/python-101-an-intro-to-logging
@@ -175,7 +177,6 @@ if __name__ == "__main__":
     
     """
     logger.debug('Starting {}()...'.format(__name__))
-    input_file = "Alice In Wonderland Text.txt"
     print("You are about to read in:\t{}".format(input_file))
     logger.debug("Searching in:\t{}".format(input_file))
 
