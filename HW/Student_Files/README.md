@@ -2,9 +2,12 @@
 
 Congratulations on completing [week 1](../../Week_1) training for Python Basics!
 
-This folder is where you will put your [implementation work for Week 1](../README.MD).
+This folder is where you will put your implementation work for:
+    - [Week 1](../Requirements/W1H1-Calc.md)
+    - [Week 2](../Requirements/W2H2-RPS.md)
+    - [Week 3](../Requirements/W3H1-IO.md)
 
-# What Is The Student_Files Section For?
+# What Is The [Student_Files](../Student_Files/) Section For?
 
 This is a place where you will store your implementation work - if you're comfortable.
 
