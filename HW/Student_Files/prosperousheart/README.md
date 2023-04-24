@@ -4,8 +4,6 @@
 
 This folder is where all of my answers to the homework will go.
 
-As of Nov 19, 2021 - this is just the framework to provide an outline for incoming students.
-
 # Testing
 
 As of Jan 25, 2023 - I am working on also adding in python automated testing. This will not be covered in the basics bootcamp but it will be in another one. I am providing the materials for those who wish to leverage the examples for their own portfolios.
