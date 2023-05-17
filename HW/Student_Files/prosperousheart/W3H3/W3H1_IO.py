@@ -65,7 +65,7 @@ logging.getLogger(__name__).addHandler(console)
 logger = logging.getLogger(__name__)
 
 
-def read_n_match(file_in, pttrn):
+def read_n_match(file_in:str, pttrn:str):
     """
     Reads in a txt file. Will attempt to match an input pattern,
     and if found add to a list.
@@ -106,7 +106,7 @@ def read_n_match(file_in, pttrn):
     return lines_list
 
 
-def print_to_file(line_list, pttrn, file_name='output.txt'):
+def print_to_file(line_list: str, pttrn:str, file_name:str='output.txt'):
     """
     This function will take a list of lines found from read_and_match() function,
     then print to a text file.
@@ -133,7 +133,7 @@ def print_to_file(line_list, pttrn, file_name='output.txt'):
         logger.info("File was not yet created. No divider needed.")
         divider = ""
 
-    with open(file_name, 'a+') as output_file:
+    with open(file_name, 'a+', encoding='UTF-8') as output_file:
         logger.debug("Writing to output file ...")
         output_file.write(divider)
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
