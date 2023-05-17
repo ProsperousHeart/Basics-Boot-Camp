@@ -29,7 +29,8 @@ import logging
 # date.today() == "YYYY-MM-DD" ==> "YYYYMMDD"
 TODAY = "".join(str(date.today()).split("-"))
 
-INPUT_FILE = "../Files/Alice In Wonderland Text.txt"
+# INPUT_FILE = "../Files/Alice In Wonderland Text.txt"
+INPUT_FILE = "Alice In Wonderland Text.txt"
 
 # =============================================================================
 # This section will set up logging. More information on logging can be found here:
