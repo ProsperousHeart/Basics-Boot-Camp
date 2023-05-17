@@ -27,9 +27,9 @@ import logging
 # create "globals"
 # ======================================================================
 # date.today() == "YYYY-MM-DD" ==> "YYYYMMDD"
-today = "".join(str(date.today()).split("-"))
+TODAY = "".join(str(date.today()).split("-"))
 
-input_file = "../Files/Alice In Wonderland Text.txt"
+INPUT_FILE = "../Files/Alice In Wonderland Text.txt"
 
 # =============================================================================
 # This section will set up logging. More information on logging can be found here:
@@ -46,7 +46,7 @@ input_file = "../Files/Alice In Wonderland Text.txt"
 #       - logging levels:  https://docs.python.org/3/library/logging.html#logging-levels
 # =============================================================================
 logging.basicConfig(
-    filename='PHPBBCW3-{}.log'.format(today),     # consider using formatting instead
+    filename=f'PHPBBCW3-{TODAY}.log',     # consider using formatting instead
     filemode='a+',                                 # overwrites the file every time
     level=logging.DEBUG,                          # lowest logging level
     format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s"
@@ -82,7 +82,7 @@ def read_n_match(file_in, pttrn):
     line_cnt = 0
 
     try:
-        logger.debug("Attempting to read in TXT file:  '{}'".format(file_in))
+        logger.debug("Attempting to read in TXT file:  '%s'", file_in)
         with open(file_in, 'r') as file_in:
 
             for line in file_in:
@@ -127,7 +127,7 @@ def print_to_file(line_list, pttrn, file_name='output.txt'):
     logger.debug("Checking to see if new file or appending...")
     if path.is_file():
         logger.info("File was already created! Adding divider.")
-        divider = "\n{}\n\n".format("="*69)
+        divider = f"\n{'='*69}\n\n"
     else:
         logger.info("File was not yet created. No divider needed.")
         divider = ""
@@ -136,8 +136,8 @@ def print_to_file(line_list, pttrn, file_name='output.txt'):
         logger.debug("Writing to output file ...")
         output_file.write(divider)
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
-        output_file.write('The pattern you asked to search for is:\t{}\n'.format(pttrn))
-        output_file.write('The pattern was found in {} lines.\n\n'.format(len(line_list)))
+        output_file.write(f'The pattern you asked to search for is:\t{pttrn}\n')
+        output_file.write(f'The pattern was found in {len(line_list)} lines.\n\n')
 
         output_file.write('*****' * 3 + '\n\n')
 
@@ -146,8 +146,8 @@ def print_to_file(line_list, pttrn, file_name='output.txt'):
             # file_object.write('string')
             output_file.write(item[0] + '\t' + item[1] + '\n')
 
-    print("File created with {} lines found that match '{}'.".format(len(line_list), pttrn))
-    print("Please locate the following in your folder:\n{}".format(file_name))
+    print(f"File created with {len(line_list)} lines found that match '{pttrn}'.")
+    print(f"Please locate the following in your folder:\n{file_name}")
     # print(file_name)
     logger.debug('... Ending print_to_file()')
 
@@ -176,15 +176,15 @@ if __name__ == "__main__":
     to a txt file.
     
     """
-    logger.debug('Starting {}()...'.format(__name__))
-    print("You are about to read in:\t{}".format(input_file))
-    logger.debug("Searching in:\t{}".format(input_file))
+    logger.debug('Starting %s()...', __name__)
+    print(f"You are about to read in:\t{INPUT_FILE}")
+    logger.debug("Searching in:\t%s", INPUT_FILE)
 
     ptrn2find = input("What pattern would you like to look for?\n")
-    logger.debug("Searching for:\t{}".format(ptrn2find))
+    logger.debug("Searching for:\t%s", ptrn2find)
     print()
 
-    list_of_lines = read_n_match(input_file, ptrn2find)
-    print_to_file(list_of_lines, ptrn2find, 'PHPBBCW3-{}.txt'.format(today))
+    list_of_lines = read_n_match(INPUT_FILE, ptrn2find)
+    print_to_file(list_of_lines, ptrn2find, f'PHPBBCW3-{TODAY}.txt')
 
-    logger.debug('Ending {}()...\n'.format(__name__))
+    logger.debug('Ending %s()...\n', __name__)
