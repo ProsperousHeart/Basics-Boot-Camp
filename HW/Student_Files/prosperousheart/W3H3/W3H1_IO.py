@@ -133,7 +133,7 @@ def print_to_file(line_list: str, pttrn:str, file_name:str='output.txt'):
         logger.info("File was not yet created. No divider needed.")
         divider = ""
 
-    with open(file_name, 'a+') as output_file:
+    with open(file_name, 'a+', encoding='UTF-8') as output_file:
         logger.debug("Writing to output file ...")
         output_file.write(divider)
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
