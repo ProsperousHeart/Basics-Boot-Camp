@@ -13,13 +13,13 @@ class TestChoice(unittest.TestCase):
         # return super().setUpClass()
         cls.choice_obj = Choice()
 
-    def test_Choice_init(self):
+    def test_choice_init(self):
         '''
         Testing instantiation.
         '''
         self.assertEqual(TestChoice.choice_obj.choice, 0)
-    
-    def test_Choice_setter_int_good(self):
+
+    def test_choice_setter_int_good(self):
         '''
         Testing Choice setter (INT - good)
         '''
@@ -29,8 +29,8 @@ class TestChoice(unittest.TestCase):
         self.assertEqual(TestChoice.choice_obj.choice, 2)
         TestChoice.choice_obj.choice = 3
         self.assertEqual(TestChoice.choice_obj.choice, 3)
-    
-    def test_Choice_setter_int_bad(self):
+
+    def test_choice_setter_int_bad(self):
         '''
         Testing Choice setter (INT - bad)
         '''
@@ -38,15 +38,15 @@ class TestChoice(unittest.TestCase):
             TestChoice.choice_obj.choice = 0
         except Exception as err:
             self.assertIsInstance(err, ValueError)
-    
-    def test_Choice_setter_str_good(self):
+
+    def test_choice_setter_str_good(self):
         '''
         Testing Choice setter (STR - good)
         '''
         TestChoice.choice_obj.choice = '1'
         self.assertEqual(TestChoice.choice_obj.choice, 1)
-    
-    def test_Choice_setter_str_bad(self):
+
+    def test_choice_setter_str_bad(self):
         '''
         Testing Choice setter (STR - bad)
         '''
@@ -54,8 +54,8 @@ class TestChoice(unittest.TestCase):
             TestChoice.choice_obj.choice = 'random'
         except Exception as err:
             self.assertIsInstance(err, TypeError)
-    
-    def test_Choice_setter_none(self):
+
+    def test_choice_setter_none(self):
         '''
         Testing Choice setter (None)
         '''
@@ -63,8 +63,8 @@ class TestChoice(unittest.TestCase):
             TestChoice.choice_obj.choice = None
         except Exception as err:
             self.assertIsInstance(err, TypeError)
-    
-    # def test_Choice_input(self):
+
+    # def test_choice_input(self):
     #     '''
     #     Testing command line input function
     #     '''
