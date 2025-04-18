@@ -1,0 +1,44 @@
+name: Security Checks
+
+on: [push, pull_request]
+
+jobs:
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    container:
+      image: zricethezav/gitleaks:latest
+      options: --entrypoint ""
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Mark repository as safe
+      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+    - name: Run Gitleaks
+      run: gitleaks git . --verbose --redact
+      # Uncomment the line below and comment out the above line to switch scan mode
+      # run: gitleaks dir . --verbose --redact
+
+  # pip-audit:
+  #   name: Pip Audit
+  #   runs-on: ubuntu-latest
+  #   container: python:latest
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v3
+  #   - name: Install pip-audit
+  #     run: pip install pip-audit
+  #   - name: Run pip-audit
+  #     run: pip-audit -r samples/requirements.txt
+
+  bandit:
+    name: Bandit
+    runs-on: ubuntu-latest
+    container: python:latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install Bandit
+      run: pip install bandit
+    - name: Run Bandit
+      run: bandit -x .venv -r .
