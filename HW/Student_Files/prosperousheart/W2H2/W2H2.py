@@ -179,7 +179,7 @@ def get_comp_choice():
     # =====================================================================
 
     logger.debug('Starting get_comp_choice()...')
-    random_int = random.randint(1, len(choices.keys()))
+    random_int = random.randint(1, len(choices.keys()))    # nosec
     logger.debug('Ending get_comp_choice() & returning:  {}'.format(random_int))
     # pass
 
