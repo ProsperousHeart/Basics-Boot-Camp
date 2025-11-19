@@ -1,0 +1,5 @@
+# ABOUTME: Production dependencies for the Basics Boot Camp project
+# ABOUTME: Install with pip: pip install -r requirements.txt
+# ABOUTME: Install with uv: uv add -r requirements.txt
+
+# Currently no production dependencies - this is a training/tutorial project
