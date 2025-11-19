@@ -1,0 +1,9 @@
+# Set the owner for the entire repository
+# * @team-lead @<org>/<project-champions>
+* @ProsperousHeart
+ 
+# Assign ownership for specific directories
+# /docs/ @team-lead @owner3
+ 
+# Assign ownership for specific file types
+# Jenkins @team-lead @owner4
