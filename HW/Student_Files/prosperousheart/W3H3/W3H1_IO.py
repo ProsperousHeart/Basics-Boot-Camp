@@ -12,16 +12,17 @@
 #   4 - test the logic with print or logging statements
 # =============================================================================
 
-from datetime import date   # https://docs.python.org/3/library/datetime.html
-import re                   # https://docs.python.org/3/library/re.html
-from pathlib import Path
-
 # ===========================================================
 # module that allows us to do logging in our files
 # LIBRARY:  https://docs.python.org/3/library/logging.html
 # HOWTO:    https://docs.python.org/3/howto/logging.html
 # ===========================================================
 import logging
+
+# Additional required Libraries
+import re  # https://docs.python.org/3/library/re.html
+from datetime import date  # https://docs.python.org/3/library/datetime.html
+from pathlib import Path
 
 # ======================================================================
 # create "globals"
@@ -47,10 +48,10 @@ INPUT_FILE = "Alice In Wonderland Text.txt"
 #       - logging levels:  https://docs.python.org/3/library/logging.html#logging-levels
 # =============================================================================
 logging.basicConfig(
-    filename=f'PHPBBCW3-{TODAY}.log',     # consider using formatting instead
-    filemode='a+',                                 # overwrites the file every time
-    level=logging.DEBUG,                          # lowest logging level
-    format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s"
+    filename=f"PHPBBCW3-{TODAY}.log",  # consider using formatting instead
+    filemode="a+",  # overwrites the file every time
+    level=logging.DEBUG,  # lowest logging level
+    format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s",
 )
 
 # setup logging buffer for console
@@ -59,13 +60,13 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)  # all DEBUG or higher will show on console
 
 # set format easy for console to use
-formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
+formatter = logging.Formatter("%(asctime)s : %(levelname)s : %(message)s")
 console.setFormatter(formatter)
 logging.getLogger(__name__).addHandler(console)
 logger = logging.getLogger(__name__)
 
 
-def read_n_match(file_in:str, pttrn:str):
+def read_n_match(file_in: str, pttrn: str):
     """
     Reads in a txt file. Will attempt to match an input pattern,
     and if found add to a list.
@@ -78,35 +79,31 @@ def read_n_match(file_in:str, pttrn:str):
 
     """
 
-    logger.debug('Starting read_n_match()...')
+    logger.debug("Starting read_n_match()...")
     lines_list = []
     line_cnt = 0
 
     try:
         logger.debug("Attempting to read in TXT file:  '%s'", file_in)
-        with open(file_in, 'r') as file_in:
-
+        with open(file_in, "r") as file_in:
             for line in file_in:
-
                 # str.rstrip([chars])
                 line = str.rstrip(line)
 
                 # if pattern in line:
                 if re.search(pttrn, line):
-
                     lines_list.append((str(line_cnt), line))
 
-                line_cnt+=1
+                line_cnt += 1
 
     except IOError:
+        logger.critical("File does not exist.")
 
-        logger.critical('File does not exist.')
-
-    logger.debug('... Ending read_n_match()')
+    logger.debug("... Ending read_n_match()")
     return lines_list
 
 
-def print_to_file(line_list: str, pttrn:str, file_name:str='output.txt'):
+def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
     """
     This function will take a list of lines found from read_and_match() function,
     then print to a text file.
@@ -118,39 +115,39 @@ def print_to_file(line_list: str, pttrn:str, file_name:str='output.txt'):
 
     """
 
-    logger.debug('Starting print_to_file()...')
-    if file_name[-4:] != '.txt':
+    logger.debug("Starting print_to_file()...")
+    if file_name[-4:] != ".txt":
         logger.warning("File is not a TXT file!")
         logger.debug("Adding appropriate extension - did not check for others.")
-        file_name = file_name + '.txt'
+        file_name = file_name + ".txt"
 
     path = Path(file_name)
     logger.debug("Checking to see if new file or appending...")
     if path.is_file():
         logger.info("File was already created! Adding divider.")
-        divider = f"\n{'='*69}\n\n"
+        divider = f"\n{'=' * 69}\n\n"
     else:
         logger.info("File was not yet created. No divider needed.")
         divider = ""
 
-    with open(file_name, 'a+', encoding='UTF-8') as output_file:
+    with open(file_name, "a+", encoding="UTF-8") as output_file:
         logger.debug("Writing to output file ...")
         output_file.write(divider)
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
-        output_file.write(f'The pattern you asked to search for is:\t{pttrn}\n')
-        output_file.write(f'The pattern was found in {len(line_list)} lines.\n\n')
+        output_file.write(f"The pattern you asked to search for is:\t{pttrn}\n")
+        output_file.write(f"The pattern was found in {len(line_list)} lines.\n\n")
 
-        output_file.write('*****' * 3 + '\n\n')
+        output_file.write("*****" * 3 + "\n\n")
 
         for item in line_list:
-
             # file_object.write('string')
-            output_file.write(item[0] + '\t' + item[1] + '\n')
+            output_file.write(item[0] + "\t" + item[1] + "\n")
 
     print(f"File created with {len(line_list)} lines found that match '{pttrn}'.")
     print(f"Please locate the following in your folder:\n{file_name}")
     # print(file_name)
-    logger.debug('... Ending print_to_file()')
+    logger.debug("... Ending print_to_file()")
+
 
 # ===================================================================
 # 1. read in file - eventually ask for location of file
@@ -177,7 +174,7 @@ if __name__ == "__main__":
     to a txt file.
     
     """
-    logger.debug('Starting %s()...', __name__)
+    logger.debug("Starting %s()...", __name__)
     print(f"You are about to read in:\t{INPUT_FILE}")
     logger.debug("Searching in:\t%s", INPUT_FILE)
 
@@ -186,6 +183,6 @@ if __name__ == "__main__":
     print()
 
     list_of_lines = read_n_match(INPUT_FILE, ptrn2find)
-    print_to_file(list_of_lines, ptrn2find, f'PHPBBCW3-{TODAY}.txt')
+    print_to_file(list_of_lines, ptrn2find, f"PHPBBCW3-{TODAY}.txt")
 
-    logger.debug('Ending %s()...\n', __name__)
+    logger.debug("Ending %s()...\n", __name__)
