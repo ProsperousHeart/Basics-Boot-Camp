@@ -57,10 +57,12 @@ if __name__ == "__main__":
             # here to show an option while coding as a "placeholder"
             else:
                 print(
-                    "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"
+                    "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"  # noqa: E501
                 )
         else:
-            print("\nSorry - we do not recognize your input. Please try again.\n")
+            print(
+                "\nSorry - we do not recognize your input. Please try again.\n"
+            )
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)

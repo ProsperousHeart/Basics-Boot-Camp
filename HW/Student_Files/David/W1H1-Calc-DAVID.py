@@ -1,5 +1,5 @@
 print(
-    "Welcome to the magic calculator. Please select the following options: A) Addition B) Subtraction C) Multiplication D) Division"
+    "Welcome to the magic calculator. Please select the following options: A) Addition B) Subtraction C) Multiplication D) Division"  # noqa: E501
 )
 selection = input("Please input a letter: ")
 if selection not in ["A", "B", "C", "D"]:

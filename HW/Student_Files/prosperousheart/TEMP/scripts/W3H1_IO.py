@@ -33,7 +33,7 @@ today = "".join(str(date.today()).split("-"))
 input_file = "../Files/Alice In Wonderland Text.txt"
 
 # =============================================================================
-# This section will set up logging. More information on logging can be found here:
+# This section will set up logging. More information on logging found here:
 #   www.blog.pythonlibrary.org/2012/08/02/python-101-an-intro-to-logging
 #   www.digitalocean.com/community/tutorials/how-to-use-logging-in-python3
 #   www.loggly.com/ultimate-guide/python-logging-basics
@@ -44,7 +44,8 @@ input_file = "../Files/Alice In Wonderland Text.txt"
 #           for your future self
 #       - as mentioned before, there is no one right way to code, so several
 #           different styles have been shared here
-#       - logging levels:  https://docs.python.org/3/library/logging.html#logging-levels
+#       - logging levels:
+#           https://docs.python.org/3/library/logging.html#logging-levels
 # =============================================================================
 logging.basicConfig(
     # consider using formatting instead
@@ -107,8 +108,8 @@ def read_n_match(file_in, pttrn):
 
 def print_to_file(line_list, pttrn, file_name="output.txt"):
     """
-    This function will take a list of lines found from read_and_match() function,
-    then print to a text file.
+    This function will take a list of lines found from read_and_match()
+    function, then print to a text file.
 
     Required inputs:
     : line_list - list of lines returned from read_and_match() function
@@ -137,7 +138,7 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
     with open(file_name, "a+") as output_file:
         logger.debug("Writing to output file ...")
         output_file.write(divider)
-        # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
+        # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))  # noqa: E501
         output_file.write(
             "The pattern you asked to search for is:\t{}\n".format(pttrn)
         )
