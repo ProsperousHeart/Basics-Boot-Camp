@@ -63,7 +63,7 @@ if __name__ == "__main__":
                 print(
                     "\n{} + {} = {}\n".format(
                         add1, add2, int(add1) + int(add2)
-                    )
+                    )  # noqa: E501
                 )  # noqa: E501
 
             # multiply numbers
@@ -76,7 +76,7 @@ if __name__ == "__main__":
                 print(
                     "\n{} * {} = {}\n".format(
                         add1, add2, int(add1) * int(add2)
-                    )
+                    )  # noqa: E501
                 )  # noqa: E501
 
             # subtract numbers
@@ -89,7 +89,7 @@ if __name__ == "__main__":
                 print(
                     "\n{} - {} = {}\n".format(
                         add1, add2, int(add1) - int(add2)
-                    )
+                    )  # noqa: E501
                 )  # noqa: E501
 
             # divide numbers
@@ -102,7 +102,7 @@ if __name__ == "__main__":
                 print(
                     "\n{} / {} = {}\n".format(
                         add1, add2, int(add1) / int(add2)
-                    )
+                    )  # noqa: E501
                 )  # noqa: E501
 
             # once all items programmed, this section will never be used

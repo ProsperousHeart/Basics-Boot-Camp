@@ -136,12 +136,12 @@ class Choice(object):
         while test_bool:
             in_put = input(
                 "Please provide your choice ({}):  ".format(choice_str)
-            )
+            )  # noqa: E501
             if in_put.isdigit() and int(in_put) in choices.keys():
                 test_bool = False
         logger.debug(
             "Correct input received. Returning response:  {}".format(in_put)
-        )
+        )  # noqa: E501
         return int(in_put)
 
 
@@ -161,7 +161,7 @@ def get_user_input():
     user_obj.choice = user_obj.input()
     logger.debug(
         "Ending get_user_input() & returning:  {}".format(user_obj.choice)
-    )
+    )  # noqa: E501
 
     return user_obj.choice
 
@@ -187,7 +187,7 @@ def get_comp_choice():
     random_int = random.randint(1, len(choices.keys()))  # nosec
     logger.debug(
         "Ending get_comp_choice() & returning:  {}".format(random_int)
-    )
+    )  # noqa: E501
     # pass
 
     return random_int

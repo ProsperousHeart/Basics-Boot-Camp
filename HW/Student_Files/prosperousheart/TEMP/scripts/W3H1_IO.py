@@ -123,7 +123,7 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
         logger.warning("File is not a TXT file!")
         logger.debug(
             "Adding appropriate extension - did not check for others."
-        )
+        )  # noqa: E501
         file_name = file_name + ".txt"
 
     path = Path(file_name)
@@ -141,7 +141,7 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))  # noqa: E501
         output_file.write(
             "The pattern you asked to search for is:\t{}\n".format(pttrn)
-        )
+        )  # noqa: E501
         output_file.write(
             "The pattern was found in {} lines.\n\n".format(len(line_list))
         )

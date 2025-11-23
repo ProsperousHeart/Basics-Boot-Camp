@@ -63,8 +63,8 @@ if __name__ == "__main__":
                 print(
                     "\n{} + {} = {}\n".format(
                         add1, add2, int(add1) + int(add2)
-                    )
-                )  # noqa: E501
+                    )  # noqa: E501
+                )
 
             # multiply numbers
             elif usr_input == "3":
@@ -76,8 +76,8 @@ if __name__ == "__main__":
                 print(
                     "\n{} * {} = {}\n".format(
                         add1, add2, int(add1) * int(add2)
-                    )
-                )  # noqa: E501
+                    )  # noqa: E501
+                )
 
             # subtract numbers
             elif usr_input == "4":
@@ -87,9 +87,7 @@ if __name__ == "__main__":
 
                 # assuming numbers ONLY provided - will error out and not catch
                 print(
-                    "\n{} - {} = {}\n".format(
-                        add1, add2, int(add1) - int(add2)
-                    )
+                    "\n{} - {} = {}\n".format(add1, add2, int(add1) - int(add2))
                 )  # noqa: E501
 
             # divide numbers
@@ -100,9 +98,7 @@ if __name__ == "__main__":
 
                 # assuming numbers ONLY provided - will error out and not catch
                 print(
-                    "\n{} / {} = {}\n".format(
-                        add1, add2, int(add1) / int(add2)
-                    )
+                    "\n{} / {} = {}\n".format(add1, add2, int(add1) / int(add2))
                 )  # noqa: E501
 
             # once all items programmed, this section will never be used
@@ -112,9 +108,7 @@ if __name__ == "__main__":
                     "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"  # noqa: E501
                 )
         else:
-            print(
-                "\nSorry - we do not recognize your input. Please try again.\n"
-            )
+            print("\nSorry - we do not recognize your input. Please try again.\n")
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)
