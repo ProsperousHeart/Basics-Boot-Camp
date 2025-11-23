@@ -62,7 +62,7 @@ if __name__ == "__main__":
         else:
             print(
                 "\nSorry - we do not recognize your input. Please try again.\n"
-            )
+            )  # noqa: E501
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)

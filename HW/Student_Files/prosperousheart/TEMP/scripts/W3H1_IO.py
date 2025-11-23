@@ -51,7 +51,7 @@ logging.basicConfig(
     # consider using formatting instead
     filename="PHPBBCW3-{}.log".format(
         today
-    ),  # consider using formatting instead
+    ),  # consider using formatting instead  # noqa: E501
     filemode="a+",  # overwrites the file every time
     level=logging.DEBUG,  # lowest logging level
     format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s",

@@ -121,7 +121,7 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
         logger.warning("File is not a TXT file!")
         logger.debug(
             "Adding appropriate extension - did not check for others."
-        )
+        )  # noqa: E501
         file_name = file_name + ".txt"
 
     path = Path(file_name)
@@ -141,10 +141,10 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
         #   + str(len(line_list)))
         output_file.write(
             f"The pattern you asked to search for is:\t{pttrn}\n"
-        )
+        )  # noqa: E501
         output_file.write(
             f"The pattern was found in {len(line_list)} lines.\n\n"
-        )
+        )  # noqa: E501
 
         output_file.write("*****" * 3 + "\n\n")
 
@@ -154,7 +154,7 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
 
     print(
         f"File created with {len(line_list)} lines found that match '{pttrn}'."
-    )
+    )  # noqa: E501
     print(f"Please locate the following in your folder:\n{file_name}")
     # print(file_name)
     logger.debug("... Ending print_to_file()")
