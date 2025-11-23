@@ -87,7 +87,9 @@ if __name__ == "__main__":
 
                 # assuming numbers ONLY provided - will error out and not catch
                 print(
-                    "\n{} - {} = {}\n".format(add1, add2, int(add1) - int(add2))
+                    "\n{} - {} = {}\n".format(
+                        add1, add2, int(add1) - int(add2)
+                    )  # noqa: E501
                 )  # noqa: E501
 
             # divide numbers
@@ -96,9 +98,11 @@ if __name__ == "__main__":
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
-                # assuming numbers ONLY provided - will error out and not catch
+                # assuming numbers ONLY provided - will error out and not catch  # noqa: E501
                 print(
-                    "\n{} / {} = {}\n".format(add1, add2, int(add1) / int(add2))
+                    "\n{} / {} = {}\n".format(
+                        add1, add2, int(add1) / int(add2)
+                    )
                 )  # noqa: E501
 
             # once all items programmed, this section will never be used
@@ -108,7 +112,9 @@ if __name__ == "__main__":
                     "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"  # noqa: E501
                 )
         else:
-            print("\nSorry - we do not recognize your input. Please try again.\n")
+            print(
+                "\nSorry - we do not recognize your input. Please try again.\n"
+            )
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)
