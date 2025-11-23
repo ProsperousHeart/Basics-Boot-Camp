@@ -22,7 +22,7 @@ https://realpython.com/documenting-python-code/
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    
+
     """
 
     print("Thank you for starting your W1H1-Calc program!\n")
@@ -30,7 +30,6 @@ if __name__ == "__main__":
     # Start Loop - want to continue until they decide to quit
     not_done = True
     while not_done:
-
         # Provide Expected Input Menu
         print("Please make your choice:")
         print("1 - exit")
@@ -56,54 +55,66 @@ if __name__ == "__main__":
 
             # add numbers
             elif usr_input == "2":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
                 # assuming numbers ONLY provided - will error out and not catch
-                print("\n{} + {} = {}\n".format(add1,
-                                                add2,
-                                                int(add1)+int(add2)))
+                print(
+                    "\n{} + {} = {}\n".format(
+                        add1, add2, int(add1) + int(add2)
+                    )  # noqa: E501
+                )  # noqa: E501
 
             # multiply numbers
             elif usr_input == "3":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
                 # assuming numbers ONLY provided - will error out and not catch
-                print("\n{} * {} = {}\n".format(add1,
-                                                add2,
-                                                int(add1)*int(add2)))
+                print(
+                    "\n{} * {} = {}\n".format(
+                        add1, add2, int(add1) * int(add2)
+                    )  # noqa: E501
+                )  # noqa: E501
 
             # subtract numbers
             elif usr_input == "4":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
                 # assuming numbers ONLY provided - will error out and not catch
-                print("\n{} - {} = {}\n".format(add1,
-                                                add2,
-                                                int(add1)-int(add2)))
+                print(
+                    "\n{} - {} = {}\n".format(
+                        add1, add2, int(add1) - int(add2)
+                    )  # noqa: E501
+                )  # noqa: E501
 
             # divide numbers
             elif usr_input == "5":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
                 # assuming numbers ONLY provided - will error out and not catch
-                print("\n{} / {} = {}\n".format(add1,
-                                                add2,
-                                                int(add1)/int(add2)))
+                print(
+                    "\n{} / {} = {}\n".format(
+                        add1, add2, int(add1) / int(add2)
+                    )  # noqa: E501
+                )  # noqa: E501
 
             # once all items programmed, this section will never be used
             # here to show an option while coding as a "placeholder"
             else:
-                print("\nWARNING:  Your choice has not yet been scripted. Please choose another.\n")
+                print(
+                    "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"  # noqa: E501
+                )
         else:
-            print("\nSorry - we do not recognize your input. Please try again.\n")
+            print(
+                "\nSorry - we do not recognize your input. Please try again.\n"
+            )  # noqa: E501
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)

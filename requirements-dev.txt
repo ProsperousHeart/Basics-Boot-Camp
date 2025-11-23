@@ -1,0 +1,17 @@
+# ABOUTME: Development and testing dependencies for the Basics Boot Camp project
+# ABOUTME: Install with pip: pip install -r requirements-dev.txt
+# ABOUTME: Install with uv: uv add --dev -r requirements-dev.txt
+
+# Testing Framework
+pytest==6.2.5
+pytest-cov==4.0.0
+pytest-flakes==4.0.5
+pytest-pep8==1.0.6
+pytest-cache==1.0
+pytest-pythonpath==0.7.4
+
+# Code Quality Tools
+coverage==7.1.0
+pyflakes==3.0.1
+pep8==1.7.1
+ruff==0.14.6

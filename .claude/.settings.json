@@ -1,0 +1,1 @@
+{ "marketplaces": [{"source": "project-codeguard/rules"}], "plugins": [ { "name": "codeguard-security", "marketplace": "project-codeguard", "enabled": true } ] }

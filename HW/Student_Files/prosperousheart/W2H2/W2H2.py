@@ -21,8 +21,7 @@ import logging
 # random is a module we will use to generate a random number
 # ===========================================================
 import random
-
-from datetime import date   # https://docs.python.org/3/library/datetime.html
+from datetime import date  # https://docs.python.org/3/library/datetime.html
 
 # ======================================================================
 # create "globals"
@@ -33,14 +32,10 @@ today = "".join(str(date.today()).split("-"))
 # ======================================================================
 # choices can be updated later to include additional options
 # ======================================================================
-choices = {
-    1:  'rock',
-    2:  'paper',
-    3:  'scissors'
-}
+choices = {1: "rock", 2: "paper", 3: "scissors"}
 
 # =============================================================================
-# This section will set up logging. More information on logging can be found here:
+# This section will set up logging. More information on logging found here:
 #   www.blog.pythonlibrary.org/2012/08/02/python-101-an-intro-to-logging
 #   www.digitalocean.com/community/tutorials/how-to-use-logging-in-python3
 #   www.loggly.com/ultimate-guide/python-logging-basics
@@ -53,10 +48,11 @@ choices = {
 #           different styles have been shared here
 # =============================================================================
 logging.basicConfig(
-    filename='PHPBBC-{}.log'.format(today),       # consider using formatting instead
-    filemode='w',                                 # overwrites the file every time
-    level=logging.DEBUG,                          # lowest logging level
-    format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s"
+    # consider using formatting instead
+    filename="PHPBBC-{}.log".format(today),
+    filemode="w",  # overwrites the file every time
+    level=logging.DEBUG,  # lowest logging level
+    format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s",
 )
 
 # setup logging buffer for console
@@ -64,10 +60,11 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARN)  # all DEBUG or higher will show on console
 
 # set format easy for console to use
-formatter = logging.Formatter('%(asctime)s : %(levelname)s : %(message)s')
+formatter = logging.Formatter("%(asctime)s : %(levelname)s : %(message)s")
 console.setFormatter(formatter)
 logging.getLogger(__name__).addHandler(console)
 logger = logging.getLogger(__name__)
+
 
 # ======================================================================
 # create a class to be used for a user (or computer) making a "choice"
@@ -89,9 +86,9 @@ class Choice(object):
 
         """
 
-        logger.debug('Creating new Choice class object...')
-        self._choice = start     # could set to None, but we expect this to be INT
-        logger.debug('Completed creation of new Choice class object...')
+        logger.debug("Creating new Choice class object...")
+        self._choice = start  # could set to None, but we expect this to be INT
+        logger.debug("Completed creation of new Choice class object...")
 
     @property
     def choice(self):
@@ -100,7 +97,7 @@ class Choice(object):
 
         """
 
-        logger.debug('Returning choice attribute data...')
+        logger.debug("Returning choice attribute data...")
         return self._choice
 
     @choice.setter
@@ -113,16 +110,16 @@ class Choice(object):
         try:
             data = int(data)
         except ValueError:
-            logger.warning('Integer not provided')
-            return TypeError('Integer not provided')
-    
-        if data not in choices.keys():
-            logger.warning('Integer not provided from required input')
-            raise ValueError('Please provide a number 1-3')
+            logger.warning("Integer not provided")
+            return TypeError("Integer not provided")
 
-        logger.debug('Setting Choice class attribute for choice...')
+        if data not in choices.keys():
+            logger.warning("Integer not provided from required input")
+            raise ValueError("Please provide a number 1-3")
+
+        logger.debug("Setting Choice class attribute for choice...")
         self._choice = data
-        logger.debug('Completed setting Choice class attribute for choice')
+        logger.debug("Completed setting Choice class attribute for choice")
 
     def input(self):
         """
@@ -131,14 +128,18 @@ class Choice(object):
 
         """
 
-        logger.debug('Requesting input...')
-        choice_str = '1 - rock, 2 - paper, 3 - scissors'
+        logger.debug("Requesting input...")
+        choice_str = "1 - rock, 2 - paper, 3 - scissors"
         test_bool = True
         while test_bool:
-            in_put = input('Please provide your choice ({}):  '.format(choice_str))
+            in_put = input(
+                "Please provide your choice ({}):  ".format(choice_str)
+            )  # noqa: E501
             if in_put.isdigit() and int(in_put) in choices.keys():
                 test_bool = False
-        logger.debug('Correct input received. Returning response:  {}'.format(in_put))
+        logger.debug(
+            "Correct input received. Returning response:  {}".format(in_put)
+        )  # noqa: E501
         return int(in_put)
 
 
@@ -153,10 +154,12 @@ def get_user_input():
 
     """
 
-    logger.debug('Starting get_user_input()...')
+    logger.debug("Starting get_user_input()...")
     user_obj = Choice()
     user_obj.choice = user_obj.input()
-    logger.debug('Ending get_user_input() & returning:  {}'.format(user_obj.choice))
+    logger.debug(
+        "Ending get_user_input() & returning:  {}".format(user_obj.choice)
+    )  # noqa: E501
 
     return user_obj.choice
 
@@ -178,9 +181,11 @@ def get_comp_choice():
     #   - why or why would this NOT be a good idea?
     # =====================================================================
 
-    logger.debug('Starting get_comp_choice()...')
-    random_int = random.randint(1, len(choices.keys()))    # nosec
-    logger.debug('Ending get_comp_choice() & returning:  {}'.format(random_int))
+    logger.debug("Starting get_comp_choice()...")
+    random_int = random.randint(1, len(choices.keys()))  # nosec
+    logger.debug(
+        "Ending get_comp_choice() & returning:  {}".format(random_int)
+    )  # noqa: E501
     # pass
 
     return random_int
@@ -218,21 +223,25 @@ def calc_winner(user: int, comp: int):
 
         """
 
-        logger.debug('Ending calc_winner()...')
+        logger.debug("Ending calc_winner()...")
         if user == comp:
-            return 'N/A - tie'
-        elif (user == 1 and comp == 2) or (user == 2 and comp == 3) or (user == 3 and comp == 1):
-            return 'Computer Wins!'
+            return "N/A - tie"
+        elif (
+            (user == 1 and comp == 2)
+            or (user == 2 and comp == 3)
+            or (user == 3 and comp == 1)
+        ):
+            return "Computer Wins!"
         else:
-            return 'You win!'
+            return "You win!"
 
-    logger.debug('Starting calc_winner()...')
+    logger.debug("Starting calc_winner()...")
     dict2rtn = dict()
-    dict2rtn['user'] = user
-    dict2rtn['comp'] = comp
-    logger.debug('Attempting to call compare()...')
-    dict2rtn['winner'] = compare(user, comp)
-    logger.debug('Ending calc_winner()...')
+    dict2rtn["user"] = user
+    dict2rtn["comp"] = comp
+    logger.debug("Attempting to call compare()...")
+    dict2rtn["winner"] = compare(user, comp)
+    logger.debug("Ending calc_winner()...")
 
     return dict2rtn
 
@@ -256,16 +265,16 @@ def print_winner(data_dict: dict):
 
     """
 
-    logger.debug('Starting print_winner()...')
-    print(data_dict['winner'], "\n")
-    logger.debug('Ending print_winner()...')
+    logger.debug("Starting print_winner()...")
+    print(data_dict["winner"], "\n")
+    logger.debug("Ending print_winner()...")
     # pass
 
 
 def prnt_menu():
-    menu = 'Please select from one of the following menu options:\n'
-    menu += '1. Play RPS\n'
-    menu += '2. Exit RPS\n'
+    menu = "Please select from one of the following menu options:\n"
+    menu += "1. Play RPS\n"
+    menu += "2. Exit RPS\n"
     return menu
 
 
@@ -275,7 +284,7 @@ if __name__ == "__main__":
     This particular bare bones STEP3 will only utilize base requirements.
     """
 
-    logger.debug('Starting {}()...'.format(__name__))
+    logger.debug("Starting {}()...".format(__name__))
 
     # keep going until they want to stop
     stop_game = False
@@ -319,4 +328,4 @@ if __name__ == "__main__":
     #   - ability for user to turn on/off debug mode
     # ================================================
 
-    logger.debug('Ending {}()...'.format(__name__))
+    logger.debug("Ending {}()...".format(__name__))

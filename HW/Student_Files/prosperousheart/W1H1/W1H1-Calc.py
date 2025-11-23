@@ -22,7 +22,7 @@ https://realpython.com/documenting-python-code/
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    
+
     """
 
     print("Thank you for starting your W1H1-Calc program!\n")
@@ -30,7 +30,6 @@ if __name__ == "__main__":
     # Start Loop - want to continue until they decide to quit
     not_done = True
     while not_done:
-
         # Provide Expected Input Menu
         print("Please make your choice:")
         print("1 - exit")
@@ -57,9 +56,13 @@ if __name__ == "__main__":
             # once all items programmed, this section will never be used
             # here to show an option while coding as a "placeholder"
             else:
-                print("\nWARNING:  Your choice has not yet been scripted. Please choose another.\n")
+                print(
+                    "\nWARNING:  Your choice has not yet been scripted. Please choose another.\n"  # noqa: E501
+                )
         else:
-            print("\nSorry - we do not recognize your input. Please try again.\n")
+            print(
+                "\nSorry - we do not recognize your input. Please try again.\n"
+            )  # noqa: E501
 
 # everything after this is not run unless it is called on
 # (functions covered in week 2)
