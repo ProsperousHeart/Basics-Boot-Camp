@@ -174,10 +174,10 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    It will read in a file, and then attempt to locate a pattern. 
-    If pattern is found, the line it was found in will be written 
+    It will read in a file, and then attempt to locate a pattern.
+    If pattern is found, the line it was found in will be written
     to a txt file.
-    
+
     """
     logger.debug("Starting {}()...".format(__name__))
     print("You are about to read in:\t{}".format(input_file))

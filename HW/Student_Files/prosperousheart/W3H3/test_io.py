@@ -4,7 +4,7 @@ import unittest
 from W3H1_IO import print_to_file, read_n_match
 
 
-## assertions:  https://docs.python.org/3/library/unittest.html#assert-methods
+# assertions:  https://docs.python.org/3/library/unittest.html#assert-methods
 class TestIO(unittest.TestCase):
     """
     Testing IO functions from HW 3.
@@ -59,7 +59,8 @@ But my love returns no more."""
     #     '''
 
     #     rtnd_list = read_n_match(TestIO.file_name, TestIO.str_to_match)
-    #     self.assertNotIsInstance(rtnd_list, type(None), "This should never return None!")
+    #     self.assertNotIsInstance(rtnd_list, type(None),
+    #           "This should never return None!")
 
     def test_read_n_match_success(self):
         """
@@ -71,13 +72,17 @@ But my love returns no more."""
 
         # rtnd_list = read_n_match(TestIO.file_name_r, TestIO.str_to_match)
         TestIO.match_list = read_n_match(TestIO.file_name_r, TestIO.str_to_match)
-        # self.assertIsInstance(rtnd_list, list, "Function did not return a list!")
+        # self.assertIsInstance(rtnd_list, list,
+        #       "Function did not return a list!")
         self.assertIsInstance(
             TestIO.match_list, list, "Function did not return a list!"
         )
-        # self.assertEqual(len(rtnd_list), TestIO.match_num, "Incorrect number of lines found")
+        # self.assertEqual(len(rtnd_list),
+        #       TestIO.match_num,"Incorrect number of lines found")
         self.assertEqual(
-            len(TestIO.match_list), TestIO.match_num, "Incorrect number of lines found"
+            len(TestIO.match_list),
+            TestIO.match_num,
+            "Incorrect number of lines found",
         )
 
     def test_print_to_file_no_match(self):

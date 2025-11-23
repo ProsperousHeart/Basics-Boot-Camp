@@ -22,7 +22,7 @@ https://realpython.com/documenting-python-code/
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    
+
     """
 
     print("Thank you for starting your W1H1-Calc program!\n")

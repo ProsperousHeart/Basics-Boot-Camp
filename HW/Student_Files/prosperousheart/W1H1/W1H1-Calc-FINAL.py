@@ -22,7 +22,7 @@ https://realpython.com/documenting-python-code/
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    
+
     """
 
     print("Thank you for starting your W1H1-Calc program!\n")
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 
             # multiply numbers
             elif usr_input == "3":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
             # subtract numbers
             elif usr_input == "4":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
             # divide numbers
             elif usr_input == "5":
-                # consider what you would need to do if more than 2 numbers were desired
+                # consider what you would need to do if >2 numbers were desired
                 add1 = input("\nPlease provide your 1st of 2 numbers:\t")
                 add2 = input("Please provide your 2nd of 2 numbers:\t")
 

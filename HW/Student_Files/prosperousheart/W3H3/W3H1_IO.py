@@ -34,7 +34,7 @@ TODAY = "".join(str(date.today()).split("-"))
 INPUT_FILE = "Alice In Wonderland Text.txt"
 
 # =============================================================================
-# This section will set up logging. More information on logging can be found here:
+# This section will set up logging. More information on logging found here:
 #   www.blog.pythonlibrary.org/2012/08/02/python-101-an-intro-to-logging
 #   www.digitalocean.com/community/tutorials/how-to-use-logging-in-python3
 #   www.loggly.com/ultimate-guide/python-logging-basics
@@ -45,7 +45,8 @@ INPUT_FILE = "Alice In Wonderland Text.txt"
 #           for your future self
 #       - as mentioned before, there is no one right way to code, so several
 #           different styles have been shared here
-#       - logging levels:  https://docs.python.org/3/library/logging.html#logging-levels
+#       - logging levels:
+#           https://docs.python.org/3/library/logging.html#logging-levels
 # =============================================================================
 logging.basicConfig(
     filename=f"PHPBBCW3-{TODAY}.log",  # consider using formatting instead
@@ -105,8 +106,8 @@ def read_n_match(file_in: str, pttrn: str):
 
 def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
     """
-    This function will take a list of lines found from read_and_match() function,
-    then print to a text file.
+    This function will take a list of lines found
+    from read_and_match() function, then print to a text file.
 
     Required inputs:
     : line_list - list of lines returned from read_and_match() function
@@ -133,7 +134,9 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
     with open(file_name, "a+", encoding="UTF-8") as output_file:
         logger.debug("Writing to output file ...")
         output_file.write(divider)
-        # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
+        # output_file.write('The pattern you requested was '
+        #    + pattern + '\nYour count was:\t '
+        #   + str(len(line_list)))
         output_file.write(f"The pattern you asked to search for is:\t{pttrn}\n")
         output_file.write(f"The pattern was found in {len(line_list)} lines.\n\n")
 
@@ -169,10 +172,10 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
 if __name__ == "__main__":
     """
     This function is only executed if run as a script.
-    It will read in a file, and then attempt to locate a pattern. 
-    If pattern is found, the line it was found in will be written 
+    It will read in a file, and then attempt to locate a pattern.
+    If pattern is found, the line it was found in will be written
     to a txt file.
-    
+
     """
     logger.debug("Starting %s()...", __name__)
     print(f"You are about to read in:\t{INPUT_FILE}")

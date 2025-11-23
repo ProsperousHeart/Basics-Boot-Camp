@@ -35,7 +35,7 @@ today = "".join(str(date.today()).split("-"))
 choices = {1: "rock", 2: "paper", 3: "scissors"}
 
 # =============================================================================
-# This section will set up logging. More information on logging can be found here:
+# This section will set up logging. More information on logging found here:
 #   www.blog.pythonlibrary.org/2012/08/02/python-101-an-intro-to-logging
 #   www.digitalocean.com/community/tutorials/how-to-use-logging-in-python3
 #   www.loggly.com/ultimate-guide/python-logging-basics
