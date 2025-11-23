@@ -27,7 +27,8 @@ lint:
 
 format:
 	@echo "Formatting with black..."
-	black src/ test/
+# 	black src/ test/
+	black HW/
 
 test:
 	@echo "Running pytest..."
