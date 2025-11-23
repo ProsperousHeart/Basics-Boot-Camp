@@ -22,7 +22,8 @@ lint:
 	@echo "Running flake8..."
 	flake8 .
 	@echo "Checking formatting with black..."
-	black --check src/ test/ || (echo "Black check failed — run 'make format' to fix." && exit 1)
+# 	black --check src/ test/ || (echo "Black check failed — run 'make format' to fix." && exit 1)
+	black --check HW/ || (echo "Black check failed — run 'make format' to fix." && exit 1)
 
 format:
 	@echo "Formatting with black..."
