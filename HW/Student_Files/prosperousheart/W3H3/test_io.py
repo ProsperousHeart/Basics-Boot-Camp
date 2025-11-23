@@ -71,7 +71,8 @@ But my love returns no more."""
         """
 
         # rtnd_list = read_n_match(TestIO.file_name_r, TestIO.str_to_match)
-        TestIO.match_list = read_n_match(TestIO.file_name_r, TestIO.str_to_match)
+        TestIO.match_list = read_n_match(
+            TestIO.file_name_r, TestIO.str_to_match)
         # self.assertIsInstance(rtnd_list, list,
         #       "Function did not return a list!")
         self.assertIsInstance(

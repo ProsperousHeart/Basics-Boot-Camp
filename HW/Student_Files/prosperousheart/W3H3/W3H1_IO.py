@@ -119,7 +119,8 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
     logger.debug("Starting print_to_file()...")
     if file_name[-4:] != ".txt":
         logger.warning("File is not a TXT file!")
-        logger.debug("Adding appropriate extension - did not check for others.")
+        logger.debug(
+            "Adding appropriate extension - did not check for others.")
         file_name = file_name + ".txt"
 
     path = Path(file_name)
@@ -137,8 +138,10 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
         # output_file.write('The pattern you requested was '
         #    + pattern + '\nYour count was:\t '
         #   + str(len(line_list)))
-        output_file.write(f"The pattern you asked to search for is:\t{pttrn}\n")
-        output_file.write(f"The pattern was found in {len(line_list)} lines.\n\n")
+        output_file.write(
+            f"The pattern you asked to search for is:\t{pttrn}\n")
+        output_file.write(
+            f"The pattern was found in {len(line_list)} lines.\n\n")
 
         output_file.write("*****" * 3 + "\n\n")
 
@@ -146,7 +149,8 @@ def print_to_file(line_list: str, pttrn: str, file_name: str = "output.txt"):
             # file_object.write('string')
             output_file.write(item[0] + "\t" + item[1] + "\n")
 
-    print(f"File created with {len(line_list)} lines found that match '{pttrn}'.")
+    print(
+        f"File created with {len(line_list)} lines found that match '{pttrn}'.")
     print(f"Please locate the following in your folder:\n{file_name}")
     # print(file_name)
     logger.debug("... Ending print_to_file()")

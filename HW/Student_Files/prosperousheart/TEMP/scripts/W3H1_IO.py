@@ -47,7 +47,10 @@ input_file = "../Files/Alice In Wonderland Text.txt"
 #       - logging levels:  https://docs.python.org/3/library/logging.html#logging-levels
 # =============================================================================
 logging.basicConfig(
-    filename="PHPBBCW3-{}.log".format(today),  # consider using formatting instead
+    # consider using formatting instead
+    filename="PHPBBCW3-{}.log".format(
+        today
+    ),  # consider using formatting instead
     filemode="a+",  # overwrites the file every time
     level=logging.DEBUG,  # lowest logging level
     format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s",
@@ -117,7 +120,9 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
     logger.debug("Starting print_to_file()...")
     if file_name[-4:] != ".txt":
         logger.warning("File is not a TXT file!")
-        logger.debug("Adding appropriate extension - did not check for others.")
+        logger.debug(
+            "Adding appropriate extension - did not check for others."
+        )
         file_name = file_name + ".txt"
 
     path = Path(file_name)
@@ -133,7 +138,9 @@ def print_to_file(line_list, pttrn, file_name="output.txt"):
         logger.debug("Writing to output file ...")
         output_file.write(divider)
         # output_file.write('The pattern you requested was ' + pattern + '\nYour count was:\t ' + str(len(line_list)))
-        output_file.write("The pattern you asked to search for is:\t{}\n".format(pttrn))
+        output_file.write(
+            "The pattern you asked to search for is:\t{}\n".format(pttrn)
+        )
         output_file.write(
             "The pattern was found in {} lines.\n\n".format(len(line_list))
         )
