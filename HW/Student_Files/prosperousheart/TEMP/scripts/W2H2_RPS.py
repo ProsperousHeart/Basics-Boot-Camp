@@ -49,7 +49,9 @@ choices = {1: "rock", 2: "paper", 3: "scissors"}
 # =============================================================================
 logging.basicConfig(
     # consider using formatting instead
-    filename="PHPBBC-{}.log".format(today),  # consider using formatting instead
+    filename="PHPBBC-{}.log".format(
+        today
+    ),  # consider using formatting instead  # noqa: E501
     filemode="w",  # overwrites the file every time
     level=logging.DEBUG,  # lowest logging level
     format="%(asctime)s|%(levelname)s: %(name)s @ %(lineno)d|%(message)s",
@@ -132,10 +134,14 @@ class Choice(object):
         choice_str = "1 - rock, 2 - paper, 3 - scissors"
         test_bool = True
         while test_bool:
-            in_put = input("Please provide your choice ({}):  ".format(choice_str))
+            in_put = input(
+                "Please provide your choice ({}):  ".format(choice_str)
+            )
             if in_put.isdigit() and int(in_put) in choices.keys():
                 test_bool = False
-        logger.debug("Correct input received. Returning response:  {}".format(in_put))
+        logger.debug(
+            "Correct input received. Returning response:  {}".format(in_put)
+        )
         return int(in_put)
 
 
@@ -153,7 +159,9 @@ def get_user_input():
     logger.debug("Starting get_user_input()...")
     user_obj = Choice()
     user_obj.choice = user_obj.input()
-    logger.debug("Ending get_user_input() & returning:  {}".format(user_obj.choice))
+    logger.debug(
+        "Ending get_user_input() & returning:  {}".format(user_obj.choice)
+    )
 
     return user_obj.choice
 
@@ -177,7 +185,9 @@ def get_comp_choice():
 
     logger.debug("Starting get_comp_choice()...")
     random_int = random.randint(1, len(choices.keys()))  # nosec
-    logger.debug("Ending get_comp_choice() & returning:  {}".format(random_int))
+    logger.debug(
+        "Ending get_comp_choice() & returning:  {}".format(random_int)
+    )
     # pass
 
     return random_int
