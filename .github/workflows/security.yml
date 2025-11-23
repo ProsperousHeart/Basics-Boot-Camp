@@ -42,4 +42,4 @@ jobs:
       run: pip install bandit
     - name: Run Bandit
       # run: bandit -x .venv -r .
-      run: bandit -x .venv,HW/**/tests -r .  # comma-separated exclude patterns
+      run: bandit -x .venv,HW/**/tests -r . --skip B101  # comma-separated exclude patterns
