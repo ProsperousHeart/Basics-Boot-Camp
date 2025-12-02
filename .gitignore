@@ -2,6 +2,10 @@
 test_output.txt
 test_txt.txt
 
+# Linting files
+.ruff_cache/
+.mypy_cache/
+
 # PyCharm
 .idea/
 
