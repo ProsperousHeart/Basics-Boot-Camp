@@ -1,0 +1,71 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.708003Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.872481Z",
+      "mimetype": null,
+      "name": "Python_Basics_13_-_Iterators_And_Generators.ipynb",
+      "path": "BC_Weeks\\Week_2/Python_Basics_13_-_Iterators_And_Generators.ipynb",
+      "size": 5383,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.711937Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.894481Z",
+      "mimetype": null,
+      "name": "Python_Basics_14_-_Functions.ipynb",
+      "path": "BC_Weeks\\Week_2/Python_Basics_14_-_Functions.ipynb",
+      "size": 14652,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.737937Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.897481Z",
+      "mimetype": null,
+      "name": "Python_Basics_15_-_Scope_Of_Variables.ipynb",
+      "path": "BC_Weeks\\Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb",
+      "size": 5317,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.741971Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.917484Z",
+      "mimetype": null,
+      "name": "Python_Basics_16_-_Modules.ipynb",
+      "path": "BC_Weeks\\Week_2/Python_Basics_16_-_Modules.ipynb",
+      "size": 8732,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-07T09:40:30.706994Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-07T09:40:30.741971Z",
+  "mimetype": null,
+  "name": "BC_Weeks\\Week_2",
+  "path": "BC_Weeks\\Week_2",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

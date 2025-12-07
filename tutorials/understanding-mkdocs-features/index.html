@@ -1,0 +1,3681 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python Basics Boot Camp Training Materials">
+      
+      
+        <meta name="author" content="Prosperous Heart">
+      
+      
+        <link rel="canonical" href="https://prosperousheart.github.io/Basics-Boot-Camp/tutorials/understanding-mkdocs-features/">
+      
+      
+        <link rel="prev" href="../Helpful_Hints/">
+      
+      
+        <link rel="next" href="../transitioning-to-uv/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Understanding MkDocs Features - Python Basics Boot Camp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-mkdocs-features-in-this-project" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <!-- Announcement banner - customize the message below -->
+  <!-- The banner is automatically dismissible (users can close it) -->
+  <p style="text-align: center;">
+    📢 <strong>New Interactive Jupyter Notebooks!</strong>
+    Try out Python code directly in your browser - no installation required.
+    <a href="https://prosperousheart.github.io/Basics-Boot-Camp//interactive-jupyter/">Start Learning →</a>
+  </p>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python Basics Boot Camp" class="md-header__button md-logo" aria-label="Python Basics Boot Camp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Basics Boot Camp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understanding MkDocs Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ProsperousHeart/Basics-Boot-Camp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ProsperousHeart/Basics-Boot-Camp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../interactive-jupyter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interactive Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python Basics Boot Camp" class="md-nav__button md-logo" aria-label="Python Basics Boot Camp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Python Basics Boot Camp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ProsperousHeart/Basics-Boot-Camp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ProsperousHeart/Basics-Boot-Camp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/course-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/time-expectations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Expectations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/training-philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/enrollment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation &amp; Homework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/missing-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lessons_Learned/Jupyter_In_mkdocs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lessons Learned About mkdocs and JupyterLite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interactive-jupyter/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interactive Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_01_-_Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax &amp; Basic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_03_-_Variables_%26_Garbage_Collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables &amp; Garbage Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_04_-_Operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_05_-_Decision_Making/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision Making
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_06_-_Sequences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_07_-_Variable_Type_NUMBERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_08_-_Variable_Type_STRING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_09_-_Variable_Type_LIST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_10_-_Variable_Type_TUPLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dictionaries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_12_-_Type_Conversions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type Conversions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_13_-_Iterators_And_Generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterators &amp; Generators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_14_-_Functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope of Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_16_-_Modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_17_-_Input_%26_Output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input &amp; Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_18_-_Exceptions_%26_Assertions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exceptions &amp; Assertions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Helpful_Hints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helpful Hints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding MkDocs Features
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding MkDocs Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-difference-between-these-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Difference Between These Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is MkDocs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Material for MkDocs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#announcement-banner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Announcement Banner
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Announcement Banner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-its-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It's Configured
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It's Configured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enable-custom-overrides-mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enable Custom Overrides (mkdocs.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-announcement-template-overridesmainhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create Announcement Template (overrides/main.html)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-customize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Customize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Disable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#styling-and-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Styling and Customization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-for-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases for This Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Locations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-navigation-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Navigation Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Navigation Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabled-in-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled in This Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins Explained
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monorepo-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monorepo Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyterlite-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JupyterLite Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-index-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Index Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glightbox-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GLightbox Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown Extensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markdown Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-highlighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Highlighting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admonitions-callout-boxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admonitions (Callout Boxes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Tabs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-and-toc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables and TOC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-color-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Color Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serve-the-site-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serve the site locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build static files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy to GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customization-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customization Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customization Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-the-color-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change the color scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add a logo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add custom CSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-google-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Google Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#official-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-not-showing-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation not showing correctly?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search not working?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyterlite-not-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JupyterLite not loading?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-not-displaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Images not displaying?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transitioning-to-uv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transitioning to UV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-difference-between-these-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Difference Between These Guides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is MkDocs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Material for MkDocs?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#announcement-banner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Announcement Banner
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Announcement Banner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-its-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It's Configured
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It's Configured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enable-custom-overrides-mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enable Custom Overrides (mkdocs.yml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-announcement-template-overridesmainhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create Announcement Template (overrides/main.html)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-customize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Customize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Disable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#styling-and-customization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Styling and Customization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-for-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases for This Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-locations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Locations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-navigation-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Navigation Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Navigation Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabled-in-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled in This Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugins-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugins Explained
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugins Explained">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#search-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monorepo-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monorepo Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyterlite-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JupyterLite Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section-index-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section Index Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glightbox-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GLightbox Plugin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown Extensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markdown Extensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#code-highlighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Highlighting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admonitions-callout-boxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admonitions (Callout Boxes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-tabs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Tabs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-and-toc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables and TOC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theme-color-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theme Color Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serve-the-site-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Serve the site locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build static files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy to GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#customization-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customization Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customization Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#change-the-color-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change the color scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add a logo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-custom-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add custom CSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-google-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add Google Analytics
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#official-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Official Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-not-showing-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation not showing correctly?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search not working?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyterlite-not-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JupyterLite not loading?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-not-displaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Images not displaying?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="understanding-mkdocs-features-in-this-project">Understanding MkDocs Features in This Project<a class="headerlink" href="#understanding-mkdocs-features-in-this-project" title="Permanent link">¶</a></h1>
+<p>This guide explains the MkDocs configuration currently used in this Python Basics Boot Camp documentation site. For setup instructions, see the <a href="../../guidelines/mkdocs-setup-guide/">MkDocs Setup Guide</a>.</p>
+<h2 id="the-difference-between-these-guides">The Difference Between These Guides<a class="headerlink" href="#the-difference-between-these-guides" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Guide</th>
+<th>Purpose</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../guidelines/mkdocs-setup-guide/"><strong>MkDocs Setup Guide</strong></a></td>
+<td>Step-by-step installation and initial configuration</td>
+<td>Setting up MkDocs from scratch</td>
+</tr>
+<tr>
+<td><strong>This Guide</strong></td>
+<td>Explains features already configured in this project</td>
+<td>Understanding what features do and learning more</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Think of it this way:</strong>
+- 📦 <strong>Setup Guide</strong> = "How to build the site"
+- 📚 <strong>This Guide</strong> = "How the site works"</p>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">¶</a></h2>
+<h3 id="what-is-mkdocs">What is MkDocs?<a class="headerlink" href="#what-is-mkdocs" title="Permanent link">¶</a></h3>
+<p><a href="https://www.mkdocs.org/">MkDocs</a> is a static site generator that creates beautiful documentation websites from Markdown files.</p>
+<h3 id="what-is-material-for-mkdocs">What is Material for MkDocs?<a class="headerlink" href="#what-is-material-for-mkdocs" title="Permanent link">¶</a></h3>
+<p><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> is a modern, responsive theme that makes your documentation look professional and provides advanced features.</p>
+<h2 id="announcement-banner">Announcement Banner<a class="headerlink" href="#announcement-banner" title="Permanent link">¶</a></h2>
+<p>This project uses the Material for MkDocs announcement banner feature to display important messages across the top of every page.</p>
+<h3 id="what-it-does">What It Does<a class="headerlink" href="#what-it-does" title="Permanent link">¶</a></h3>
+<p>The announcement banner displays site-wide notifications, updates, or calls-to-action in a prominent colored bar above the navigation. Users can dismiss it by clicking the X button, and their preference is saved in browser localStorage.</p>
+<p><strong>Key features</strong>:
+- <strong>Dismissible</strong>: Users can close it with an X button (top right)
+- <strong>Persistent</strong>: Once dismissed, stays hidden until user clears browser data
+- <strong>Site-wide</strong>: Appears on every page of the documentation
+- <strong>HTML support</strong>: Can include links, formatting, emojis, and styling
+- <strong>Mobile responsive</strong>: Automatically adjusts for smaller screens</p>
+<h3 id="how-its-configured">How It's Configured<a class="headerlink" href="#how-its-configured" title="Permanent link">¶</a></h3>
+<p>The announcement banner requires two configuration elements:</p>
+<h4 id="1-enable-custom-overrides-mkdocsyml">1. Enable Custom Overrides (mkdocs.yml)<a class="headerlink" href="#1-enable-custom-overrides-mkdocsyml" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">theme</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">custom_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">overrides</span><span class="w">  </span><span class="c1"># Enables custom template directory</span>
+</code></pre></div>
+<p>This tells MkDocs to look in the <code>overrides/</code> directory for custom template files.</p>
+<h4 id="2-create-announcement-template-overridesmainhtml">2. Create Announcement Template (overrides/main.html)<a class="headerlink" href="#2-create-announcement-template-overridesmainhtml" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{% extends "base.html" %}
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>{% block announce %}
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    📢 <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>New Interactive Jupyter Notebooks!<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    Try out Python code directly in your browser - no installation required.
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ page.canonical_url }}interactive-jupyter/"</span><span class="p">&gt;</span>Start Learning →<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>{% endblock %}
+</code></pre></div>
+<p><strong>Template breakdown</strong>:
+- <code>{% extends "base.html" %}</code> - Inherits from Material's base template
+- <code>{% block announce %}</code> - Defines the announcement content block
+- <code>&lt;p&gt;</code> - Paragraph containing your message (can include HTML)
+- <code>{{ page.canonical_url }}</code> - Jinja2 variable for building relative URLs</p>
+<h3 id="how-to-customize">How to Customize<a class="headerlink" href="#how-to-customize" title="Permanent link">¶</a></h3>
+<p><strong>Edit the message</strong>: Modify the content inside <code>{% block announce %}</code> in <code>overrides/main.html</code></p>
+<p><strong>Example templates</strong>:</p>
+<p><strong>For deadlines:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{% block announce %}
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    ⏰ <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Assignment Due:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> Week 2 homework due December 15 at 11:59pm EST.
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ page.canonical_url }}homework/"</span><span class="p">&gt;</span>Submit Now →<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>{% endblock %}
+</code></pre></div><p></p>
+<p><strong>For live events:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{% block announce %}
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    🎓 <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Live Q<span class="err">&amp;</span>A Session:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> Join us this Friday at 2pm ET.
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"{{ page.canonical_url }}events/"</span><span class="p">&gt;</span>Register Here →<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>{% endblock %}
+</code></pre></div><p></p>
+<p><strong>For surveys:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>{% block announce %}
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    📝 Help us improve! Take our 2-minute course survey.
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">"https://forms.example.com/survey"</span> <span class="na">target</span><span class="o">=</span><span class="s">"_blank"</span><span class="p">&gt;</span>Give Feedback →<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>{% endblock %}
+</code></pre></div><p></p>
+<p><strong>Multiple messages with rotation:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>{% block announce %}
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    🆕 <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>New:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> Week 3 content now available! |
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    ⏰ <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Reminder:<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> Week 2 homework due Friday |
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    🎉 <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>Thanks<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> to all our students for the great participation!
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>{% endblock %}
+</code></pre></div><p></p>
+<h3 id="how-to-disable">How to Disable<a class="headerlink" href="#how-to-disable" title="Permanent link">¶</a></h3>
+<p><strong>Option 1 - Hide banner temporarily:</strong>
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>{% block announce %}
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  <span class="cm">&lt;!-- Banner disabled - uncomment to re-enable</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="cm">  &lt;p&gt;Your message here&lt;/p&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="cm">  --&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>{% endblock %}
+</code></pre></div><p></p>
+<p><strong>Option 2 - Remove banner completely:</strong>
+Delete or comment out the entire <code>{% block announce %}</code> section in <code>overrides/main.html</code>.</p>
+<p><strong>Option 3 - Disable custom overrides:</strong>
+Remove <code>custom_dir: overrides</code> from <code>mkdocs.yml</code> (also disables other customizations).</p>
+<h3 id="styling-and-customization">Styling and Customization<a class="headerlink" href="#styling-and-customization" title="Permanent link">¶</a></h3>
+<p>The banner's appearance is controlled by Material for MkDocs theme. The default styling includes:
+- Indigo background color (matches your <code>primary</code> theme color)
+- White text
+- Full-width banner
+- Automatic dismiss button on the right
+- Smooth slide-down animation on page load</p>
+<p><strong>To customize colors</strong>, you would need to add custom CSS (see Customization Tips section below).</p>
+<h3 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">¶</a></h3>
+<p><strong>Keep it concise</strong>: Banner messages should be short (1-2 sentences max)</p>
+<p><strong>Use clear calls-to-action</strong>: Include a link with action words like "Start", "Register", "Submit"</p>
+<p><strong>Update regularly</strong>: Keep content fresh and remove outdated announcements</p>
+<p><strong>Test dismissibility</strong>: Verify users can close the banner easily</p>
+<p><strong>Mobile testing</strong>: Check how the banner looks on smaller screens</p>
+<h3 id="use-cases-for-this-project">Use Cases for This Project<a class="headerlink" href="#use-cases-for-this-project" title="Permanent link">¶</a></h3>
+<ul>
+<li>Announcing new course weeks or modules</li>
+<li>Homework deadlines and submission reminders</li>
+<li>Live session or office hours schedules</li>
+<li>Course surveys and feedback requests</li>
+<li>Holiday/break schedules</li>
+<li>New feature announcements (like JupyterLite)</li>
+<li>Important updates or corrections to course material</li>
+</ul>
+<h3 id="file-locations">File Locations<a class="headerlink" href="#file-locations" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>File Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configuration</td>
+<td><code>mkdocs.yml</code> (line 15)</td>
+<td>Enables <code>custom_dir: overrides</code></td>
+</tr>
+<tr>
+<td>Template</td>
+<td><code>overrides/main.html</code></td>
+<td>Defines announcement content</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td><code>docs/tutorials/understanding-mkdocs-features.md</code></td>
+<td>This guide</td>
+</tr>
+</tbody>
+</table>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h3>
+<p><strong>Banner not appearing?</strong>
+1. Check <code>custom_dir: overrides</code> is in <code>mkdocs.yml</code> under <code>theme:</code>
+2. Verify <code>overrides/main.html</code> exists
+3. Ensure content exists in <code>{% block announce %}</code>
+4. Rebuild: <code>make docs-clean &amp;&amp; make docs-build</code>
+5. Clear browser cache and localStorage</p>
+<p><strong>Banner appears but looks broken?</strong>
+- Check HTML syntax in <code>overrides/main.html</code>
+- Verify all opening/closing tags match
+- Test with simple text first, then add complexity</p>
+<p><strong>Links not working?</strong>
+- Use <code>{{ page.canonical_url }}</code> for relative links
+- Use full URLs for external links
+- Add <code>target="_blank"</code> for external links</p>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-header/#announcement-bar">Material Announcement Bar</a></p>
+<hr>
+<h2 id="current-navigation-features">Current Navigation Features<a class="headerlink" href="#current-navigation-features" title="Permanent link">¶</a></h2>
+<h3 id="enabled-in-this-project">Enabled in This Project<a class="headerlink" href="#enabled-in-this-project" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What It Does</th>
+<th>Visual Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>navigation.tabs</code></strong></td>
+<td>Creates tabs across the top for main sections</td>
+<td>You see "Home", "Getting Started", "Tutorials" as tabs</td>
+</tr>
+<tr>
+<td><strong><code>navigation.sections</code></strong></td>
+<td>Groups related pages into collapsible sections</td>
+<td>Sections like "Home" can expand/collapse</td>
+</tr>
+<tr>
+<td><strong><code>navigation.expand</code></strong></td>
+<td>Auto-expands all sections</td>
+<td>Sidebar shows all pages without clicking</td>
+</tr>
+<tr>
+<td><strong><code>navigation.indexes</code></strong></td>
+<td>Makes section titles clickable</td>
+<td>Click "Home" to go to home index page</td>
+</tr>
+<tr>
+<td><strong><code>navigation.top</code></strong></td>
+<td>Adds back-to-top button</td>
+<td>Bottom-right button appears when scrolling</td>
+</tr>
+<tr>
+<td><strong><code>navigation.tracking</code></strong></td>
+<td>Updates URL with current heading</td>
+<td>URL shows <code>#current-section</code> as you scroll</td>
+</tr>
+<tr>
+<td><strong><code>navigation.instant</code></strong></td>
+<td>Instant page loading (SPA)</td>
+<td>Pages load without full refresh</td>
+</tr>
+<tr>
+<td><strong><code>navigation.path</code></strong></td>
+<td>Shows breadcrumb trail</td>
+<td>Top of page shows "Home &gt; Course Overview"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/">Material Navigation Docs</a></p>
+<h3 id="search-features">Search Features<a class="headerlink" href="#search-features" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>search.suggest</code></strong></td>
+<td>Shows suggestions as you type in search</td>
+</tr>
+<tr>
+<td><strong><code>search.highlight</code></strong></td>
+<td>Highlights your search terms on pages</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/">Search Setup</a></p>
+<h3 id="content-features">Content Features<a class="headerlink" href="#content-features" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>content.code.copy</code></strong></td>
+<td>Adds copy button to code blocks</td>
+</tr>
+<tr>
+<td><strong><code>content.code.annotate</code></strong></td>
+<td>Enables clickable annotations in code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/reference/code-blocks/">Code Blocks Reference</a></p>
+<h3 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>toc.follow</code></strong></td>
+<td>Auto-scrolls TOC sidebar to current section</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#table-of-contents">TOC Configuration</a></p>
+<h2 id="plugins-explained">Plugins Explained<a class="headerlink" href="#plugins-explained" title="Permanent link">¶</a></h2>
+<h3 id="search-plugin">Search Plugin<a class="headerlink" href="#search-plugin" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span>
+</code></pre></div>
+<strong>What it does</strong>: Enables the search bar and full-text search across all pages.<p></p>
+<p><strong>Learn more</strong>: <a href="https://www.mkdocs.org/user-guide/configuration/#search">MkDocs Search</a></p>
+<hr>
+<h3 id="monorepo-plugin">Monorepo Plugin<a class="headerlink" href="#monorepo-plugin" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monorepo</span>
+</code></pre></div>
+<strong>What it does</strong>: Allows managing multiple documentation projects in one repository.<p></p>
+<p><strong>Why we use it</strong>: Useful if you want to organize different parts of the bootcamp as separate "sub-projects."</p>
+<p><strong>Learn more</strong>: <a href="https://github.com/backstage/mkdocs-monorepo-plugin">mkdocs-monorepo-plugin</a></p>
+<hr>
+<h3 id="jupyterlite-plugin">JupyterLite Plugin<a class="headerlink" href="#jupyterlite-plugin" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">jupyterlite</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">notebook_patterns</span><span class="p">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"BC_Weeks/**/*.ipynb"</span>
+</code></pre></div>
+<p><strong>What it does</strong>: Embeds an interactive Jupyter notebook environment that runs entirely in the browser using WebAssembly (Pyodide).</p>
+<p><strong>Why it's awesome</strong>:
+- Students can run Python code without installing anything
+- No server required - runs in the browser
+- Perfect for educational content</p>
+<p><strong>Learn more</strong>:
+- <a href="https://jupyterlite.readthedocs.io/">JupyterLite Docs</a>
+- <a href="https://github.com/jupyterlite/mkdocs-jupyterlite">mkdocs-jupyterlite Plugin</a></p>
+<hr>
+<h3 id="section-index-plugin">Section Index Plugin<a class="headerlink" href="#section-index-plugin" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">section-index</span>
+</code></pre></div>
+<p><strong>What it does</strong>: Works with <code>navigation.indexes</code> to make section folder names clickable.</p>
+<p><strong>Example</strong>: Clicking "Home" in the sidebar takes you to the Home section's index page.</p>
+<p><strong>Learn more</strong>: <a href="https://github.com/oprypin/mkdocs-section-index">mkdocs-section-index</a></p>
+<hr>
+<h3 id="glightbox-plugin">GLightbox Plugin<a class="headerlink" href="#glightbox-plugin" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">glightbox</span>
+</code></pre></div>
+<p><strong>What it does</strong>: Creates a lightbox overlay when clicking on images - they pop up in a modal for better viewing.</p>
+<p><strong>Try it</strong>: Click any image in the documentation to see the effect.</p>
+<p><strong>Learn more</strong>: <a href="https://github.com/blueswen/mkdocs-glightbox">mkdocs-glightbox</a></p>
+<h2 id="markdown-extensions">Markdown Extensions<a class="headerlink" href="#markdown-extensions" title="Permanent link">¶</a></h2>
+<h3 id="code-highlighting">Code Highlighting<a class="headerlink" href="#code-highlighting" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.highlight</span><span class="p">:</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nt">anchor_linenums</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.inlinehilite</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.snippets</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.superfences</span>
+</code></pre></div>
+<p><strong>What they do</strong>:
+- <strong>highlight</strong>: Syntax highlighting for code blocks with clickable line numbers
+- <strong>inlinehilite</strong>: Highlight code inline like <code>this</code>
+- <strong>snippets</strong>: Include external file snippets in your docs
+- <strong>superfences</strong>: Advanced code block features (tabs, nested blocks)</p>
+<p><strong>Learn more</strong>: <a href="https://facelessuser.github.io/pymdown-extensions/extensions/highlight/">PyMdown Extensions - Highlight</a></p>
+<hr>
+<h3 id="admonitions-callout-boxes">Admonitions (Callout Boxes)<a class="headerlink" href="#admonitions-callout-boxes" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
+</code></pre></div>
+<p><strong>What they do</strong>: Create callout boxes for notes, warnings, tips, etc.</p>
+<p><strong>Example</strong>:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>!!! note "This is a note"
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    Important information here!
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>!!! warning
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    Be careful!
+</code></pre></div><p></p>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/">Admonitions Reference</a></p>
+<hr>
+<h3 id="content-tabs">Content Tabs<a class="headerlink" href="#content-tabs" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.tabbed</span><span class="p">:</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="nt">alternate_style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p><strong>What it does</strong>: Creates tabbed content sections.</p>
+<p><strong>Example</strong>:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>=== "Python"
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="sb">    ```python</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="sb">    ```</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>=== "JavaScript"
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="sb">    ```javascript</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">)</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="sb">    ```</span>
+</code></pre></div><p></p>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/reference/content-tabs/">Content Tabs Reference</a></p>
+<hr>
+<h3 id="tables-and-toc">Tables and TOC<a class="headerlink" href="#tables-and-toc" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tables</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">toc</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="nt">permalink</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p><strong>What they do</strong>:
+- <strong>tables</strong>: Enhanced Markdown table support
+- <strong>toc</strong>: Generates table of contents with permalink anchors (# symbols next to headings)</p>
+<p><strong>Learn more</strong>: <a href="https://python-markdown.github.io/extensions/toc/">Python Markdown TOC</a></p>
+<h2 id="theme-color-configuration">Theme Color Configuration<a class="headerlink" href="#theme-color-configuration" title="Permanent link">¶</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nt">palette</span><span class="p">:</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="c1"># Light mode</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="nt">accent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="c1"># Dark mode</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slate</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="nt">accent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">indigo</span>
+</code></pre></div>
+<p><strong>What it does</strong>: Sets up dual theme with toggle button.</p>
+<p><strong>Available colors</strong>: red, pink, purple, indigo, blue, cyan, teal, green, lime, yellow, amber, orange, brown</p>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/">Color Customization</a></p>
+<h2 id="navigation-structure">Navigation Structure<a class="headerlink" href="#navigation-structure" title="Permanent link">¶</a></h2>
+<p>The <code>nav</code> section in <code>mkdocs.yml</code> defines the sidebar structure:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">nav</span><span class="p">:</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Home</span><span class="p">:</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">index.md</span><span class="w">                          </span><span class="c1"># First file = section landing page</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Course Overview</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">home/course-overview.md</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">Getting Started</span><span class="p">:</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">getting-started/index.md</span>
+</code></pre></div>
+<p><strong>Key points</strong>:
+- Indentation matters (YAML format)
+- First item under a section = section index page
+- Use descriptive titles followed by file paths
+- Organize logically for user flow</p>
+<p><strong>Learn more</strong>: <a href="https://www.mkdocs.org/user-guide/writing-your-docs/#configure-pages-and-navigation">Navigation Setup</a></p>
+<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">¶</a></h2>
+<h3 id="serve-the-site-locally">Serve the site locally<a class="headerlink" href="#serve-the-site-locally" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+Opens at <code>http://127.0.0.1:8000/</code> with live reload - changes appear instantly.<p></p>
+<h3 id="build-static-files">Build static files<a class="headerlink" href="#build-static-files" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>mkdocs<span class="w"> </span>build
+</code></pre></div>
+Creates HTML files in <code>site/</code> directory.<p></p>
+<h3 id="deploy-to-github-pages">Deploy to GitHub Pages<a class="headerlink" href="#deploy-to-github-pages" title="Permanent link">¶</a></h3>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+Builds and deploys to <code>gh-pages</code> branch.<p></p>
+<p><strong>Learn more</strong>: <a href="https://www.mkdocs.org/user-guide/deploying-your-docs/">Deploying Docs</a></p>
+<h2 id="customization-tips">Customization Tips<a class="headerlink" href="#customization-tips" title="Permanent link">¶</a></h2>
+<h3 id="change-the-color-scheme">Change the color scheme<a class="headerlink" href="#change-the-color-scheme" title="Permanent link">¶</a></h3>
+<p>Edit <code>theme.palette.primary</code> and <code>theme.palette.accent</code> in <code>mkdocs.yml</code>.</p>
+<h3 id="add-a-logo">Add a logo<a class="headerlink" href="#add-a-logo" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">theme</span><span class="p">:</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="nt">logo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/logo.png</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span><span class="nt">favicon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/favicon.png</span>
+</code></pre></div>
+<h3 id="add-custom-css">Add custom CSS<a class="headerlink" href="#add-custom-css" title="Permanent link">¶</a></h3>
+<p>Create <code>docs/stylesheets/extra.css</code>:
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">extra_css</span><span class="p">:</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stylesheets/extra.css</span>
+</code></pre></div><p></p>
+<h3 id="add-google-analytics">Add Google Analytics<a class="headerlink" href="#add-google-analytics" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nt">extra</span><span class="p">:</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">  </span><span class="nt">analytics</span><span class="p">:</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">google</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="nt">property</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">G-XXXXXXXXXX</span>
+</code></pre></div>
+<p><strong>Learn more</strong>: <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-analytics/">Analytics Setup</a></p>
+<h2 id="useful-resources">Useful Resources<a class="headerlink" href="#useful-resources" title="Permanent link">¶</a></h2>
+<h3 id="official-documentation">Official Documentation<a class="headerlink" href="#official-documentation" title="Permanent link">¶</a></h3>
+<ul>
+<li><a href="https://www.mkdocs.org/">MkDocs</a> - Core documentation</li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> - Theme documentation</li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/reference/">Material Reference</a> - All features</li>
+</ul>
+<h3 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">¶</a></h3>
+<ul>
+<li><a href="https://facelessuser.github.io/pymdown-extensions/">PyMdown Extensions</a> - Markdown enhancements</li>
+<li><a href="https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins">MkDocs Plugins</a> - Plugin catalog</li>
+</ul>
+<h3 id="interactive-features">Interactive Features<a class="headerlink" href="#interactive-features" title="Permanent link">¶</a></h3>
+<ul>
+<li><a href="https://jupyterlite.readthedocs.io/">JupyterLite</a> - Browser-based Jupyter</li>
+<li><a href="https://pyodide.org/">Pyodide</a> - Python in WebAssembly</li>
+</ul>
+<h2 id="troubleshooting_1">Troubleshooting<a class="headerlink" href="#troubleshooting_1" title="Permanent link">¶</a></h2>
+<h3 id="navigation-not-showing-correctly">Navigation not showing correctly?<a class="headerlink" href="#navigation-not-showing-correctly" title="Permanent link">¶</a></h3>
+<ul>
+<li>Check <code>mkdocs.yml</code> indentation (must be spaces, not tabs)</li>
+<li>Verify all file paths exist</li>
+<li>Ensure <code>navigation.indexes</code> is enabled</li>
+</ul>
+<h3 id="search-not-working">Search not working?<a class="headerlink" href="#search-not-working" title="Permanent link">¶</a></h3>
+<ul>
+<li>Rebuild the site: <code>mkdocs build --clean</code></li>
+<li>Clear browser cache</li>
+<li>Check that <code>search</code> plugin is enabled</li>
+</ul>
+<h3 id="jupyterlite-not-loading">JupyterLite not loading?<a class="headerlink" href="#jupyterlite-not-loading" title="Permanent link">¶</a></h3>
+<ul>
+<li>Check console for errors (F12 in browser)</li>
+<li>Verify notebook paths in <code>notebook_patterns</code></li>
+<li>Ensure JupyterLite plugin is properly installed</li>
+</ul>
+<h3 id="images-not-displaying">Images not displaying?<a class="headerlink" href="#images-not-displaying" title="Permanent link">¶</a></h3>
+<ul>
+<li>Use paths relative to markdown file location</li>
+<li>Or use absolute paths from <code>docs/</code> directory</li>
+<li>Check image file extensions are lowercase</li>
+</ul>
+<hr>
+<p><strong>Related Guides</strong>:
+- <a href="../../guidelines/mkdocs-setup-guide/">MkDocs Setup Guide</a> - Initial setup instructions
+- <a href="../clean-code-before-pr/">Clean Code Before PR</a> - Contribution guidelines</p>
+<p><a href="../">← Back to Tutorials</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/kkeeton/" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ProsperousHeart" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

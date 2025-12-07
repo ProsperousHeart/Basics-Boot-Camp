@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.763937Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.935483Z",
+      "mimetype": null,
+      "name": "Python_Basics_17_-_Input_&_Output.ipynb",
+      "path": "BC_Weeks\\Week_3/Python_Basics_17_-_Input_&_Output.ipynb",
+      "size": 10391,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.782806Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.954485Z",
+      "mimetype": null,
+      "name": "Python_Basics_18_-_Exceptions_&_Assertions.ipynb",
+      "path": "BC_Weeks\\Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb",
+      "size": 15976,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2025-12-07T09:40:30.802844Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2025-12-07T09:40:23.957483Z",
+      "mimetype": null,
+      "name": "Python_Basics_19_-_Additional_Links.ipynb",
+      "path": "BC_Weeks\\Week_3/Python_Basics_19_-_Additional_Links.ipynb",
+      "size": 1620,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2025-12-07T09:40:30.762937Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2025-12-07T09:40:30.802844Z",
+  "mimetype": null,
+  "name": "BC_Weeks\\Week_3",
+  "path": "BC_Weeks\\Week_3",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
