@@ -1,4 +1,6 @@
 {
+  "ruff.lineLength": 79,
+  "ruff.lint.select": ["E501"],
   "[python]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {

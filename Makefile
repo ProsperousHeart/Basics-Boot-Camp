@@ -1,7 +1,7 @@
 PYTHON ?= python
 PIP := $(PYTHON) -m pip
 
-.PHONY: help install-dev lint format test
+.PHONY: help install-dev lint format test docs-build docs-serve docs-clean
 
 help:
 	@echo "Targets:"
@@ -9,6 +9,9 @@ help:
 	@echo "  lint         - run linters (flake8 + black --check)"
 	@echo "  format       - run black to format code"
 	@echo "  test         - run pytest"
+	@echo "  docs-build   - build JupyterLite and MkDocs site"
+	@echo "  docs-serve   - serve MkDocs site locally with live reload"
+	@echo "  docs-clean   - clean built documentation files"
 
 install-dev:
 	$(PIP) install --upgrade pip
@@ -33,3 +36,23 @@ format:
 test:
 	@echo "Running pytest..."
 	pytest -q
+
+docs-build:
+#	@echo "Building JupyterLite interactive environment..."
+#	mkdir docs\jupyterlite
+# 	uv run jupyter lite build --contents Week_1 --contents Week_2 --contents Week_3 --output-dir docs/jupyterlite
+	@echo "Building MkDocs site with JupyterLite plugin..."
+	uv run mkdocs build
+	@echo "Documentation built successfully! Open site/index.html to view."
+
+docs-serve:
+	@echo "Starting MkDocs development server..."
+	@echo "Visit http://127.0.0.1:8000 to view the site"
+	@echo "Press Ctrl+C to stop the server"
+	uv run mkdocs serve
+
+docs-clean:
+	@echo "Cleaning documentation build files..."
+	rm -rf site/
+	rm -rf docs/jupyterlite/
+	@echo "Documentation cleaned!"

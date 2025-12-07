@@ -69,35 +69,35 @@ Those who upgrade to live coaching will have greater opportunity to dive into co
 
 In our first week, you will be installing python and learning basic syntax.
 
-1. [Introduction](Week_1/Python_Basics_01_-_Introduction.ipynb) - including installing Python
-2. [Basic Statements](Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
-3. [Variables & Garbage Collection](Week_1/Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
-4. [Operators](Week_1/Python_Basics_04_-_Operators.ipynb)
-5. [Decision Making](Week_1/Python_Basics_05_-_Decision_Making.ipynb)
-6. [Sequences](Week_1/Python_Basics_06_-_Sequences.ipynb)
-7. [Variable Type:  NUMBERS](Week_1/Python_Basics_07_-_Variable_Type_NUMBERS.ipynb)
-8. [Variable Type:  STRING](Week_1/Python_Basics_08_-_Variable_Type_STRING.ipynb)
-9. [Variable Type:  LIST](Week_1/Python_Basics_09_-_Variable_Type_LIST.ipynb)
-10. [Variable Type:  TUPLE](Week_1/Python_Basics_10_-_Variable_Type_TUPLE.ipynb)
-11. [Variable Type:  DICTIONARY](Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
-12. [Type Conversions](Week_1/Python_Basics_12_-_Type_Conversions.ipynb)
+1. [Introduction](docs/BC_Weeks/Week_1/Python_Basics_01_-_Introduction.ipynb) - including installing Python
+2. [Basic Statements](docs/BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb)
+3. [Variables & Garbage Collection](docs/BC_Weeks/Week_1/Python_Basics_03_-_Variables_&_Garbage_Collection.ipynb)
+4. [Operators](docs/BC_Weeks/Week_1/Python_Basics_04_-_Operators.ipynb)
+5. [Decision Making](docs/BC_Weeks/Week_1/Python_Basics_05_-_Decision_Making.ipynb)
+6. [Sequences](docs/BC_Weeks/Week_1/Python_Basics_06_-_Sequences.ipynb)
+7. [Variable Type:  NUMBERS](docs/BC_Weeks/Week_1/Python_Basics_07_-_Variable_Type_NUMBERS.ipynb)
+8. [Variable Type:  STRING](docs/BC_Weeks/Week_1/Python_Basics_08_-_Variable_Type_STRING.ipynb)
+9. [Variable Type:  LIST](docs/BC_Weeks/Week_1/Python_Basics_09_-_Variable_Type_LIST.ipynb)
+10. [Variable Type:  TUPLE](docs/BC_Weeks/Week_1/Python_Basics_10_-_Variable_Type_TUPLE.ipynb)
+11. [Variable Type:  DICTIONARY](docs/BC_Weeks/Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.ipynb)
+12. [Type Conversions](docs/BC_Weeks/Week_1/Python_Basics_12_-_Type_Conversions.ipynb)
 
 You can check out homework assignments in the [HW folder](HW/).
 
 ## Week 2
 
-1. [Iterators & Generators](Week_2/Python_Basics_13_-_Iterators_And_Generators.ipynb)
-2. [Functions](Week_2/Python_Basics_14_-_Functions.ipynb)
-3. [Scope Of Variables](Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb)
-4. [Modules](Week_2/Python_Basics_16_-_Modules.ipynb)
+1. [Iterators & Generators](docs/BC_Weeks/Week_2/Python_Basics_13_-_Iterators_And_Generators.ipynb)
+2. [Functions](docs/BC_Weeks/Week_2/Python_Basics_14_-_Functions.ipynb)
+3. [Scope Of Variables](docs/BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb)
+4. [Modules](docs/BC_Weeks/Week_2/Python_Basics_16_-_Modules.ipynb)
 
 You can check out homework assignments in the [HW folder](HW/).
 
 ## Week 3
 
-1. [Input & Output](Week_3/Python_Basics_17_-_Input_&_Output.ipynb)
-2. [Exceptions & Assertions](Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
-3. [Additional Links](Week_3/Python_Basics_19_-_Additional_Links.ipynb)
+1. [Input & Output](docs/BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.ipynb)
+2. [Exceptions & Assertions](docs/BC_Weeks/Week_3/Python_Basics_18_-_Exceptions_&_Assertions.ipynb)
+3. [Additional Links](docs/BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.ipynb)
 
 You can check out homework assignments in the [HW folder](HW/).
 
