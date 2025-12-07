@@ -22,6 +22,8 @@ JupyterLite can be configured different ways:
 - The path parameter might need URL encoding
 - Different interfaces (lab vs notebooks) might handle paths differently
 
+Had to hide certain things in CI file so it didn't try to run tests against things it shouldn't be.
+
 ---
 
 ## The Core Challenge
