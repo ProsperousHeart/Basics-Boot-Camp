@@ -35,3 +35,8 @@ dev = [
     "pytest-pythonpath>=0.7.3",
     "ruff==0.14.6",
 ]
+
+[tool.pytest.ini_options]
+# Exclude build outputs, JupyterLite copies, and virtual environments to avoid duplicate test collection
+testpaths = ["docs/BC_Weeks", "HW"]
+norecursedirs = [".venv", "site", "docs/jupyterlite", ".git", "__pycache__"]
