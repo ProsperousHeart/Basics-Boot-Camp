@@ -114,6 +114,7 @@ nav:
   - About:
     - getting-started/index.md
     - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
+    - WebAssembly & Pyodide: Lessons_Learned/understanding-webassembly-and-pyodide.md
   - Interactive Notebooks:
     - interactive-jupyter.md
     # - Diagnostic Paths: diagnostic-paths.md
