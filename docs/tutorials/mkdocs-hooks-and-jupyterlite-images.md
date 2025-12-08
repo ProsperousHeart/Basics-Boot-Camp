@@ -60,13 +60,17 @@ site/jupyterlite/files/
 
 We use the `on_post_build` hook to copy the IMGs folder after JupyterLite has finished copying notebooks.
 
-**Implementation**: See [`hooks/copy_images.py`](../../hooks/copy_images.py) in the project root.
-
-**Configuration**: `mkdocs.yml`
+**Configuration**: Add this to `mkdocs.yml`:
 
 ```yaml
 hooks:
   - hooks/copy_images.py
+```
+
+**Implementation**: Create `hooks/copy_images.py` in the project root:
+
+```python title="hooks/copy_images.py"
+--8<-- "hooks/copy_images.py"
 ```
 
 ## How It Works
@@ -128,7 +132,7 @@ Then open a notebook in your browser and verify images display correctly.
 
 ### Automated Verification
 
-The hook in [`hooks/copy_images.py`](../../hooks/copy_images.py) includes built-in verification that prints the number of files copied. Look for this message in your build output:
+The hook includes built-in verification that prints the number of files copied. Look for this message in your build output:
 
 ```
 ✓ Copied X files from docs/IMGs to site/jupyterlite/files/IMGs
@@ -224,7 +228,7 @@ The hook in [`hooks/copy_images.py`](../../hooks/copy_images.py) includes built-
 
 ### Hook Not Running
 
-1. **Python syntax errors**: Check [`hooks/copy_images.py`](../../hooks/copy_images.py) for errors
+1. **Python syntax errors**: Check `hooks/copy_images.py` for errors
 2. **File permissions**: Ensure hook file is readable
 3. **Hook function name**: Must be exactly `on_post_build`
 4. **Clear cache**: Try `mkdocs build --clean`
