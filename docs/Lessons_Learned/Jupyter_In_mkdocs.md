@@ -80,11 +80,11 @@ When trying to integrate interactive Jupyter notebooks into MkDocs while maintai
 **Example**:
 ```markdown
 **Interactive Lessons**:
-1. [Introduction](../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb){:target="_blank"}
-2. [Syntax & Basics](../jupyterlite/lab/index.html?path=Python_Basics_02.ipynb){:target="_blank"}
+1. <a href="../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb" target="_blank" rel="noopener noreferrer">Introduction</a>
+2. <a href="../jupyterlite/lab/index.html?path=Python_Basics_02.ipynb" target="_blank" rel="noopener noreferrer">Syntax & Basics</a>
 ```
 
-With `{:target="_blank"}`, links open in a new tab, making it easy to switch back to documentation.
+Using HTML anchor tags with `target="_blank"`, links open in a new tab, making it easy to switch back to documentation.
 
 ---
 
@@ -152,7 +152,7 @@ nav:
 ---
 
 **Want to run this code interactively?**
-[Open in JupyterLite](../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb){:target="_blank"}
+<a href="../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb" target="_blank" rel="noopener noreferrer">Open in JupyterLite</a>
 ```
 
 ---

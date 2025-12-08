@@ -34,5 +34,6 @@ Explore Python's sequential data types and operations. Learn about common sequen
 ---
 
 **Having trouble with the embedded notebook?** Try one of these:
-- [Open in Notebooks view](../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_06_-_Sequences.ipynb){:target="_blank"}
-- [Open in full JupyterLab](../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_06_-_Sequences.ipynb){:target="_blank"}
+
+- <a href="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_06_-_Sequences.ipynb" target="_blank" rel="noopener noreferrer">Open in Notebooks view</a>
+- <a href="../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_06_-_Sequences.ipynb" target="_blank" rel="noopener noreferrer">Open in full JupyterLab</a>
