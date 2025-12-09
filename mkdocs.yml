@@ -10,6 +10,10 @@ edit_uri: edit/main/
 # Use docs directory as the documentation root
 docs_dir: docs
 
+# Hooks for custom build actions
+hooks:
+  - hooks/copy_images.py
+
 theme:
   name: material
   custom_dir: overrides
@@ -82,7 +86,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: ['.', 'docs']
   - pymdownx.superfences
   - pymdownx.details
   - pymdownx.tabbed:
@@ -97,10 +102,30 @@ extra_css:
 
 extra:
   social:
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/prosperousheart.bsky.social
+    # - icon: fontawesome/brands/square-bluesky
+    #   link: https://bsky.app/profile/prosperousheart.bsky.social
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/prosperousheart/
+    # - icon: fontawesome/brands/square-instagram
+    #   link: https://www.instagram.com/prosperousheart/
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/ProsperousHeart/
+    # - icon: fontawesome/brands/square-facebook
+    #   link: https://www.facebook.com/ProsperousHeart/
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/kkeeton/
+    # - icon: fontawesome/brands/square-linkedin
+    #   link: https://linkedin.com/in/kkeeton/
     - icon: fontawesome/brands/github
       link: https://github.com/ProsperousHeart
+    # - icon: fontawesome/brands/square-github
+    #   link: https://github.com/ProsperousHeart
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ProsperousHeart
+    # - icon: fontawesome/brands/square-x-twitter
+    #   link: https://twitter.com/ProsperousHeart
 
 nav:
   - Home:
@@ -149,6 +174,8 @@ nav:
     - Helpful Hints: tutorials/Helpful_Hints.md
     # - Clean Code Before PR: tutorials/clean-code-before-pr.md
     - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
+    - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
+    - Understanding WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
     # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
     - Transitioning to UV: tutorials/transitioning-to-uv.md

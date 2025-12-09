@@ -63,13 +63,13 @@ This page tests different approaches to embedding interactive Jupyter notebooks 
 
 Alternative: Link directly to JupyterLite instead of embedding:
 
-- [Notebooks View](../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_01_-_Introduction.ipynb){:target="_blank"} - Opens in new tab
-- [JupyterLab View](../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_01_-_Introduction.ipynb){:target="_blank"} - Opens in new tab
-- [Tree View - Browse all files](../../jupyterlite/tree/index.html){:target="_blank"} - Opens in new tab
-- [JupyterLab - No file specified](../../jupyterlite/lab/index.html){:target="_blank"} - Opens in new tab
+- <a href="../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_01_-_Introduction.ipynb" target="_blank" rel="noopener noreferrer">Notebooks View</a> - Opens in new tab
+- <a href="../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_01_-_Introduction.ipynb" target="_blank" rel="noopener noreferrer">JupyterLab View</a> - Opens in new tab
+- <a href="../../jupyterlite/tree/index.html" target="_blank" rel="noopener noreferrer">Tree View - Browse all files</a> - Opens in new tab
+- <a href="../../jupyterlite/lab/index.html" target="_blank" rel="noopener noreferrer">JupyterLab - No file specified</a> - Opens in new tab
 
 **Pros:** Clean interface, full-screen, no nested navigation
-**Cons:** User leaves the MkDocs site (can use `{:target="_blank"}` to open in new tab)
+**Cons:** User leaves the MkDocs site (use HTML with `target="_blank"` to open in new tab)
 
 ---
 

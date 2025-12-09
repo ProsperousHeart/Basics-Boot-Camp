@@ -36,5 +36,6 @@ Master reading from and writing to files in Python. Learn file handling, differe
 ---
 
 **Having trouble with the embedded notebook?** Try one of these:
-- [Open in Notebooks view](../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.ipynb){:target="_blank"}
-- [Open in full JupyterLab](../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.ipynb){:target="_blank"}
+
+- <a href="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.ipynb" target="_blank" rel="noopener noreferrer">Open in Notebooks view</a>
+- <a href="../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.ipynb" target="_blank" rel="noopener noreferrer">Open in full JupyterLab</a>

@@ -33,5 +33,6 @@ Learn Python's fundamental syntax and basic programming statements. This lesson 
 ---
 
 **Having trouble with the embedded notebook?** Try one of these:
-- [Open in Notebooks view](../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb){:target="_blank"}
-- [Open in full JupyterLab](../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb){:target="_blank"}
+
+- <a href="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb" target="_blank" rel="noopener noreferrer">Open in Notebooks view</a>
+- <a href="../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.ipynb" target="_blank" rel="noopener noreferrer">Open in full JupyterLab</a>

@@ -35,5 +35,6 @@ Understand variable scope and namespaces in Python. Learn about local, global, a
 ---
 
 **Having trouble with the embedded notebook?** Try one of these:
-- [Open in Notebooks view](../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb){:target="_blank"}
-- [Open in full JupyterLab](../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb){:target="_blank"}
+
+- <a href="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb" target="_blank" rel="noopener noreferrer">Open in Notebooks view</a>
+- <a href="../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.ipynb" target="_blank" rel="noopener noreferrer">Open in full JupyterLab</a>

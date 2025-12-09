@@ -35,5 +35,6 @@ Explore additional Python resources and learning materials. Find documentation, 
 ---
 
 **Having trouble with the embedded notebook?** Try one of these:
-- [Open in Notebooks view](../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.ipynb){:target="_blank"}
-- [Open in full JupyterLab](../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.ipynb){:target="_blank"}
+
+- <a href="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.ipynb" target="_blank" rel="noopener noreferrer">Open in Notebooks view</a>
+- <a href="../../../jupyterlite/lab/index.html?path=BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.ipynb" target="_blank" rel="noopener noreferrer">Open in full JupyterLab</a>
