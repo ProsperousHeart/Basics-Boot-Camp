@@ -1,0 +1,22 @@
+/* ABOUTME: Custom styles for MkDocs Material theme navigation
+ * ABOUTME: Maintains bold section headers while allowing collapsible navigation */
+
+/* Make section items bold in the sidebar (with navigation.tabs enabled) */
+.md-nav__item--nested > .md-nav__link {
+  font-weight: 700 !important;
+}
+
+/* Also target primary navigation items */
+.md-nav--primary > .md-nav__list > .md-nav__item--nested > .md-nav__link {
+  font-weight: 700 !important;
+}
+
+/* Target section items in secondary navigation */
+.md-nav--secondary .md-nav__item--nested > .md-nav__link {
+  font-weight: 700 !important;
+}
+
+/* Add slight spacing for better visual hierarchy */
+.md-nav__item--nested {
+  margin-top: 0.4rem;
+}

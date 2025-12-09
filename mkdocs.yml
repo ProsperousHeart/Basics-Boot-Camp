@@ -1,0 +1,180 @@
+site_name: Python Basics Boot Camp
+site_description: Python Basics Boot Camp Training Materials
+site_author: Prosperous Heart
+site_url: https://prosperousheart.github.io/Basics-Boot-Camp
+
+repo_name: ProsperousHeart/Basics-Boot-Camp
+repo_url: https://github.com/ProsperousHeart/Basics-Boot-Camp
+edit_uri: edit/main/
+
+# Use docs directory as the documentation root
+docs_dir: docs
+
+# Hooks for custom build actions
+hooks:
+  - hooks/copy_images.py
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    # Navigation
+    - navigation.tabs
+    # - navigation.sections  # Commented out to allow collapsible sections
+    # - navigation.expand  # Commented out to auto-collapse inactive sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - navigation.path
+    # Search
+    - search.suggest
+    - search.highlight
+    # Content
+    - content.code.copy
+    - content.code.annotate
+    # Table of Contents
+    - toc.follow
+
+plugins:
+  - search
+  - monorepo
+  # - mkdocs-jupyter:
+  #     include_source: True
+  #     execute: False  # Don't execute notebooks during build
+  #     allow_errors: False
+  #     ignore_h1_titles: True
+  # - jupyterlite:
+  #     notebooks_dir: .  # Root directory where notebooks are located
+  #     jupyterlite_dir: docs/jupyterlite  # Where JupyterLite will be built
+  #     notebook_patterns:
+  #       - '*.ipynb'
+  #     contents:
+  #       - Week_1
+  #       - Week_2
+  #       - Week_3
+  - jupyterlite:
+      enabled: true
+      notebook_patterns:
+        - "BC_Weeks/**/*.ipynb"
+      # Ensure Pyodide kernel is available
+      lite_config:
+        jupyter-lite-schema-version: 0
+        jupyter-config-data:
+          litePluginSettings:
+            "@jupyterlite/pyodide-kernel-extension:kernel":
+              pipliteUrls: []
+  - section-index
+  - glightbox  # Image lightbox
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ['.', 'docs']
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/prosperousheart.bsky.social
+    # - icon: fontawesome/brands/square-bluesky
+    #   link: https://bsky.app/profile/prosperousheart.bsky.social
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/prosperousheart/
+    # - icon: fontawesome/brands/square-instagram
+    #   link: https://www.instagram.com/prosperousheart/
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/ProsperousHeart/
+    # - icon: fontawesome/brands/square-facebook
+    #   link: https://www.facebook.com/ProsperousHeart/
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/kkeeton/
+    # - icon: fontawesome/brands/square-linkedin
+    #   link: https://linkedin.com/in/kkeeton/
+    - icon: fontawesome/brands/github
+      link: https://github.com/ProsperousHeart
+    # - icon: fontawesome/brands/square-github
+    #   link: https://github.com/ProsperousHeart
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ProsperousHeart
+    # - icon: fontawesome/brands/square-x-twitter
+    #   link: https://twitter.com/ProsperousHeart
+
+nav:
+  - Home:
+    - index.md
+    - Course Structure: home/course-structure.md
+    - Time Expectations: home/time-expectations.md
+    - Training Philosophy: home/training-philosophy.md
+    - Enrollment Options: home/enrollment.md
+    - Implementation & Homework: home/implementation.md
+    - Additional Resources: home/missing-resources.md
+  - About:
+    - getting-started/index.md
+    - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
+  - Interactive Notebooks:
+    - interactive-jupyter.md
+    # - Diagnostic Paths: diagnostic-paths.md
+    # - Test Embedding: Lessons_Learned/test-embedding.md
+    - Week 1:
+      - BC_Weeks/Week_1/index.md
+      - Introduction: BC_Weeks/Week_1/Python_Basics_01_-_Introduction.md
+      - Syntax & Basic Statements: BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements.md
+      - Variables & Garbage Collection: BC_Weeks/Week_1/Python_Basics_03_-_Variables_&_Garbage_Collection.md
+      - Operators: BC_Weeks/Week_1/Python_Basics_04_-_Operators.md
+      - Decision Making: BC_Weeks/Week_1/Python_Basics_05_-_Decision_Making.md
+      - Sequences: BC_Weeks/Week_1/Python_Basics_06_-_Sequences.md
+      - Numbers: BC_Weeks/Week_1/Python_Basics_07_-_Variable_Type_NUMBERS.md
+      - Strings: BC_Weeks/Week_1/Python_Basics_08_-_Variable_Type_STRING.md
+      - Lists: BC_Weeks/Week_1/Python_Basics_09_-_Variable_Type_LIST.md
+      - Tuples: BC_Weeks/Week_1/Python_Basics_10_-_Variable_Type_TUPLE.md
+      - Dictionaries: BC_Weeks/Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY.md
+      - Type Conversions: BC_Weeks/Week_1/Python_Basics_12_-_Type_Conversions.md
+    - Week 2:
+      - BC_Weeks/Week_2/index.md
+      - Iterators & Generators: BC_Weeks/Week_2/Python_Basics_13_-_Iterators_And_Generators.md
+      - Functions: BC_Weeks/Week_2/Python_Basics_14_-_Functions.md
+      - Scope of Variables: BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables.md
+      - Modules: BC_Weeks/Week_2/Python_Basics_16_-_Modules.md
+    - Week 3:
+      - BC_Weeks/Week_3/index.md
+      - Input & Output: BC_Weeks/Week_3/Python_Basics_17_-_Input_&_Output.md
+      - Exceptions & Assertions: BC_Weeks/Week_3/Python_Basics_18_-_Exceptions_&_Assertions.md
+      - Additional Links: BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links.md
+  - Tutorials:
+    - tutorials/index.md
+    - Helpful Hints: tutorials/Helpful_Hints.md
+    # - Clean Code Before PR: tutorials/clean-code-before-pr.md
+    - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
+    - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
+    - Understanding WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
+    # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
+    # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
+    - Transitioning to UV: tutorials/transitioning-to-uv.md

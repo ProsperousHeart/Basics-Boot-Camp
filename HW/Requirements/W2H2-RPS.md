@@ -33,7 +33,7 @@ Questions to consider:
 - create a new python file titled:  `W2H2-RPS.py`
 - make this python file one that can be run from a command line (Jupyter notebook is OK)
 - have them play until they no longer want to play
-- follow the process outlined in [week 2 assignment #1](../README.MD#week-2-homework-outline) to create your bare bones infrastructure
+- follow the process outlined in [week 2 assignment #1](../README.md#week-2-homework-outline) to create your bare bones infrastructure
 - once your "bare bones" are built, fill in the remaining gaps (_did your methods to resolve change over this process?_)
 
 ## Nice To Have (More Complexity)

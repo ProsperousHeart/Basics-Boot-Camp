@@ -1,0 +1,17 @@
+.git/
+.venv/
+.venv-ORIGINAL/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.github/
+.claude/
+.idea/
+.vscode/
+HW/Student_Files/
+tmp/
+logs/
+site/
+*.pyc
+__pycache__/
+uv.lock
