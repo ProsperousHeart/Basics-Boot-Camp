@@ -1,0 +1,39 @@
+#!/bin/bash
+# ABOUTME: Pre-push hook to validate MkDocs build before pushing to remote
+# ABOUTME: Prevents pipeline failures by catching build errors locally
+
+set -e
+
+echo ""
+echo "🔍 Running pre-push validation..."
+echo ""
+
+# Run MkDocs build in strict mode (same as CI)
+echo "📚 Building MkDocs site with strict mode..."
+if ! uv run mkdocs build --strict; then
+    echo ""
+    echo "❌ MkDocs build failed!"
+    echo ""
+    echo "Common issues:"
+    echo "  • Configuration warnings (check mkdocs.yml)"
+    echo "  • Invalid markdown syntax in documentation files"
+    echo "  • Missing files referenced in nav section"
+    echo "  • Plugin compatibility issues (check Python version)"
+    echo ""
+    echo "To debug, run manually:"
+    echo "    uv run mkdocs build --strict"
+    echo ""
+    echo "To see detailed error output:"
+    echo "    uv run mkdocs build --strict --verbose"
+    echo ""
+    echo "To bypass this check (NOT RECOMMENDED):"
+    echo "    git push --no-verify"
+    echo ""
+    exit 1
+fi
+
+echo ""
+echo "✅ All validations passed! Proceeding with push..."
+echo ""
+
+exit 0
