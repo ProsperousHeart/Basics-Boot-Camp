@@ -173,8 +173,8 @@ nav:
     - Helpful Hints: tutorials/Helpful_Hints.md
     # - Clean Code Before PR: tutorials/clean-code-before-pr.md
     - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
-    - Lessons Learned About mkdocs and JupyterLite: tutorials/Jupyter_In_mkdocs.md
-    - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
+    - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
+    # - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
     # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
     # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
