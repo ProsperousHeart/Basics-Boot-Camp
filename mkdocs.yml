@@ -68,17 +68,18 @@ plugins:
   #       - Week_1
   #       - Week_2
   #       - Week_3
+  # ================ Need to check into this section ===========
   - jupyterlite:
       enabled: true
       notebook_patterns:
         - "BC_Weeks/**/*.ipynb"
-      # Ensure Pyodide kernel is available
-      lite_config:
-        jupyter-lite-schema-version: 0
-        jupyter-config-data:
-          litePluginSettings:
-            "@jupyterlite/pyodide-kernel-extension:kernel":
-              pipliteUrls: []
+      # # Ensure Pyodide kernel is available
+      # lite_config:
+      #   jupyter-lite-schema-version: 0
+      #   jupyter-config-data:
+      #     litePluginSettings:
+      #       "@jupyterlite/pyodide-kernel-extension:kernel":
+      #         pipliteUrls: []
   - section-index
   - glightbox  # Image lightbox
 
@@ -138,8 +139,6 @@ nav:
     - Additional Resources: home/missing-resources.md
   - About:
     - getting-started/index.md
-    - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
-    - WebAssembly & Pyodide: Lessons_Learned/understanding-webassembly-and-pyodide.md
   - Interactive Notebooks:
     - interactive-jupyter.md
     # - Diagnostic Paths: diagnostic-paths.md
@@ -174,8 +173,9 @@ nav:
     - Helpful Hints: tutorials/Helpful_Hints.md
     # - Clean Code Before PR: tutorials/clean-code-before-pr.md
     - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
+    - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
+    - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
-    - Understanding WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
     # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
     - Transitioning to UV: tutorials/transitioning-to-uv.md

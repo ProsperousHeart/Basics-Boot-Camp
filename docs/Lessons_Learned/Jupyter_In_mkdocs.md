@@ -24,6 +24,8 @@ JupyterLite can be configured different ways:
 
 Had to hide certain things in CI file so it didn't try to run tests against things it shouldn't be.
 
+when using strict forced to address an incorrect item in my nav bar ... when fixed is cut the built time by ~50% (10+ sec)
+
 ---
 
 ## The Core Challenge
