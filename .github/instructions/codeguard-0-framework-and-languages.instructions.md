@@ -1,7 +1,7 @@
 ---
 applyTo: '**/*.c,**/*.h,**/*.java,**/*.js,**/*.jsx,**/*.kt,**/*.kts,**/*.mjs,**/*.php,**/*.py,**/*.pyi,**/*.pyx,**/*.rb,**/*.ts,**/*.tsx,**/*.wsdl,**/*.xml,**/*.xsd,**/*.xslt,**/*.yaml,**/*.yml'
 description: Framework & language security guides (Django/DRF, Laravel/Symfony/Rails, .NET, Java/JAAS, Node.js, PHP config)
-version: 1.0.1
+version: 1.1.0
 ---
 
 rule_id: codeguard-0-framework-and-languages

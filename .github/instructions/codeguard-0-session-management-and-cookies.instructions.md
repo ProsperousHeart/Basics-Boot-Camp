@@ -1,7 +1,7 @@
 ---
 applyTo: '**/*.c,**/*.go,**/*.h,**/*.htm,**/*.html,**/*.java,**/*.js,**/*.jsx,**/*.mjs,**/*.php,**/*.py,**/*.pyi,**/*.pyx,**/*.rb,**/*.ts,**/*.tsx'
 description: Session management and secure cookies (rotation, fixation, timeouts, theft detection)
-version: 1.0.1
+version: 1.1.0
 ---
 
 rule_id: codeguard-0-session-management-and-cookies
