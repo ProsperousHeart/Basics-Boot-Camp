@@ -176,6 +176,7 @@ nav:
     - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
     - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
+    - Git Hooks (pre/push validation): tutorials/git-hooks-pre-push-validation.md
     # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
     # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
     - Transitioning to UV: tutorials/transitioning-to-uv.md

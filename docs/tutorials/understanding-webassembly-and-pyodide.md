@@ -108,33 +108,33 @@ When you click "Open Interactive Notebook" in any lesson, here's what happens:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Your Web Browser                          │
-│                                                              │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │              JupyterLite Interface                  │    │
-│  │  (The notebook UI you interact with)               │    │
-│  └────────────────┬───────────────────────────────────┘    │
-│                   │                                          │
-│                   ▼                                          │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │         Pyodide (Python Interpreter)               │    │
-│  │  • Compiled to WebAssembly                         │    │
-│  │  • Runs your Python code                           │    │
-│  │  • Includes standard library + packages            │    │
-│  └────────────────┬───────────────────────────────────┘    │
-│                   │                                          │
-│                   ▼                                          │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │            WebAssembly Runtime                      │    │
-│  │  (Browser's engine that executes WASM)             │    │
-│  └────────────────┬───────────────────────────────────┘    │
-│                   │                                          │
-│                   ▼                                          │
-│  ┌────────────────────────────────────────────────────┐    │
-│  │           Browser Local Storage                     │    │
-│  │  (Your notebooks and code are saved here)          │    │
-│  └────────────────────────────────────────────────────┘    │
-│                                                              │
+│                    Your Web Browser                         │
+│                                                             │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │              JupyterLite Interface                 │     │
+│  │  (The notebook UI you interact with)               │     │
+│  └────────────────┬───────────────────────────────────┘     │
+│                   │                                         │
+│                   ▼                                         │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │         Pyodide (Python Interpreter)               │     │
+│  │  • Compiled to WebAssembly                         │     │
+│  │  • Runs your Python code                           │     │
+│  │  • Includes standard library + packages            │     │
+│  └────────────────┬───────────────────────────────────┘     │
+│                   │                                         │
+│                   ▼                                         │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │            WebAssembly Runtime                     │     │
+│  │  (Browser's engine that executes WASM)             │     │
+│  └────────────────┬───────────────────────────────────┘     │
+│                   │                                         │
+│                   ▼                                         │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │           Browser Local Storage                    │     │
+│  │  (Your notebooks and code are saved here)          │     │
+│  └────────────────────────────────────────────────────┘     │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 
 NO SERVER REQUIRED - Everything runs client-side!
