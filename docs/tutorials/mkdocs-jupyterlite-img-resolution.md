@@ -50,9 +50,9 @@ site/jupyterlite/files/
 JupyterLite uses a **virtual filesystem** served via an API, not regular static files. When a notebook references `../../IMGs/image.png`:
 
 1. JupyterLite intercepts the request
-1. JupyterLite tries to fetch via its contents API
-2. The API returns 404 because IMGs wasn't included in the virtual filesystem (it doesn't serve static files this way)
-3. Image shows briefly (browser tries direct path) then breaks (API takes over)
+2. JupyterLite tries to fetch via its contents API
+3. The API returns 404 because IMGs wasn't included in the virtual filesystem (it doesn't serve static files this way)
+4. Image shows briefly (browser tries direct path) then breaks (API takes over)
 
 ```
 Browser Console Error:
@@ -161,12 +161,14 @@ The hook also includes built-in verification that prints the number of notebooks
 ### Before and After
 
 **Image paths:**
+
 ```
 Before: ../../IMGs/learn-to-code-online.png
 After:  https://raw.githubusercontent.com/ProsperousHeart/Basics-Boot-Camp/main/docs/IMGs/learn-to-code-online.png
 ```
 
 **Kernel specification:**
+
 ```json
 Before: "name": "python3"
 After:  "name": "python"
@@ -197,9 +199,11 @@ After:  "name": "python"
 **Approach**: Change image paths to `https://yoursite.com/IMGs/image.png`
 
 **Pros**:
+
 - Works everywhere (local notebooks, JupyterLite, GitHub)
 
 **Cons**:
+
 - Couples notebooks to deployment URL
 - Doesn't work offline
 - Requires updating all notebooks
@@ -210,6 +214,7 @@ After:  "name": "python"
 **Approach**: Copy IMGs folder during build process
 
 **Pros**:
+
 - No notebook changes required (notebooks can use `./IMGs/image.png`)
 - Massive file duplication
 - Maintains DRY principle (single image source)
@@ -217,6 +222,7 @@ After:  "name": "python"
 - Increases repository size significantly
 
 **Cons**:
+
 - ❌ **Doesn't work with JupyterLite's virtual filesystem**
 - Images still don't display despite being copied
 
@@ -234,6 +240,7 @@ When a notebook references `../../IMGs/image.png`:
 **Approach**: Replace relative image paths with GitHub raw URLs during build
 
 **Pros**:
+
 - ✅ **Actually works with JupyterLite**
 - No notebook source changes required
 - Maintains DRY principle (single image source)
@@ -241,6 +248,7 @@ When a notebook references `../../IMGs/image.png`:
 - Minimal overhead
 
 **Cons**:
+
 - Requires internet connection for images
 - Couples to GitHub repository URL
 
@@ -249,12 +257,14 @@ When a notebook references `../../IMGs/image.png`:
 **Approach**: Configure JupyterLite to pre-bundle images into its virtual filesystem
 
 **Pros**:
+
 - Images would be available offline
 - No external dependencies
 - Clean relative path access in notebooks
 - Potentially simpler than build hooks
 
 **Cons**:
+
 - ❓ **Untested** - May not work with MkDocs integration
 - Increases bundle size
 - Requires JupyterLite configuration changes
@@ -301,6 +311,7 @@ mkdocs serve
 ### Verify Changes Were Applied
 
 Check a built notebook:
+
 ```bash
 # Windows
 type site\jupyterlite\files\BC_Weeks\Week_1\Python_Basics_04_-_Operators.ipynb | findstr "github"
@@ -442,6 +453,7 @@ By using an MkDocs post-build hook, we transform the built notebook copies to us
 2. **Correct kernel name** (`python` for Pyodide compatibility)
 
 This approach is:
+
 - ✅ **Maintainable**: Single source of truth for images
 - ✅ **Scalable**: Works for any number of notebooks/images
 - ✅ **Clean**: No notebook modifications required
