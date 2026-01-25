@@ -1,12 +1,7 @@
-# ABOUTME: MkDocs post build hook to fix notebooks for JupyterLite compatibility
-# ABOUTME: replaces image paths with GitHub URLs and fixes kernel name for Pyodide
-
 from pathlib import Path
 
 # GitHub raw URL base for images
-GITHUB_RAW_BASE = (
-    "https://raw.githubusercontent.com/ProsperousHeart/Basics-Boot-Camp/main/docs/IMGs/"
-)
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/ProsperousHeart/Basics-Boot-Camp/main/docs/IMGs/"  # noqa: E501
 
 # Relative path pattern used in source notebooks
 RELATIVE_IMG_PATH = "../../IMGs/"
@@ -31,7 +26,9 @@ def on_post_build(config, **kwargs):
     jupyterlite_files = site_dir / "jupyterlite" / "files"
 
     if not jupyterlite_files.exists():
-        print("⚠ JupyterLite files directory not found, skipping notebook updates")
+        print(
+            "⚠ JupyterLite files directory not found, skipping notebook updates"  # noqa: E501
+        )
         return
 
     notebooks_updated = 0
@@ -55,6 +52,8 @@ def on_post_build(config, **kwargs):
             notebooks_updated += 1
 
     if notebooks_updated > 0:
-        print(f"✓ Updated {notebooks_updated} JupyterLite notebooks (images + kernel)")
+        print(
+            f"✓ Updated {notebooks_updated} JupyterLite notebooks (images + kernel)"  # noqa: E501
+        )
     else:
         print("ℹ No notebooks needed updates")
