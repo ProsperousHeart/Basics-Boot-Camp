@@ -1,4 +1,4 @@
-<a href='https://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
+<a href='http://www.learntocodeonline.com/'><img src='https://github.com/ProsperousHeart/TrainingUsingJupyter/blob/master/IMGs/learn-to-code-online.png?raw=true'></a>
 
 **OPTIONAL - [IDE](https://docs.python.org/3/using/editors.html) Use:** run your HW in an interpreter within your preferred app. This can include but is not limited to:
 - [PyCharm](https://www.jetbrains.com/pycharm/)
