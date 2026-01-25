@@ -102,6 +102,7 @@ The hook also includes built-in verification that prints the number of files cop
 
 This is an abbreviated flow for the purposes of this specific tutorial.
 
+<div class="ascii-art">
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  MkDocs Build Process Timeline                              │
@@ -121,6 +122,7 @@ This is an abbreviated flow for the purposes of this specific tutorial.
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
+</div>
 
 ### Before and After
 

@@ -1,0 +1,23 @@
+/* ========================================
+   ASCII Art Styling
+   ======================================== */
+
+/* Ensures proper monospace rendering for ASCII art and box-drawing characters */
+.ascii-art pre,
+pre.ascii-art {
+  font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace !important;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  white-space: pre !important;
+  tab-size: 4 !important;
+  -moz-tab-size: 4 !important;
+}
+
+.ascii-art code,
+pre.ascii-art code {
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+}

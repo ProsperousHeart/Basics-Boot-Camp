@@ -77,31 +77,33 @@ hooks:
 
 ### Build Process Flow
 
+<div class="ascii-art">
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  MkDocs Build Process Timeline                              │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  1. on_startup                                             │
+│  1. on_startup                                              │
 │     ↓                                                       │
-│  2. on_config                                              │
+│  2. on_config                                               │
 │     ↓                                                       │
-│  3. on_pre_build                                           │
+│  3. on_pre_build                                            │
 │     ↓                                                       │
-│  4. on_files                                               │
+│  4. on_files                                                │
 │     ↓                                                       │
-│  5. Process markdown files → HTML                          │
+│  5. Process markdown files → HTML                           │
 │     ↓                                                       │
-│  6. JupyterLite plugin copies notebooks to:                │
-│     site/jupyterlite/files/BC_Weeks/Week_X/*.ipynb        │
+│  6. JupyterLite plugin copies notebooks to:                 │
+│     site/jupyterlite/files/BC_Weeks/Week_X/*.ipynb          │
 │     ↓                                                       │
 │  7. ✅ on_post_build (OUR HOOK RUNS HERE)                  │
-│     → Copies docs/IMGs/ to site/jupyterlite/files/IMGs/   │
+│     → Copies docs/IMGs/ to site/jupyterlite/files/IMGs/     │
 │     ↓                                                       │
-│  8. Build complete! Site is ready to deploy.               │
+│  8. Build complete! Site is ready to deploy.                │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
+</div>
 
 ### Why Relative Paths Work
 

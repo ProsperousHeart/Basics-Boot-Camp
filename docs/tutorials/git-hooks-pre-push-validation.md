@@ -36,6 +36,7 @@ Git hooks are **scripts that Git automatically executes** before or after certai
 
 Without pre-push validation:
 
+<div class="ascii-art">
 ```
 ┌──────────┐       ┌───────────┐      ┌────────┐      ┌─────────────┐
 │Developer │       │ Local Git │      │ GitHub │      │ CI Pipeline │
@@ -68,6 +69,7 @@ Without pre-push validation:
       │ <──────────────────────────────────────────────────┤│
       │                                                      │
 ```
+</div>
 
 ??? note "View Interactive Sequence Diagram"
     ```mermaid
@@ -97,6 +99,7 @@ Without pre-push validation:
 
 With a pre-push hook:
 
+<div class="ascii-art">
 ```
 ┌──────────┐     ┌─────────────┐    ┌───────────┐    ┌────────┐    ┌─────────────┐
 │Developer │     │ Pre-Push    │    │ Local Git │    │ GitHub │    │ CI Pipeline │
@@ -137,6 +140,7 @@ With a pre-push hook:
       │ <──────────────────────────────────┴──────────────┴────────────────┤
       │                 │                 │              │                │
 ```
+</div>
 
 ??? note "View Interactive Sequence Diagram"
     ```mermaid
@@ -228,6 +232,7 @@ your-project/
 
 ### Hook Execution Flow
 
+<div class="ascii-art">
 ```
                     ┌────────────────────────────┐
                     │ Developer runs: git push   │
@@ -261,6 +266,7 @@ your-project/
                             │ with push       │  │ Show error msg   │
                             └─────────────────┘  └──────────────────┘
 ```
+</div>
 
 ??? note "View Interactive Flowchart"
     ```mermaid
@@ -588,6 +594,7 @@ echo "✅ Validation passed!"
 
 Git hooks in `.git/hooks/` are **not tracked by version control**. Each team member needs to install them manually.
 
+<div class="ascii-art">
 ```
 ┌─────────────────────┐                  ┌──────────────┐                  ┌─────────────────────┐
 │ Developer 1         │                  │ GitHub Repo  │                  │ Developer 2         │
@@ -596,6 +603,7 @@ Git hooks in `.git/hooks/` are **not tracked by version control**. Each team mem
 └─────────────────────┘                  └──────────────┘                  └─────────────────────┘
      (Protected)                                                                 (Vulnerable)
 ```
+</div>
 
 ??? note "View Interactive Diagram"
     ```mermaid
