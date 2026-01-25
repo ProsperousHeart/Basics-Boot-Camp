@@ -12,7 +12,7 @@ docs_dir: docs
 
 # Hooks for custom build actions
 hooks:
-  - hooks/copy_images.py
+  - hooks/fix_notebook_img_issue.py
 
 theme:
   name: material
