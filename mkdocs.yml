@@ -12,7 +12,7 @@ docs_dir: docs
 
 # Hooks for custom build actions
 hooks:
-  - hooks/copy_images.py
+  - hooks/fix_notebook_img_issue.py
 
 theme:
   name: material
@@ -175,9 +175,8 @@ nav:
     - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
     - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
     - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
-    - MkDocs Hooks & JupyterLite Images: tutorials/mkdocs-hooks-and-jupyterlite-images.md
-    - JupyterLite Compatibility Fix: tutorials/jupyterlite-compatibility-fix.md
     - Git Hooks (pre/push validation): tutorials/git-hooks-pre-push-validation.md
+    - Getting IMGs to Show In Notebooks: tutorials/mkdocs-jupyterlite-img-resolution.md
     # - Makefile Windows Setup: tutorials/makefile-windows-setup.md
     # - Recreating Virtual Environments: tutorials/recreating-virtual-environments-virtualwrapper.md
     - Transitioning to UV: tutorials/transitioning-to-uv.md

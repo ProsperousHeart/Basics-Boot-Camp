@@ -12,7 +12,7 @@ Git hooks are **scripts that Git automatically executes** before or after certai
 - Save CI/CD pipeline minutes and reduce feedback loops
 
 !!! info "Git Hooks vs. MkDocs Hooks"
-    Don't confuse **Git hooks** (scripts that run during Git operations) with **MkDocs hooks** (Python functions that run during documentation builds). See [MkDocs Hooks and JupyterLite Images](mkdocs-hooks-and-jupyterlite-images.md) for details about MkDocs hooks.
+    Don't confuse **Git hooks** (scripts that run during Git operations) with **MkDocs hooks** (Python functions that run during documentation builds). See [MkDocs Hooks and JupyterLite Images](mkdocs-jupyterlite-img-resolution.md) for details about MkDocs hooks.
 
 ### Common Git Hook Types
 
@@ -36,6 +36,7 @@ Git hooks are **scripts that Git automatically executes** before or after certai
 
 Without pre-push validation:
 
+<div class="ascii-art">
 ```
 ┌──────────┐       ┌───────────┐      ┌────────┐      ┌─────────────┐
 │Developer │       │ Local Git │      │ GitHub │      │ CI Pipeline │
@@ -68,6 +69,7 @@ Without pre-push validation:
       │ <──────────────────────────────────────────────────┤│
       │                                                      │
 ```
+</div>
 
 ??? note "View Interactive Sequence Diagram"
     ```mermaid
@@ -97,6 +99,7 @@ Without pre-push validation:
 
 With a pre-push hook:
 
+<div class="ascii-art">
 ```
 ┌──────────┐     ┌─────────────┐    ┌───────────┐    ┌────────┐    ┌─────────────┐
 │Developer │     │ Pre-Push    │    │ Local Git │    │ GitHub │    │ CI Pipeline │
@@ -137,6 +140,7 @@ With a pre-push hook:
       │ <──────────────────────────────────┴──────────────┴────────────────┤
       │                 │                 │              │                │
 ```
+</div>
 
 ??? note "View Interactive Sequence Diagram"
     ```mermaid
@@ -228,6 +232,7 @@ your-project/
 
 ### Hook Execution Flow
 
+<div class="ascii-art">
 ```
                     ┌────────────────────────────┐
                     │ Developer runs: git push   │
@@ -261,6 +266,7 @@ your-project/
                             │ with push       │  │ Show error msg   │
                             └─────────────────┘  └──────────────────┘
 ```
+</div>
 
 ??? note "View Interactive Flowchart"
     ```mermaid
@@ -588,6 +594,7 @@ echo "✅ Validation passed!"
 
 Git hooks in `.git/hooks/` are **not tracked by version control**. Each team member needs to install them manually.
 
+<div class="ascii-art">
 ```
 ┌─────────────────────┐                  ┌──────────────┐                  ┌─────────────────────┐
 │ Developer 1         │                  │ GitHub Repo  │                  │ Developer 2         │
@@ -596,6 +603,7 @@ Git hooks in `.git/hooks/` are **not tracked by version control**. Each team mem
 └─────────────────────┘                  └──────────────┘                  └─────────────────────┘
      (Protected)                                                                 (Vulnerable)
 ```
+</div>
 
 ??? note "View Interactive Diagram"
     ```mermaid
@@ -1183,4 +1191,4 @@ git push --no-verify
 
 - [Clean Code Before PR](clean-code-before-pr.md)
 - [Transitioning to UV](transitioning-to-uv.md)
-- [MkDocs Hooks and JupyterLite Images](mkdocs-hooks-and-jupyterlite-images.md)
+- [MkDocs Hooks and JupyterLite Images](mkdocs-jupyterlite-img-resolution.md)
