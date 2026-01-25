@@ -1,7 +1,7 @@
 ---
 applyTo: '**/*.c,**/*.cc,**/*.cpp,**/*.cxx,**/*.h,**/*.hpp'
 description: Safe C Functions and Memory and String Safety Guidelines
-version: 1.0.1
+version: 1.1.0
 ---
 
 rule_id: codeguard-0-safe-c-functions
