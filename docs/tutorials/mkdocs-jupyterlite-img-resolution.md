@@ -1,10 +1,13 @@
-# Fixing JupyterLite Compatibility Issues
+# MkDocs, JupyterLite & Image Resolution: Complete Guide
+
+!!! info "Comprehensive Solution Guide"
+    This tutorial combines the complete journey of solving JupyterLite image display issues with MkDocs, from failed attempts to working solution.
 
 ## The Problem
 
 When using the `mkdocs-jupyterlite` plugin to embed interactive Jupyter notebooks in your MkDocs site, you may encounter two issues:
 
-1. **Images don't display** - images referenced in notebooks may not display correctly (whether through relative path or via HTML)
+1. **Images don't display** - images referenced in notebooks may not display correctly through relative path
 2. **No kernel available** - notebooks specify `python3` but JupyterLite uses `python`
 
 ### File Structure Visualization
@@ -19,28 +22,36 @@ docs/
     └── Week_1/
         └── notebook.ipynb  → references ../../IMGs/image1.png ✓ Works
 
-After JupyterLite Plugin (WITHOUT our fix):
+After JupyterLite Plugin (WITHOUT fix):
 site/jupyterlite/files/
 └── BC_Weeks/
     └── Week_1/
         └── notebook.ipynb  → references ../../IMGs/image1.png ✗ Broken (no IMGs folder!)
 
-After JupyterLite Plugin (WITH our hook):
+❌ ATTEMPTED SOLUTION (Copy IMGs Folder):
+After JupyterLite Plugin (with folder copy attempt):
 site/jupyterlite/files/
-├── IMGs/              ← Our hook copies this!
+├── IMGs/              ← Hook copied this here
 │   ├── image1.png
 │   └── image2.png
 └── BC_Weeks/
     └── Week_1/
-        └── notebook.ipynb  → references ../../IMGs/image1.png ✓ Works!
+        └── notebook.ipynb  → references ../../IMGs/image1.png ✗ Still broken!
+
+After JupyterLite Plugin (WITH working fix):
+site/jupyterlite/files/
+└── BC_Weeks/
+    └── Week_1/
+        └── notebook.ipynb  → references GitHub raw URL ✓ Works!
 ```
 
 ### Why Images Break
 
 JupyterLite uses a **virtual filesystem** served via an API, not regular static files. When a notebook references `../../IMGs/image.png`:
 
+1. JupyterLite intercepts the request
 1. JupyterLite tries to fetch via its contents API
-2. The API returns 404 because IMGs wasn't included in the virtual filesystem
+2. The API returns 404 because IMGs wasn't included in the virtual filesystem (it doesn't serve static files this way)
 3. Image shows briefly (browser tries direct path) then breaks (API takes over)
 
 ```
@@ -61,14 +72,31 @@ But JupyterLite's Pyodide kernel is registered as `python`, not `python3`.
 
 ## The Solution: MkDocs Post-Build Hook
 
-Learn more about hooks [here](./git-hooks-pre-push-validation.md).
-
 For this solution, we use an `on_post_build` hook to:
 
 - modify the **built copies** of notebooks, leaving source files unchanged
-- copy the IMGs folder after JupyterLite has finished copying notebooks
+- replace relative image paths with GitHub raw URLs for JupyterLite compatibility
 
-### What The Hook Does
+### Understanding MkDocs Hooks
+
+!!! info "Hooks vs Git Hooks"
+    Don't confuse **MkDocs hooks** (Python functions that run during documentation builds) with **Git hooks** (scripts that run during Git operations). See [Git Hooks: Preventing Pipeline Failures](git-hooks-pre-push-validation.md) for Git hooks.
+
+**MkDocs hooks** are Python functions that run at specific points during the documentation build process. They allow you to customize build behavior without creating a full plugin.
+
+#### Common Hook Events
+
+| Hook Event | When It Runs | Common Use Cases |
+|------------|--------------|------------------|
+| `on_startup` | Before anything else | Initialize resources, check dependencies |
+| `on_config` | After config loads | Modify configuration dynamically |
+| `on_pre_build` | Before build starts | Clean directories, prepare assets |
+| `on_files` | When files are collected | Add/remove/modify file list |
+| `on_post_build` | After build completes | **Copy assets, post-process files** ← We use this! |
+| `on_page_markdown` | Before markdown rendering | Transform markdown content |
+| `on_page_content` | After markdown to HTML | Modify HTML content |
+
+### What The Solution Hook Does
 
 1. **Replaces relative image paths** with GitHub raw URLs
 2. **Changes kernel name** from `python3` to `python` for Pyodide
@@ -79,28 +107,26 @@ Add this to `mkdocs.yml`:
 
 ```yaml
 hooks:
-  - hooks/copy_images.py
+  - hooks/fix_notebook_img_issue.py
 ```
 
 ### Implementation
 
-Create `hooks/copy_images.py` in the project root:
+Create `hooks/fix_notebook_img_issue.py` in the project root:
 
-```python title="hooks/copy_images.py"
---8<-- "hooks/copy_images.py"
+```python title="hooks/fix_notebook_img_issue.py"
+--8<-- "hooks/fix_notebook_img_issue.py"
 ```
 
-The hook also includes built-in verification that prints the number of files copied. Look for this message in your build output:
+The hook also includes built-in verification that prints the number of notebooks updated. Look for this message in your build output:
 
 ```
-✓ Copied X files from docs/IMGs to site/jupyterlite/files/IMGs
+✓ Updated X JupyterLite notebooks (images + kernel)
 ```
 
 ## How It Works
 
 ### Build Process Flow
-
-This is an abbreviated flow for the purposes of this specific tutorial.
 
 <div class="ascii-art">
 ```
@@ -108,7 +134,15 @@ This is an abbreviated flow for the purposes of this specific tutorial.
 │  MkDocs Build Process Timeline                              │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  1. MkDocs processes markdown files                         │
+│  1. on_startup                                              │
+│     ↓                                                       │
+│  2. on_config                                               │
+│     ↓                                                       │
+│  3. on_pre_build                                            │
+│     ↓                                                       │
+│  4. on_files                                                │
+│     ↓                                                       |
+│  1. MkDocs processes markdown files → HTML                  │
 │     ↓                                                       │
 │  2. JupyterLite plugin copies notebooks to:                 │
 │     site/jupyterlite/files/BC_Weeks/Week_X/*.ipynb          │
@@ -118,7 +152,7 @@ This is an abbreviated flow for the purposes of this specific tutorial.
 │     → Replaces ../../IMGs/ with GitHub raw URL              │
 │     → Replaces "python3" kernel with "python"               │
 │     ↓                                                       │
-│  4. Build complete!                                         │
+│  4. Build complete! Site is ready to deploy.                │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -138,16 +172,17 @@ Before: "name": "python3"
 After:  "name": "python"
 ```
 
-## Why This Approach?
+## Why This Approach Works
 
 ### Alternatives Considered
 
 | Approach | Pros | Cons |
 |----------|------|------|
 | **Embed images as base64** | Always works | Huge file sizes (686KB image = 915K chars) |
-| **Copy IMGs folder to site** | Simple | JupyterLite API doesn't serve static files |
-| **Modify source notebooks** | Permanent fix | Breaks local Jupyter usage |
-| **GitHub raw URLs via hook** | Works everywhere, source unchanged | Requires internet |
+| **Copy IMGs folder to site** | Simple - no changes to source files | JupyterLite API doesn't serve static files<br>requires mkdocs hook<br>massive file duplication - increases repo size |
+| **Modify source notebooks** (Use Absolute URLs in source) | Permanent fix<br>No extra hooks needed | Breaks local Jupyter usage<br>Requires internet<br>requires updating all notebooks<br>breaks if URL changes |
+| **GitHub raw URLs via hook** | Works everywhere, source unchanged | Requires internet<br>breaks if URL changes |
+| **Preload images into virtual FS** | Offline access, clean paths | Untested, increases bundle size |
 
 ### Why GitHub Raw URLs Work
 
@@ -170,31 +205,83 @@ After:  "name": "python"
 - Requires updating all notebooks
 - Breaks if site URL changes
 
-### ❌ Option 2: Duplicate Images in Each Week Folder
-
-**Approach**: Copy images to each `Week_X/IMGs/` folder
-
-**Pros**:
-- Notebooks can use `./IMGs/image.png`
-
-**Cons**:
-- Massive file duplication
-- Harder to maintain/update images
-- Increases repository size significantly
-
-### ✅ Option 3: Use MkDocs Hook (Our Solution)
+### ❌ Option 2: Use MkDocs Hook (Copy IMGs Folder - Attempted)
 
 **Approach**: Copy IMGs folder during build process
 
 **Pros**:
-- No notebook changes required
+- No notebook changes required (notebooks can use `./IMGs/image.png`)
+- Massive file duplication
 - Maintains DRY principle (single image source)
-- Works with existing relative paths
+- Works with existing relative paths (in theory)
+- Increases repository size significantly
+
+**Cons**:
+- ❌ **Doesn't work with JupyterLite's virtual filesystem**
+- Images still don't display despite being copied
+
+**Why it fails**: Even after copying the IMGs folder to `site/jupyterlite/files/`, images still don't display because JupyterLite serves files through a **virtual filesystem API**, not direct HTTP requests.
+
+When a notebook references `../../IMGs/image.png`:
+
+1. JupyterLite intercepts the request
+2. Tries to fetch via `/jupyterlite/api/contents/IMGs/image.png`
+3. Returns 404 because the virtual filesystem API doesn't serve static files this way
+4. Browser shows broken image despite folder being present
+
+### ✅ Option 3: Use MkDocs Hook (URL Replacement - Working Solution)
+
+**Approach**: Replace relative image paths with GitHub raw URLs during build
+
+**Pros**:
+- ✅ **Actually works with JupyterLite**
+- No notebook source changes required
+- Maintains DRY principle (single image source)
+- Images served from reliable GitHub CDN
 - Minimal overhead
 
 **Cons**:
-- Requires understanding hooks
-- Adds build step complexity (minimal)
+- Requires internet connection for images
+- Couples to GitHub repository URL
+
+### ❓ Option 4: Preload Images into Virtual File System (Untested)
+
+**Approach**: Configure JupyterLite to pre-bundle images into its virtual filesystem
+
+**Pros**:
+- Images would be available offline
+- No external dependencies
+- Clean relative path access in notebooks
+- Potentially simpler than build hooks
+
+**Cons**:
+- ❓ **Untested** - May not work with MkDocs integration
+- Increases bundle size
+- Requires JupyterLite configuration changes
+
+**Implementation** (Untested):
+
+```json
+// In jupyterlite_config.json
+{
+  "LiteBuildConfig": {
+    "files": ["docs/IMGs/"]
+  }
+}
+```
+
+**Usage in notebooks** (would be):
+
+```python
+from IPython.display import Image
+Image("../files/IMGs/myplot.png")
+```
+
+!!! info "JupyterLite Files Configuration"
+    The `files` option in `LiteBuildConfig` allows pre-bundling additional files into the JupyterLite virtual filesystem. See [JupyterLite Configuration Reference](https://jupyterlite.readthedocs.io/en/latest/reference/config.html#litebuildconfig) for details.
+
+!!! warning "Untested Alternative"
+    This approach was suggested by AI after our working solution was implemented. It may or may not work with the MkDocs JupyterLite plugin integration. Test thoroughly before adopting.
 
 ## Testing
 
@@ -232,23 +319,21 @@ If your images still appear locally but not in deployment ...
 
 1. **Check deployment process**: Ensure entire `site/` directory is deployed
 
-2. **Verify paths in deployed site**: Images should be at `/jupyterlite/files/IMGs/`
+2. **Verify notebook modifications**: Check that built notebooks contain GitHub raw URLs
 
-3. **Check if IMGs folder was copied**:
-   ```bash
-   ls site/jupyterlite/files/IMGs/
-   ```
+3. **Verify hook ran**:
+   Check build output for "✓ Updated X JupyterLite notebooks" message
 
 4. **Verify hook is registered**:
-   Check `mkdocs.yml` has `hooks: - hooks/copy_images.py`
+   Check `mkdocs.yml` has `hooks: - hooks/fix_notebook_img_issue.py`
 
-5. **Check build output**:
-   Look for "✓ Updated X JupyterLite notebooks" message
+5. **Check GitHub URL accessibility**:
+   Ensure the raw GitHub URLs work in browser
 
 6. **Inspect browser console**:
    Open DevTools → Console, look for 404 errors on images
 
-7. **Verify relative paths in notebooks**:
+7. **Verify source notebooks**:
    Ensure notebooks use `../../IMGs/` not `../IMGs/` or other variants
 
 8. **Clear browser cache** - JupyterLite caches aggressively
@@ -271,11 +356,11 @@ If your images still appear locally but not in deployment ...
 
 ### Hook Not Running
 
-1. **Check mkdocs.yml** - Ensure `hooks: - hooks/copy_images.py` is present
+1. **Check mkdocs.yml** - Ensure `hooks: - hooks/fix_notebook_img_issue.py` is present
 
-2. **Check file path** - Hook must be at `hooks/copy_images.py` relative to project root
+2. **Check file path** - Hook must be at `hooks/fix_notebook_img_issue.py` relative to project root
 
-3. **Check for Python errors** - Run `python hooks/copy_images.py` to syntax check
+3. **Check for Python errors** - Run `python hooks/fix_notebook_img_issue.py` to syntax check
 
 4. **Hook function name** - Must be exactly `on_post_build`
 
@@ -284,6 +369,9 @@ If your images still appear locally but not in deployment ...
 6. **Clear cache**: Try `mkdocs build --clean`
 
 ## Customization
+
+!!! Warning
+    All examples in this section are based on the structure of the repo. Actual customization may differ based on yours.
 
 ### Using a Different Image Location
 
@@ -311,7 +399,7 @@ GITHUB_RAW_BASE = (
 
 ## Additional Resources
 
-### MkDocs Hooks
+### MkDocs Documentation
 
 - [MkDocs Hooks Guide](https://www.mkdocs.org/dev-guide/plugins/#events)
 - [MkDocs Configuration](https://www.mkdocs.org/user-guide/configuration/)
@@ -321,6 +409,7 @@ GITHUB_RAW_BASE = (
 
 - [JupyterLite Documentation](https://jupyterlite.readthedocs.io/)
 - [mkdocs-jupyterlite Plugin](https://github.com/NickCrews/mkdocs-jupyterlite)
+- [JupyterLite Configuration](https://jupyterlite.readthedocs.io/en/latest/howto/configure/advanced/config.html)
 - [Pyodide Kernel](https://jupyterlite.readthedocs.io/en/latest/howto/python/pyodide.html)
 
 ### GitHub Raw URLs
@@ -339,6 +428,7 @@ GITHUB_RAW_BASE = (
 - [Understanding Relative vs Absolute Paths](https://www.linux.com/training-tutorials/absolute-path-vs-relative-path-linuxunix/)
 - [Python Pathlib Guide](https://realpython.com/python-pathlib/)
 - [MkDocs Plugin Development](https://www.mkdocs.org/dev-guide/plugins/)
+- [Git Hooks: Preventing Pipeline Failures](git-hooks-pre-push-validation.md)
 
 ## Summary
 
@@ -356,3 +446,15 @@ This approach is:
 - ✅ **Scalable**: Works for any number of notebooks/images
 - ✅ **Clean**: No notebook modifications required
 - ✅ **Efficient**: Minimal build overhead & no manual intervention (runs automatically on build)
+
+### The Problem-Solving Journey
+
+This solution evolved through multiple iterations:
+
+1. **Initial Problem**: Images don't display in JupyterLite notebooks
+2. **First Attempt**: Copy IMGs folder during build (seemed logical but failed)
+3. **Root Cause Discovery**: JupyterLite's virtual filesystem API blocks direct file access
+4. **Working Solution**: Replace relative paths with external GitHub raw URLs
+5. **Additional Discovery**: Kernel name mismatch (`python3` vs `python`)
+
+The journey demonstrates the importance of understanding platform-specific constraints and iterative problem-solving in complex integrations.</content>
