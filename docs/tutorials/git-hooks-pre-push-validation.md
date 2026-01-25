@@ -20,6 +20,13 @@ Git hooks are **scripts that Git automatically executes** before or after certai
 |-----------|--------------|------------------|
 | `pre-commit` | Before a commit is created | Lint code, format check, run quick tests |
 | `commit-msg` | After commit message is entered | Validate commit message format |
+| `on_config` | After config loads | Modify configuration dynamically |
+| `on_pre_build` | Before build starts | Clean directories, prepare assets |
+| `on_startup` | Before anything else | Initialize resources, check dependencies |
+| `on_files` | When files are collected | Add/remove/modify file list |
+| `on_post_build` | After build completes | **Copy assets, post-process files** ← We use this! |
+| `on_page_markdown` | Before markdown rendering | Transform markdown content |
+| `on_page_content` | After markdown to HTML | Modify HTML content |
 | `pre-push` | Before pushing to remote | Run builds, comprehensive tests, validate deployability |
 | `post-merge` | After a merge completes | Update dependencies, rebuild assets |
 
