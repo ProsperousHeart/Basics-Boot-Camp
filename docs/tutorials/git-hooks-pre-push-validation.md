@@ -12,7 +12,7 @@ Git hooks are **scripts that Git automatically executes** before or after certai
 - Save CI/CD pipeline minutes and reduce feedback loops
 
 !!! info "Git Hooks vs. MkDocs Hooks"
-    Don't confuse **Git hooks** (scripts that run during Git operations) with **MkDocs hooks** (Python functions that run during documentation builds). See [MkDocs Hooks and JupyterLite Images](mkdocs-hooks-and-jupyterlite-images.md) for details about MkDocs hooks.
+    Don't confuse **Git hooks** (scripts that run during Git operations) with **MkDocs hooks** (Python functions that run during documentation builds). See [MkDocs Hooks and JupyterLite Images](mkdocs-jupyterlite-img-resolution.md) for details about MkDocs hooks.
 
 ### Common Git Hook Types
 
@@ -1191,4 +1191,4 @@ git push --no-verify
 
 - [Clean Code Before PR](clean-code-before-pr.md)
 - [Transitioning to UV](transitioning-to-uv.md)
-- [MkDocs Hooks and JupyterLite Images](mkdocs-hooks-and-jupyterlite-images.md)
+- [MkDocs Hooks and JupyterLite Images](mkdocs-jupyterlite-img-resolution.md)
