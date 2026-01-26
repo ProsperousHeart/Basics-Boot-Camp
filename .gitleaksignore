@@ -1,0 +1,4 @@
+# JupyterLite build files contain minified third-party JavaScript (xterm.js, etc.)
+# with class names like "FourKeyMap" that trigger false positive generic-api-key alerts.
+# "Key" in these contexts refers to map/dictionary keys, not cryptographic or API keys.
+docs/jupyterlite/build/
