@@ -173,7 +173,9 @@ nav:
     - Helpful Hints: tutorials/Helpful_Hints.md
     # - Clean Code Before PR: tutorials/clean-code-before-pr.md
     - Understanding MkDocs Features: tutorials/understanding-mkdocs-features.md
-    - Lessons Learned About mkdocs and JupyterLite: Lessons_Learned/Jupyter_In_mkdocs.md
+    - Lessons Learned About mkdocs and JupyterLite:
+        - Lessons_Learned/Jupyter_In_mkdocs.md
+        - Test Embeds: Lessons_Learned/test-embedding.md
     - WebAssembly & Pyodide: tutorials/understanding-webassembly-and-pyodide.md
     - Git Hooks (pre/push validation): tutorials/git-hooks-pre-push-validation.md
     - Getting IMGs to Show In Notebooks: tutorials/mkdocs-jupyterlite-img-resolution.md

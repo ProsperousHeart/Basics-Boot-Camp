@@ -17,6 +17,7 @@ This section documents lessons learned while converting the original v2 of this 
 ![alt text](image-2.png)
 
 JupyterLite can be configured different ways:
+
 - Files might be in the root working directory
 - Files might be in a `/files/` subdirectory
 - The path parameter might need URL encoding
@@ -43,17 +44,20 @@ When trying to integrate interactive Jupyter notebooks into MkDocs while maintai
 **How it works**: Create markdown pages with iframes that load JupyterLite with specific notebooks.
 
 **Pros**:
+
 - MkDocs navigation remains visible
 - Notebooks are interactive
 - Users stay within your documentation site
 
 **Cons**:
+
 - Creates "nested" interface (two navigation systems visible)
 - Path configuration can be tricky (404 errors)
 - iframe limitations (security, sizing, scrolling)
 - JupyterLite's full interface might be too cluttered
 
 **Example**:
+
 ```markdown
 <iframe
   src="../../jupyterlite/notebooks/index.html?path=Python_Basics_01.ipynb"
@@ -69,17 +73,20 @@ When trying to integrate interactive Jupyter notebooks into MkDocs while maintai
 **How it works**: Link directly to JupyterLite, opening it in the same tab or a new tab.
 
 **Pros**:
+
 - Clean interface (no nesting)
 - Full JupyterLite functionality
 - No iframe limitations
 - Easier path management
 
 **Cons**:
+
 - Users leave the MkDocs site
 - MkDocs navigation not visible in JupyterLite
 - Need to navigate back manually (or use browser back button)
 
 **Example**:
+
 ```markdown
 **Interactive Lessons**:
 1. <a href="../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb" target="_blank" rel="noopener noreferrer">Introduction</a>
@@ -95,12 +102,14 @@ Using HTML anchor tags with `target="_blank"`, links open in a new tab, making i
 **How it works**: Use the `mkdocs-jupyter` plugin to render notebooks as static HTML pages within MkDocs.
 
 **Pros**:
+
 - Perfect MkDocs integration with navigation
 - Fast page loads
 - No "nested" interface issues
 - SEO-friendly (static HTML)
 
 **Cons**:
+
 - **Not interactive** - users can't run code
 - Notebooks are read-only
 - Need `mkdocs-jupyter` plugin
@@ -108,27 +117,30 @@ Using HTML anchor tags with `target="_blank"`, links open in a new tab, making i
 **Setup**:
 
 1. Add to `pyproject.toml`:
-```toml
-dependencies = [
-    "mkdocs-jupyter>=0.25.1",
-]
-```
+
+    ```toml
+    dependencies = [
+        "mkdocs-jupyter>=0.25.1",
+    ]
+    ```
 
 2. Enable in `mkdocs.yml`:
-```yaml
-plugins:
-  - mkdocs-jupyter:
-      include_source: True
-      execute: False
-      allow_errors: False
-```
+
+    ```yaml
+    plugins:
+      - mkdocs-jupyter:
+          include_source: True
+          execute: False
+          allow_errors: False
+    ```
 
 3. Add notebooks to navigation:
-```yaml
-nav:
-  - Week 1:
-    - Introduction: BC_Weeks/Week_1/Python_Basics_01.ipynb
-```
+
+    ```yaml
+    nav:
+      - Week 1:
+        - Introduction: BC_Weeks/Week_1/Python_Basics_01.ipynb
+    ```
 
 ---
 
@@ -137,15 +149,18 @@ nav:
 **How it works**: Combine static rendering (for reading) with links to interactive version (for coding).
 
 **Pros**:
+
 - Beautiful static display with MkDocs navigation
 - Option to open interactive version when needed
 - Best user experience
 
 **Cons**:
+
 - Requires both `mkdocs-jupyter` and `mkdocs-jupyterlite`
 - Slightly more complex setup
 
 **Example**:
+
 ```markdown
 # Introduction to Python
 
@@ -154,6 +169,7 @@ nav:
 ---
 
 **Want to run this code interactively?**
+
 <a href="../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb" target="_blank" rel="noopener noreferrer">Open in JupyterLite</a>
 ```
 
@@ -173,18 +189,24 @@ nav:
 ## Recommendations by Use Case
 
 ### For Learning/Training Sites (Like This Boot Camp)
+
 **Use: Hybrid Approach (#4)** or **Direct Links (#2)**
+
 - Display notebooks statically for reading OR link directly
 - Provide JupyterLite links for hands-on practice
 - Best learning experience
 
 ### For Documentation Sites
+
 **Use: Static Rendering (#3)**
+
 - Focus on displaying examples
 - Code execution not critical
 
 ### For Interactive Coding Tutorials
+
 **Use: Direct Links (#2)**
+
 - Full JupyterLite experience
 - Open in new tabs
 - Simple and effective
@@ -198,6 +220,7 @@ If you're getting 404 errors when trying to load notebooks, check:
 ### 1. Notebook Path in JupyterLite
 
 Notebooks are copied to `docs/jupyterlite/files/` during build. Check if your notebook is there:
+
 ```bash
 ls docs/jupyterlite/files/*.ipynb
 ```
@@ -207,11 +230,13 @@ ls docs/jupyterlite/files/*.ipynb
 The `path` parameter should reference just the notebook filename:
 
 ✅ **Correct**:
+
 ```
 ../jupyterlite/lab/index.html?path=Python_Basics_01.ipynb
 ```
 
 ❌ **Incorrect**:
+
 ```
 ../jupyterlite/lab/index.html?path=/files/Python_Basics_01.ipynb
 ../jupyterlite/lab/index.html?path=BC_Weeks/Week_1/Python_Basics_01.ipynb
@@ -220,6 +245,7 @@ The `path` parameter should reference just the notebook filename:
 ### 3. Relative Path from Your Markdown File
 
 If your markdown is at `docs/BC_Weeks/Week_1/lesson.md`, the path to JupyterLite is:
+
 ```
 ../../jupyterlite/lab/index.html
 ```
@@ -227,6 +253,7 @@ If your markdown is at `docs/BC_Weeks/Week_1/lesson.md`, the path to JupyterLite
 ### 4. Ensure JupyterLite is Built
 
 Make sure JupyterLite is built with your notebooks:
+
 ```bash
 uv run mkdocs build
 # or
@@ -234,6 +261,7 @@ uv run mkdocs serve
 ```
 
 Check that `mkdocs.yml` has the jupyterlite plugin enabled with correct patterns:
+
 ```yaml
 plugins:
   - jupyterlite:
