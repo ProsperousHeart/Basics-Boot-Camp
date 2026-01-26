@@ -1,0 +1,4464 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Python Basics Boot Camp Training Materials">
+      
+      
+        <meta name="author" content="Prosperous Heart">
+      
+      
+        <link rel="canonical" href="https://prosperousheart.github.io/Basics-Boot-Camp/tutorials/git-hooks-pre-push-validation/">
+      
+      
+        <link rel="prev" href="../understanding-webassembly-and-pyodide/">
+      
+      
+        <link rel="next" href="../mkdocs-jupyterlite-img-resolution/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Git Hooks (pre/push validation) - Python Basics Boot Camp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-hooks-preventing-pipeline-failures-with-pre-push-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <!-- Announcement banner - customize the message below -->
+  <!-- The banner is automatically dismissible (users can close it) -->
+  <p style="text-align: center;">
+    📢 <strong>New Interactive Jupyter Notebooks!</strong>
+    Try out Python code directly in your browser - no installation required.
+    <a href="https://prosperousheart.github.io/Basics-Boot-Camp//interactive-jupyter/">Start Learning →</a>
+  </p>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Python Basics Boot Camp" class="md-header__button md-logo" aria-label="Python Basics Boot Camp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Basics Boot Camp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git Hooks (pre/push validation)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ProsperousHeart/Basics-Boot-Camp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ProsperousHeart/Basics-Boot-Camp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../interactive-jupyter/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interactive Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Python Basics Boot Camp" class="md-nav__button md-logo" aria-label="Python Basics Boot Camp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Python Basics Boot Camp
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ProsperousHeart/Basics-Boot-Camp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    ProsperousHeart/Basics-Boot-Camp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/course-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/time-expectations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Expectations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/training-philosophy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training Philosophy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/enrollment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementation &amp; Homework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/missing-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../interactive-jupyter/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interactive Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interactive Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_01_-_Introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_02_-_Syntax_And_Basic_Statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syntax &amp; Basic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_03_-_Variables_%26_Garbage_Collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variables &amp; Garbage Collection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_04_-_Operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_05_-_Decision_Making/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decision Making
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_06_-_Sequences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_07_-_Variable_Type_NUMBERS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_08_-_Variable_Type_STRING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_09_-_Variable_Type_LIST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_10_-_Variable_Type_TUPLE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tuples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_11_-_Variable_Type_DICTIONARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dictionaries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_1/Python_Basics_12_-_Type_Conversions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Type Conversions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_13_-_Iterators_And_Generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterators &amp; Generators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_14_-_Functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_15_-_Scope_Of_Variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scope of Variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_2/Python_Basics_16_-_Modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../BC_Weeks/Week_3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Week 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_17_-_Input_%26_Output/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input &amp; Output
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_18_-_Exceptions_%26_Assertions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exceptions &amp; Assertions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../BC_Weeks/Week_3/Python_Basics_19_-_Additional_Links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Links
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tutorials
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Helpful_Hints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helpful Hints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-mkdocs-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding MkDocs Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Lessons_Learned/Jupyter_In_mkdocs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lessons Learned About mkdocs and JupyterLite
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lessons Learned About mkdocs and JupyterLite
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lessons_Learned/test-embedding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Embeds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lessons_Learned/jupyterlite-fullStaticUrl-config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixing Published Embeds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../understanding-webassembly-and-pyodide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebAssembly &amp; Pyodide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Hooks (pre/push validation)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git Hooks (pre/push validation)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-git-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Are Git Hooks?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Are Git Hooks?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-git-hook-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Git Hook Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-pre-push-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Use Pre-Push Hooks?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Use Pre-Push Hooks?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem-delayed-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Delayed Feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-solution-pre-push-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: Pre-Push Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-example-mkdocs-build-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Example: MkDocs Build Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Example: MkDocs Build Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hook-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hook Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-git-hooks-work-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Git Hooks Work: Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Git Hooks Work: Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-hooks-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Hooks Live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Execution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes Matter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-pre-push-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementing Pre-Push Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Pre-Push Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-the-hook-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create the Hook File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-write-the-hook-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Write the Hook Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-the-hook-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Make the Hook Executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-test-the-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Test the Hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-hook-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Hook Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Hook Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-validation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Validation Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-checks-only-changed-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Checks (Only Changed Files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-override-emergency-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Override (Emergency Bypass)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharing-hooks-with-your-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharing Hooks with Your Team
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sharing Hooks with Your Team">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Challenge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1-tracked-hook-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 1: Tracked Hook Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-3-pre-commit-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 3: Pre-Commit Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-not-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Not Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-blocks-valid-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Blocks Valid Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-line-ending-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Line Ending Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-shows-error-but-push-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Shows Error But Push Continues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-keep-hooks-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Keep Hooks Fast ⚡
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-provide-clear-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Provide Clear Error Messages 💬
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-match-ci-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Match CI Exactly 🎯
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-document-hook-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Document Hook Requirements 📝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-version-control-your-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Version Control Your Hooks 🗂️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-hooks-vs-ci-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: Hooks vs. CI-Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs-jupyterlite-img-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting IMGs to Show In Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transitioning-to-uv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transitioning to UV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-git-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Are Git Hooks?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Are Git Hooks?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-git-hook-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Git Hook Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-pre-push-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Use Pre-Push Hooks?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Use Pre-Push Hooks?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem-delayed-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem: Delayed Feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-solution-pre-push-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: Pre-Push Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-example-mkdocs-build-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Example: MkDocs Build Validation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real Example: MkDocs Build Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hook-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hook Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-git-hooks-work-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Git Hooks Work: Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How Git Hooks Work: Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-hooks-live" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Hooks Live
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-execution-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Execution Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-codes-matter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exit Codes Matter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-pre-push-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementing Pre-Push Hooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Pre-Push Hooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-the-hook-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Create the Hook File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-write-the-hook-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Write the Hook Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-the-hook-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Make the Hook Executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-test-the-hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Test the Hook
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-hook-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Hook Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Hook Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-validation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Validation Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-checks-only-changed-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Checks (Only Changed Files)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-override-emergency-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Override (Emergency Bypass)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sharing-hooks-with-your-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharing Hooks with Your Team
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sharing Hooks with Your Team">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-challenge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Challenge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-1-tracked-hook-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 1: Tracked Hook Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solution-3-pre-commit-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution 3: Pre-Commit Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hook-not-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Not Running
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-blocks-valid-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Blocks Valid Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-line-ending-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Line Ending Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hook-shows-error-but-push-continues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hook Shows Error But Push Continues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-keep-hooks-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Keep Hooks Fast ⚡
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-provide-clear-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Provide Clear Error Messages 💬
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-match-ci-exactly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Match CI Exactly 🎯
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-document-hook-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Document Hook Requirements 📝
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-version-control-your-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Version Control Your Hooks 🗂️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-hooks-vs-ci-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison: Hooks vs. CI-Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="git-hooks-preventing-pipeline-failures-with-pre-push-validation">Git Hooks: Preventing Pipeline Failures with Pre-Push Validation<a class="headerlink" href="#git-hooks-preventing-pipeline-failures-with-pre-push-validation" title="Permanent link">¶</a></h1>
+<p>This tutorial explains how to use Git hooks to catch errors locally before pushing code, preventing CI/CD pipeline failures and saving time in the development workflow.</p>
+<h2 id="what-are-git-hooks">What Are Git Hooks?<a class="headerlink" href="#what-are-git-hooks" title="Permanent link">¶</a></h2>
+<p>Git hooks are <strong>scripts that Git automatically executes</strong> before or after certain events such as commit, push, or merge. They allow you to:</p>
+<ul>
+<li>Run automated checks before code leaves your local machine</li>
+<li>Enforce code quality standards</li>
+<li>Prevent broken code from reaching the remote repository</li>
+<li>Save CI/CD pipeline minutes and reduce feedback loops</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Git Hooks vs. MkDocs Hooks</p>
+<p>Don't confuse <strong>Git hooks</strong> (scripts that run during Git operations) with <strong>MkDocs hooks</strong> (Python functions that run during documentation builds). See <a href="../mkdocs-jupyterlite-img-resolution/">MkDocs Hooks and JupyterLite Images</a> for details about MkDocs hooks.</p>
+</div>
+<h3 id="common-git-hook-types">Common Git Hook Types<a class="headerlink" href="#common-git-hook-types" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Hook Name</th>
+<th>When It Runs</th>
+<th>Common Use Cases</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pre-commit</code></td>
+<td>Before a commit is created</td>
+<td>Lint code, format check, run quick tests</td>
+</tr>
+<tr>
+<td><code>commit-msg</code></td>
+<td>After commit message is entered</td>
+<td>Validate commit message format</td>
+</tr>
+<tr>
+<td><code>on_config</code></td>
+<td>After config loads</td>
+<td>Modify configuration dynamically</td>
+</tr>
+<tr>
+<td><code>on_pre_build</code></td>
+<td>Before build starts</td>
+<td>Clean directories, prepare assets</td>
+</tr>
+<tr>
+<td><code>on_startup</code></td>
+<td>Before anything else</td>
+<td>Initialize resources, check dependencies</td>
+</tr>
+<tr>
+<td><code>on_files</code></td>
+<td>When files are collected</td>
+<td>Add/remove/modify file list</td>
+</tr>
+<tr>
+<td><code>on_post_build</code></td>
+<td>After build completes</td>
+<td><strong>Copy assets, post-process files</strong> ← We use this!</td>
+</tr>
+<tr>
+<td><code>on_page_markdown</code></td>
+<td>Before markdown rendering</td>
+<td>Transform markdown content</td>
+</tr>
+<tr>
+<td><code>on_page_content</code></td>
+<td>After markdown to HTML</td>
+<td>Modify HTML content</td>
+</tr>
+<tr>
+<td><code>pre-push</code></td>
+<td>Before pushing to remote</td>
+<td>Run builds, comprehensive tests, validate deployability</td>
+</tr>
+<tr>
+<td><code>post-merge</code></td>
+<td>After a merge completes</td>
+<td>Update dependencies, rebuild assets</td>
+</tr>
+</tbody>
+</table>
+<h2 id="why-use-pre-push-hooks">Why Use Pre-Push Hooks?<a class="headerlink" href="#why-use-pre-push-hooks" title="Permanent link">¶</a></h2>
+<h3 id="the-problem-delayed-feedback">The Problem: Delayed Feedback<a class="headerlink" href="#the-problem-delayed-feedback" title="Permanent link">¶</a></h3>
+<p>Without pre-push validation:</p>
+<div class="ascii-art">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌──────────┐       ┌───────────┐      ┌────────┐      ┌─────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│Developer │       │ Local Git │      │ GitHub │      │ CI Pipeline │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└─────┬────┘       └─────┬─────┘      └───┬────┘      └──────┬──────┘
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>      │                  │                │                  │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      │ 1. git commit    │                │                  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      ├─────────────────&gt;│                │                  │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      │                  │                │                  │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      │ 2. git push      │                │                  │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      ├─────────────────&gt;│                │                  │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      │                  │ 3. Push code   │                  │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>      │                  ├───────────────&gt;│                  │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>      │                  │                │ 4. Trigger build │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>      │                  │                ├─────────────────&gt;│
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>      │                  │                │                  │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>      │                  │                │   Build runs     │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>      │                  │                │   (2-10 minutes) │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>      │                  │                │                  │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>      │                  │ 5. ❌ Build failed!               │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>      │ &lt;────────────────┴────────────────┴──────────────────┤
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>      │                                                      │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>      │ 😞 Wasted 5-20 minutes waiting for CI...             │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>      │                                                      │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>      │ 6. Fix, commit, push again                           │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>      ├─────────────────────────────────────────────────────&gt;│
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>      │                                                      │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>      │                  Build runs again (2-10 minutes)     │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>      │                                                      │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>      │ 7. ✅ Success (finally!)                             │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>      │ &lt;──────────────────────────────────────────────────┤│
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>      │                                                      │
+</code></pre></div>
+</div>
+
+<details class="note">
+<summary>View Interactive Sequence Diagram</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sequenceDiagram
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    participant Dev as Developer
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    participant Git as Local Git
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    participant GH as GitHub
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    participant CI as CI Pipeline
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    Dev-&gt;&gt;Git: git commit
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    Dev-&gt;&gt;Git: git push
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    Git-&gt;&gt;GH: Push code
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    GH-&gt;&gt;CI: Trigger pipeline
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    Note over CI: Build runs (2-10 min)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    CI-&gt;&gt;Dev: ❌ Build failed!
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    Note over Dev: 😞 Wasted 5-20 minutes
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    Dev-&gt;&gt;Git: Fix, commit, push
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    Git-&gt;&gt;GH: Push again
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    GH-&gt;&gt;CI: Trigger pipeline again
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    Note over CI: Build runs (2-10 min)
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    CI-&gt;&gt;Dev: ✅ Success (finally)
+</code></pre></div>
+</details>
+<p><strong>Time wasted:</strong> 5-20+ minutes per iteration</p>
+<h3 id="the-solution-pre-push-validation">The Solution: Pre-Push Validation<a class="headerlink" href="#the-solution-pre-push-validation" title="Permanent link">¶</a></h3>
+<p>With a pre-push hook:</p>
+<div class="ascii-art">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌──────────┐     ┌─────────────┐    ┌───────────┐    ┌────────┐    ┌─────────────┐
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│Developer │     │ Pre-Push    │    │ Local Git │    │ GitHub │    │ CI Pipeline │
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│          │     │ Hook        │    │           │    │        │    │             │
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>└─────┬────┘     └──────┬──────┘    └─────┬─────┘    └───┬────┘    └──────┬──────┘
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>      │ 1. git commit   │                 │              │                │
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      ├────────────────────────────────────&gt;             │                │
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>      │ 2. git push     │                 │              │                │
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>      ├────────────────────────────────────&gt;             │                │
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>      │                 │ 3. Run hook     │              │                │
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>      │                 │&lt;────────────────┤              │                │
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>      │                 │  Build check    │              │                │
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>      │                 │  (10-60 sec)    │              │                │
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>      │ 4. ❌ Error!    │                 │              │                │
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>      │&lt;────────────────┤                 │              │                │
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>      │ ✅ Fix immediately (seconds, not minutes!)       │                │
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>      │ 5. git commit &amp; push again        │              │                │
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>      ├────────────────────────────────────&gt;             │                │
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>      │                 │ 6. Run hook     │              │                │
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>      │                 │&lt;────────────────┤              │                │
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>      │                 │  Build check    │              │                │
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>      │                 │  (10-60 sec)    │              │                │
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>      │ 7. ✅ Passed!   │                 │              │                │
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>      │&lt;────────────────┤                 │              │                │
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>      │                 │                 │ 8. Push code │                │
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>      │                 │                 ├─────────────&gt;│                │
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>      │                 │                 │              │ 9. Trigger CI  │
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>      │                 │                 │              ├───────────────&gt;│
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>      │                 │                 │              │                │
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>      │ 10. ✅ CI Success (first try!)    │              │                │
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>      │ &lt;──────────────────────────────────┴──────────────┴────────────────┤
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>      │                 │                 │              │                │
+</code></pre></div>
+</div>
+
+<details class="note">
+<summary>View Interactive Sequence Diagram</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sequenceDiagram
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    participant Dev as Developer
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    participant Hook as Pre-Push Hook
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    participant Git as Local Git
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    participant GH as GitHub
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    participant CI as CI Pipeline
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    Dev-&gt;&gt;Git: git commit
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    Dev-&gt;&gt;Git: git push
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    Git-&gt;&gt;Hook: Run validation
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    Note over Hook: Build check (10-60 sec)
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    Hook-&gt;&gt;Dev: ❌ Error found!
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    Note over Dev: Fix immediately
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    Dev-&gt;&gt;Git: Fix, commit, push
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    Git-&gt;&gt;Hook: Run validation
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    Note over Hook: Build check (10-60 sec)
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    Hook-&gt;&gt;Git: ✅ Passed!
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    Git-&gt;&gt;GH: Push code
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    GH-&gt;&gt;CI: Trigger pipeline
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    CI-&gt;&gt;Dev: ✅ Success!
+</code></pre></div>
+</details>
+<p><strong>Time saved:</strong> 90% reduction in CI failures and wait time</p>
+<h2 id="real-example-mkdocs-build-validation">Real Example: MkDocs Build Validation<a class="headerlink" href="#real-example-mkdocs-build-validation" title="Permanent link">¶</a></h2>
+<h3 id="the-scenario">The Scenario<a class="headerlink" href="#the-scenario" title="Permanent link">¶</a></h3>
+<p>Your GitHub Actions pipeline runs:</p>
+<div class="highlight"><span class="filename">.github/workflows/deploy-mkdocs.yml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build MkDocs site</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run mkdocs build --strict</span>
+</code></pre></div>
+<p>If this fails in CI, you've wasted:</p>
+<ul>
+<li>Pipeline execution time</li>
+<li>Your own time waiting for results</li>
+<li>Potential embarrassment if others are watching the repo</li>
+</ul>
+<h3 id="the-hook-solution">The Hook Solution<a class="headerlink" href="#the-hook-solution" title="Permanent link">¶</a></h3>
+<p>A pre-push hook that runs the exact same command locally:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.git/hooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="ch">#!/bin/bash  # (1)!</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Running MkDocs build validation..."</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c1"># (2)!</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed! Fix errors before pushing."</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># (3)!</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="k">fi</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ MkDocs build passed!"</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li><strong>Shebang line</strong> - Required as the first line to tell the system this is a Bash script</li>
+<li><strong>Negated condition</strong> - <code>!</code> means "if this command fails", so we enter the block on failure</li>
+<li><strong>Exit code 1</strong> - Non-zero exit code tells Git to abort the push operation</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Automatic Execution</p>
+<p>Now when you <code>git push</code>, this runs <strong>automatically</strong> and blocks the push if it fails!</p>
+</div>
+<h2 id="how-git-hooks-work-architecture">How Git Hooks Work: Architecture<a class="headerlink" href="#how-git-hooks-work-architecture" title="Permanent link">¶</a></h2>
+<h3 id="where-hooks-live">Where Hooks Live<a class="headerlink" href="#where-hooks-live" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>your-project/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── .git/
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│   └── hooks/              # (1)!
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│       ├── pre-commit.sample
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│       ├── pre-push.sample
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│       ├── pre-push        # (2)!
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│       └── ...
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>├── src/
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>├── docs/
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>└── pyproject.toml
+</code></pre></div>
+<ol>
+<li>Git hooks directory - Created automatically when you run <code>git init</code></li>
+<li>Your custom hook - Remove the <code>.sample</code> extension to activate</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Not Version Controlled</p>
+<p>Files in <code>.git/</code> are <strong>never</strong> committed to version control. See <a href="#sharing-hooks-with-your-team">Sharing Hooks with Your Team</a> for solutions.</p>
+</div>
+<h3 id="hook-execution-flow">Hook Execution Flow<a class="headerlink" href="#hook-execution-flow" title="Permanent link">¶</a></h3>
+<div class="ascii-art">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>                    ┌────────────────────────────┐
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>                    │ Developer runs: git push   │
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>                    └──────────────┬─────────────┘
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>                                   │
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>                                   ▼
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>                    ┌──────────────────────────────────┐
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>                    │ Hook exists at                   │
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>                    │ .git/hooks/pre-push?             │
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>                    └───────┬──────────────┬───────────┘
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>                            │              │
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>                          NO│              │YES
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>                            │              │
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>                            ▼              ▼
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>              ┌─────────────────────┐  ┌────────────────────┐
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>              │ Proceed with push   │  │ Execute hook       │
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>              │ immediately         │  │ script             │
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>              └─────────────────────┘  └─────────┬──────────┘
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>                                                 │
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>                                                 ▼
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>                                    ┌───────────────────────┐
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>                                    │ Exit code = 0?        │
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>                                    │ (Success?)            │
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>                                    └────┬──────────────┬───┘
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>                                         │              │
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>                                    YES  │              │ NO
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>                                         │              │
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>                                         ▼              ▼
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>                            ┌─────────────────┐  ┌──────────────────┐
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>                            │ ✅ Continue     │  │ ❌ BLOCK push    │
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>                            │ with push       │  │ Show error msg   │
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>                            └─────────────────┘  └──────────────────┘
+</code></pre></div>
+</div>
+
+<details class="note">
+<summary>View Interactive Flowchart</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>flowchart TD
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    A[Developer runs: git push] --&gt; B{Hook exists at&lt;br/&gt;.git/hooks/pre-push?}
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    B --&gt;|No| C[Proceed with push immediately]
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    B --&gt;|Yes| D[Execute hook script]
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    D --&gt; E{Exit code = 0?}
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    E --&gt;|Yes - Success| F[Continue with push]
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    E --&gt;|No - Failure| G[BLOCK push&lt;br/&gt;Show error message]
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    style F fill:#90EE90
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    style G fill:#FFB6C6
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    style D fill:#87CEEB
+</code></pre></div>
+</details>
+<h3 id="exit-codes-matter">Exit Codes Matter<a class="headerlink" href="#exit-codes-matter" title="Permanent link">¶</a></h3>
+<p>Hooks communicate success/failure through <strong>exit codes</strong>:</p>
+<ul>
+<li><strong>Exit 0:</strong> Success → Git continues with the operation</li>
+<li><strong>Exit 1-255:</strong> Failure → Git aborts the operation</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Correct ✅</label><label for="__tabbed_1_2">Wrong ❌</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>some_validation_command<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ Validation failed"</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># Blocks the push</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">fi</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Validation passed"</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># Allows the push</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>some_validation_command<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ Validation failed"</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="c1"># Missing exit 1 - push will continue!</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">fi</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Validation passed"</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="implementing-pre-push-hooks">Implementing Pre-Push Hooks<a class="headerlink" href="#implementing-pre-push-hooks" title="Permanent link">¶</a></h2>
+<h3 id="step-1-create-the-hook-file">Step 1: Create the Hook File<a class="headerlink" href="#step-1-create-the-hook-file" title="Permanent link">¶</a></h3>
+<p>Navigate to your repository:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><input id="__tabbed_2_3" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">Linux/macOS</label><label for="__tabbed_2_2">Windows (Git Bash)</label><label for="__tabbed_2_3">Windows (PowerShell)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/your/repository
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>nano<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>/d/path/to/your/repository
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>nano<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd </span><span class="n">D</span><span class="p">:\</span><span class="n">path</span><span class="p">\</span><span class="n">to</span><span class="p">\</span><span class="n">your</span><span class="p">\</span><span class="n">repository</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">notepad</span> <span class="p">.</span><span class="n">git</span><span class="p">\</span><span class="n">hooks</span><span class="p">\</span><span class="n">pre-push</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="step-2-write-the-hook-script">Step 2: Write the Hook Script<a class="headerlink" href="#step-2-write-the-hook-script" title="Permanent link">¶</a></h3>
+<p>For MkDocs validation:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.git/hooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span>
+<span class="normal"><a href="#__codelineno-14-28">28</a></span>
+<span class="normal"><a href="#__codelineno-14-29">29</a></span>
+<span class="normal"><a href="#__codelineno-14-30">30</a></span>
+<span class="normal"><a href="#__codelineno-14-31">31</a></span>
+<span class="normal"><a href="#__codelineno-14-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="c1"># ABOUTME: Pre-push hook to validate MkDocs build before pushing to remote</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="c1"># ABOUTME: Prevents pipeline failures by catching build errors locally</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="nb">set</span><span class="w"> </span>-e<span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"🔍 Running pre-push validation..."</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="c1"># Run MkDocs build in strict mode (same as CI)</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"📚 Building MkDocs site..."</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c1"># (2)!</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed!"</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Common issues:"</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Configuration warnings (check mkdocs.yml)"</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Invalid markdown syntax"</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Missing files referenced in nav"</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Plugin compatibility issues"</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Fix the errors above and try pushing again."</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># (3)!</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="k">fi</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27"></a>
+<a id="__codelineno-14-28" name="__codelineno-14-28"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ All validations passed! Proceeding with push..."</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31"></a>
+<a id="__codelineno-14-32" name="__codelineno-14-32"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="c1"># (4)!</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li><strong><code>set -e</code></strong> causes the script to exit immediately if any command fails (except in if conditions)</li>
+<li><strong>Exact CI command</strong> - Run the identical command that runs in your GitHub Actions workflow</li>
+<li><strong>Exit 1</strong> blocks the push when validation fails</li>
+<li><strong>Exit 0</strong> allows the push to proceed when validation succeeds</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Match Your CI Exactly</p>
+<p>Always use the <strong>exact same command</strong> that runs in your CI pipeline to ensure 100% parity between local and remote validation.</p>
+</div>
+<h3 id="step-3-make-the-hook-executable">Step 3: Make the Hook Executable<a class="headerlink" href="#step-3-make-the-hook-executable" title="Permanent link">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Required Step</p>
+<p>Hooks <strong>must</strong> be executable or Git will silently ignore them!</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"><input id="__tabbed_3_2" name="__tabbed_3" type="radio"><input id="__tabbed_3_3" name="__tabbed_3" type="radio"><div class="tabbed-labels"><label for="__tabbed_3_1">Linux/macOS</label><label for="__tabbed_3_2">Windows (Git Bash)</label><label for="__tabbed_3_3">Windows (PowerShell as Admin)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">icacls</span> <span class="p">.</span><span class="n">git</span><span class="p">\</span><span class="n">hooks</span><span class="p">\</span><span class="n">pre-push</span> <span class="p">/</span><span class="n">grant</span> <span class="n">Everyone</span><span class="p">:</span><span class="n">RX</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="step-4-test-the-hook">Step 4: Test the Hook<a class="headerlink" href="#step-4-test-the-hook" title="Permanent link">¶</a></h3>
+<p>Try pushing to test:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your-branch
+</code></pre></div>
+<p>You should see output like:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>🔍 Running pre-push validation...
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>📚 Building MkDocs site...
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>INFO    -  Cleaning site directory
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>INFO    -  Building documentation to directory: site
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>INFO    -  Documentation built in 2.34 seconds
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>✅ All validations passed! Proceeding with push...
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>Enumerating objects: 5, done.
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>Counting objects: 100% (5/5), done.
+</code></pre></div>
+<details class="example">
+<summary>Example: Intentional Failure Test</summary>
+<p>To test that your hook properly blocks pushes, temporarily break your <code>mkdocs.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Add an invalid configuration</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nt">invalid_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">this will cause an error</span>
+</code></pre></div>
+<p>Then try to push:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>documentation
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>🔍<span class="w"> </span>Running<span class="w"> </span>pre-push<span class="w"> </span>validation...
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>📚<span class="w"> </span>Building<span class="w"> </span>MkDocs<span class="w"> </span>site...
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>WARNING<span class="w"> </span>-<span class="w">  </span>Config<span class="w"> </span>value<span class="w"> </span><span class="s1">'invalid_key'</span>:<span class="w"> </span>Unrecognised<span class="w"> </span>configuration<span class="w"> </span>name:<span class="w"> </span>invalid_key
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>Aborted<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span>configuration<span class="w"> </span>warnings<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">'strict'</span><span class="w"> </span>mode!
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>❌<span class="w"> </span>MkDocs<span class="w"> </span>build<span class="w"> </span>failed!
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>Fix<span class="w"> </span>the<span class="w"> </span>errors<span class="w"> </span>above<span class="w"> </span>and<span class="w"> </span>try<span class="w"> </span>pushing<span class="w"> </span>again.
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>error:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>push<span class="w"> </span>some<span class="w"> </span>refs<span class="w"> </span>to<span class="w"> </span><span class="s1">'origin'</span>
+</code></pre></div>
+<p>Remove the invalid line and the push will succeed! ✅</p>
+</details>
+<h2 id="advanced-hook-patterns">Advanced Hook Patterns<a class="headerlink" href="#advanced-hook-patterns" title="Permanent link">¶</a></h2>
+<h3 id="multiple-validation-steps">Multiple Validation Steps<a class="headerlink" href="#multiple-validation-steps" title="Permanent link">¶</a></h3>
+<p>Run several checks in sequence:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.git/hooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span>
+<span class="normal"><a href="#__codelineno-22-14">14</a></span>
+<span class="normal"><a href="#__codelineno-22-15">15</a></span>
+<span class="normal"><a href="#__codelineno-22-16">16</a></span>
+<span class="normal"><a href="#__codelineno-22-17">17</a></span>
+<span class="normal"><a href="#__codelineno-22-18">18</a></span>
+<span class="normal"><a href="#__codelineno-22-19">19</a></span>
+<span class="normal"><a href="#__codelineno-22-20">20</a></span>
+<span class="normal"><a href="#__codelineno-22-21">21</a></span>
+<span class="normal"><a href="#__codelineno-22-22">22</a></span>
+<span class="normal"><a href="#__codelineno-22-23">23</a></span>
+<span class="normal"><a href="#__codelineno-22-24">24</a></span>
+<span class="normal"><a href="#__codelineno-22-25">25</a></span>
+<span class="normal"><a href="#__codelineno-22-26">26</a></span>
+<span class="normal"><a href="#__codelineno-22-27">27</a></span>
+<span class="normal"><a href="#__codelineno-22-28">28</a></span>
+<span class="normal"><a href="#__codelineno-22-29">29</a></span>
+<span class="normal"><a href="#__codelineno-22-30">30</a></span>
+<span class="normal"><a href="#__codelineno-22-31">31</a></span>
+<span class="normal"><a href="#__codelineno-22-32">32</a></span>
+<span class="normal"><a href="#__codelineno-22-33">33</a></span>
+<span class="normal"><a href="#__codelineno-22-34">34</a></span>
+<span class="normal"><a href="#__codelineno-22-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="c1"># ABOUTME: Comprehensive pre-push validation</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="c1"># ABOUTME: Runs linting, tests, and build checks before allowing push</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"🔍 Running pre-push validations..."</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="c1"># Step 1: Linting</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"1️⃣  Running linter..."</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>make<span class="w"> </span>lint<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ Linting failed!"</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="k">fi</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16"></a>
+<a id="__codelineno-22-17" name="__codelineno-22-17"></a><span class="c1"># Step 2: Unit tests</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"2️⃣  Running tests..."</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>make<span class="w"> </span>test<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ Tests failed!"</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23"></a><span class="k">fi</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24"></a>
+<a id="__codelineno-22-25" name="__codelineno-22-25"></a><span class="c1"># Step 3: MkDocs build</span>
+<a id="__codelineno-22-26" name="__codelineno-22-26"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-22-27" name="__codelineno-22-27"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"3️⃣  Building documentation..."</span>
+<a id="__codelineno-22-28" name="__codelineno-22-28"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-22-29" name="__codelineno-22-29"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed!"</span>
+<a id="__codelineno-22-30" name="__codelineno-22-30"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-22-31" name="__codelineno-22-31"></a><span class="k">fi</span>
+<a id="__codelineno-22-32" name="__codelineno-22-32"></a>
+<a id="__codelineno-22-33" name="__codelineno-22-33"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-22-34" name="__codelineno-22-34"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ All validations passed!"</span>
+<a id="__codelineno-22-35" name="__codelineno-22-35"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li>Each validation step fails fast - if linting fails, we don't waste time running tests</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Performance Consideration</p>
+<p>Each check adds time to your push. Keep total hook execution under 60 seconds for good developer experience.</p>
+</div>
+<h3 id="conditional-checks-only-changed-files">Conditional Checks (Only Changed Files)<a class="headerlink" href="#conditional-checks-only-changed-files" title="Permanent link">¶</a></h3>
+<p>Optimize by only checking files you've changed:</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.git/hooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span>
+<span class="normal"><a href="#__codelineno-23-14">14</a></span>
+<span class="normal"><a href="#__codelineno-23-15">15</a></span>
+<span class="normal"><a href="#__codelineno-23-16">16</a></span>
+<span class="normal"><a href="#__codelineno-23-17">17</a></span>
+<span class="normal"><a href="#__codelineno-23-18">18</a></span>
+<span class="normal"><a href="#__codelineno-23-19">19</a></span>
+<span class="normal"><a href="#__codelineno-23-20">20</a></span>
+<span class="normal"><a href="#__codelineno-23-21">21</a></span>
+<span class="normal"><a href="#__codelineno-23-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="c1"># ABOUTME: Smart pre-push hook that only validates what changed</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="c1"># ABOUTME: Checks docs only if documentation files were modified</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="nb">set</span><span class="w"> </span>-e
+<a id="__codelineno-23-6" name="__codelineno-23-6"></a>
+<a id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="c1"># Get list of files changed compared to remote main branch</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="nv">CHANGED_FILES</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>diff<span class="w"> </span>--name-only<span class="w"> </span>origin/main...HEAD<span class="k">)</span><span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9"></a>
+<a id="__codelineno-23-10" name="__codelineno-23-10"></a><span class="c1"># Check if docs-related files changed</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="k">if</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$CHANGED_FILES</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-qE<span class="w"> </span><span class="s2">"(^docs/|mkdocs\.yml)"</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c1"># (2)!</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"📚 Documentation changed, validating MkDocs build..."</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed!"</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15"></a><span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Documentation build passed!"</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18"></a><span class="k">else</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"ℹ️  No documentation changes, skipping MkDocs validation"</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20"></a><span class="k">fi</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21"></a>
+<a id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="nb">exit</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li>Compare your branch to the remote main branch to find what changed</li>
+<li>Regex pattern matches files in <code>docs/</code> directory or the <code>mkdocs.yml</code> file</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">When to Use Conditional Checks</p>
+<p>Use this pattern when:</p>
+<ul>
+<li>Your validation is slow (&gt; 30 seconds)</li>
+<li>Changes to unrelated files don't affect the check</li>
+<li>Your repo has multiple subsystems (docs, code, tests, etc.)</li>
+</ul>
+</div>
+<h3 id="interactive-override-emergency-bypass">Interactive Override (Emergency Bypass)<a class="headerlink" href="#interactive-override-emergency-bypass" title="Permanent link">¶</a></h3>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.git/hooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span>
+<span class="normal"><a href="#__codelineno-24-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="c1"># ABOUTME: Pre-push validation with emergency bypass instructions</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="c1"># ABOUTME: Guides users to use --no-verify only when necessary</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"🔍 Running pre-push validation..."</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed!"</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"⚠️  To push anyway (NOT RECOMMENDED), use:"</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"    git push --no-verify"</span><span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"This bypasses ALL hooks and should only be used in emergencies."</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="k">fi</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18"></a>
+<a id="__codelineno-24-19" name="__codelineno-24-19"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Validation passed!"</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li>The <code>--no-verify</code> flag skips <strong>all</strong> hooks for this push</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Emergency Use Only</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>git<span class="w"> </span>push<span class="w"> </span>--no-verify<span class="w">  </span><span class="c1"># Skips ALL hooks!</span>
+</code></pre></div>
+<p>Only use this when:</p>
+<ul>
+<li>You're absolutely certain the code is safe</li>
+<li>There's a critical production issue</li>
+<li>The hook itself is broken (rare)</li>
+</ul>
+<p><strong>Never</strong> use this to bypass failing validations without fixing them!</p>
+</div>
+<h2 id="sharing-hooks-with-your-team">Sharing Hooks with Your Team<a class="headerlink" href="#sharing-hooks-with-your-team" title="Permanent link">¶</a></h2>
+<h3 id="the-challenge">The Challenge<a class="headerlink" href="#the-challenge" title="Permanent link">¶</a></h3>
+<p>Git hooks in <code>.git/hooks/</code> are <strong>not tracked by version control</strong>. Each team member needs to install them manually.</p>
+<div class="ascii-art">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>┌─────────────────────┐                  ┌──────────────┐                  ┌─────────────────────┐
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>│ Developer 1         │                  │ GitHub Repo  │                  │ Developer 2         │
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>│ ✅ Has hook         │──── pushes ────&gt; │              │ ──── clones ───&gt; │ ❌ NO hook          │
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>│    installed        │                  │              │                  │    installed        │
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>└─────────────────────┘                  └──────────────┘                  └─────────────────────┘
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>     (Protected)                                                                 (Vulnerable)
+</code></pre></div>
+</div>
+
+<details class="note">
+<summary>View Interactive Diagram</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>flowchart LR
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>    A[Developer 1&lt;br/&gt;Has hook installed] --&gt;|pushes| B[GitHub Repo]
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    B --&gt;|clones| C[Developer 2&lt;br/&gt;NO hook installed ❌]
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>    style A fill:#90EE90
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>    style C fill:#FFB6C6
+</code></pre></div>
+</details>
+<h3 id="solution-1-tracked-hook-scripts">Solution 1: Tracked Hook Scripts<a class="headerlink" href="#solution-1-tracked-hook-scripts" title="Permanent link">¶</a></h3>
+<p>Store hook scripts in a tracked directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>your-project/
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>├── .git/
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>│   └── hooks/           # ← Not tracked (Git internal)
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>├── .githooks/           # ← Tracked! ✅ Commit this!
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>│   ├── pre-push
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>│   ├── pre-commit
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>│   └── install.sh
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>├── docs/
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>└── pyproject.toml
+</code></pre></div>
+<p><strong>Install script</strong> (<code>.githooks/install.sh</code>):</p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.githooks/install.sh</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-29-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-29-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-29-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-29-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-29-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-29-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-29-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-29-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-29-10">10</a></span>
+<span class="normal"><a href="#__codelineno-29-11">11</a></span>
+<span class="normal"><a href="#__codelineno-29-12">12</a></span>
+<span class="normal"><a href="#__codelineno-29-13">13</a></span>
+<span class="normal"><a href="#__codelineno-29-14">14</a></span>
+<span class="normal"><a href="#__codelineno-29-15">15</a></span>
+<span class="normal"><a href="#__codelineno-29-16">16</a></span>
+<span class="normal"><a href="#__codelineno-29-17">17</a></span>
+<span class="normal"><a href="#__codelineno-29-18">18</a></span>
+<span class="normal"><a href="#__codelineno-29-19">19</a></span>
+<span class="normal"><a href="#__codelineno-29-20">20</a></span>
+<span class="normal"><a href="#__codelineno-29-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="c1"># ABOUTME: Installs Git hooks from .githooks/ to .git/hooks/</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="c1"># ABOUTME: Run this after cloning the repo: bash .githooks/install.sh</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="nv">HOOK_DIR</span><span class="o">=</span><span class="s2">".git/hooks"</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="nv">SOURCE_DIR</span><span class="o">=</span><span class="s2">".githooks"</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7"></a>
+<a id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Installing Git hooks from </span><span class="nv">$SOURCE_DIR</span><span class="s2">..."</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9"></a>
+<a id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="k">for</span><span class="w"> </span>hook<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">"</span><span class="nv">$SOURCE_DIR</span><span class="s2">"</span>/*<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">"</span><span class="nv">$hook</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">"</span><span class="nv">$hook</span><span class="s2">"</span><span class="k">)</span><span class="s2">"</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">"install.sh"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12"></a><span class="w">        </span><span class="nv">hook_name</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">"</span><span class="nv">$hook</span><span class="s2">"</span><span class="k">)</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13"></a><span class="w">        </span>cp<span class="w"> </span><span class="s2">"</span><span class="nv">$hook</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HOOK_DIR</span><span class="s2">/</span><span class="nv">$hook_name</span><span class="s2">"</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14"></a><span class="w">        </span>chmod<span class="w"> </span>+x<span class="w"> </span><span class="s2">"</span><span class="nv">$HOOK_DIR</span><span class="s2">/</span><span class="nv">$hook_name</span><span class="s2">"</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Installed </span><span class="nv">$hook_name</span><span class="s2">"</span>
+<a id="__codelineno-29-16" name="__codelineno-29-16"></a><span class="w">    </span><span class="k">fi</span>
+<a id="__codelineno-29-17" name="__codelineno-29-17"></a><span class="k">done</span>
+<a id="__codelineno-29-18" name="__codelineno-29-18"></a>
+<a id="__codelineno-29-19" name="__codelineno-29-19"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-29-20" name="__codelineno-29-20"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Git hooks installed successfully!"</span>
+<a id="__codelineno-29-21" name="__codelineno-29-21"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Hooks will now run automatically during git operations."</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li>Skip copying the install script itself - only copy actual hook files</li>
+</ol>
+<p><strong>Setup instructions for team</strong> (add to README):</p>
+<div class="highlight"><span class="filename">README.md</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="gu">## Development Setup</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>After cloning this repository, install Git hooks:
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>```bash
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>bash .githooks/install.sh
+</code></pre></div>
+<p>This installs pre-push validation that catches errors before they reach CI.
+</p><div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>!!! success "Commit the Hooks"
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    ```bash
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    git add .githooks/
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    git commit -m "Add pre-push hook for MkDocs validation"
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>    git push
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>    ```
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>    Now everyone who clones can run the install script!
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>### Solution 2: Git Config (Git 2.9+)
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>Configure Git to use a tracked hooks directory automatically:
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>
+<a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>```bash
+<a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a># Set hooks directory for this repo
+<a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>git config core.hooksPath .githooks
+</code></pre></div><p></p>
+<p>Now hooks in <code>.githooks/</code> are used <strong>automatically</strong> without manual installation!</p>
+<p><strong>Add to project setup:</strong></p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.githooks/pre-push</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span>
+<span class="normal"><a href="#__codelineno-32-5">5</a></span>
+<span class="normal"><a href="#__codelineno-32-6">6</a></span>
+<span class="normal"><a href="#__codelineno-32-7">7</a></span>
+<span class="normal"><a href="#__codelineno-32-8">8</a></span>
+<span class="normal"><a href="#__codelineno-32-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="c1"># This file is in .githooks/ and tracked by Git</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3"></a>
+<a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"🔍 Running pre-push validation..."</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ Build failed!"</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="k">fi</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"✅ Build passed!"</span>
+</code></pre></div></td></tr></tbody></table></div>
+<p>Commit it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>git<span class="w"> </span>add<span class="w"> </span>.githooks/pre-push
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add pre-push hook for MkDocs validation"</span>
+</code></pre></div>
+<p><strong>Team members setup:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># After cloning</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>git<span class="w"> </span>config<span class="w"> </span>core.hooksPath<span class="w"> </span>.githooks
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="c1"># Done! Hooks work automatically now</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Make it Easy for Your Team</p>
+<p>Add hook setup to your project documentation and onboarding checklist so new team members don't forget!</p>
+</div>
+<h3 id="solution-3-pre-commit-framework">Solution 3: Pre-Commit Framework<a class="headerlink" href="#solution-3-pre-commit-framework" title="Permanent link">¶</a></h3>
+<p>Use the <a href="https://pre-commit.com/">pre-commit</a> framework for robust, cross-platform hook management:</p>
+<p><strong>Install:</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"><input id="__tabbed_4_2" name="__tabbed_4" type="radio"><div class="tabbed-labels"><label for="__tabbed_4_1">Using UV</label><label for="__tabbed_4_2">Using pip</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pre-commit
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>Create configuration:</strong></p>
+<div class="highlight"><table class="highlighttable"><tbody><tr><th colspan="2" class="filename"><span class="filename">.pre-commit-config.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span>
+<span class="normal"><a href="#__codelineno-37-4">4</a></span>
+<span class="normal"><a href="#__codelineno-37-5">5</a></span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span>
+<span class="normal"><a href="#__codelineno-37-7">7</a></span>
+<span class="normal"><a href="#__codelineno-37-8">8</a></span>
+<span class="normal"><a href="#__codelineno-37-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="nt">repos</span><span class="p">:</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="w">    </span><span class="nt">hooks</span><span class="p">:</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs-build</span><span class="w">  </span><span class="c1"># (1)!</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MkDocs Build Validation</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="w">        </span><span class="nt">entry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run mkdocs build --strict</span><span class="w">  </span><span class="c1"># (2)!</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="w">        </span><span class="nt">language</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">system</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="w">        </span><span class="nt">pass_filenames</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">  </span><span class="c1"># (3)!</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9"></a><span class="w">        </span><span class="nt">stages</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># (4)!</span>
+</code></pre></div></td></tr></tbody></table></div>
+<ol>
+<li>Unique ID for this hook</li>
+<li>The command to run - same as your CI pipeline</li>
+<li>Don't pass changed filenames to the command</li>
+<li>Only run this hook on push, not commit</li>
+</ol>
+<p><strong>Install hooks:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>pre-commit<span class="w"> </span>install<span class="w"> </span>--hook-type<span class="w"> </span>pre-push
+</code></pre></div>
+<p><strong>Commit the config:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>git<span class="w"> </span>add<span class="w"> </span>.pre-commit-config.yaml
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add pre-commit framework for hook management"</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Automatic for Everyone</p>
+<p>Team members just need to run <code>pre-commit install --hook-type pre-push</code> after cloning. The framework handles platform differences automatically!</p>
+</div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
+<h3 id="hook-not-running">Hook Not Running<a class="headerlink" href="#hook-not-running" title="Permanent link">¶</a></h3>
+<div class="admonition failure">
+<p class="admonition-title">Problem: Push completes without running hook</p>
+</div>
+<details class="tip">
+<summary>Solution 1: Verify File Exists</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c1"># Check if file exists</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>.git/hooks/pre-push
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c1"># Should show something like:</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="c1"># -rwxr-xr-x  1 user  staff  423 Dec  8 10:30 .git/hooks/pre-push</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="c1">#  ^^^</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="c1">#  └── These 'x' indicate executable permission</span>
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 2: Check Executable Permission</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio"><input id="__tabbed_5_2" name="__tabbed_5" type="radio"><div class="tabbed-labels"><label for="__tabbed_5_1">Linux/macOS</label><label for="__tabbed_5_2">Windows (Git Bash)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</div>
+</div>
+</div>
+</details>
+<details class="tip">
+<summary>Solution 3: Verify Shebang Line</summary>
+<p>The first line <strong>must</strong> be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="ch">#!/bin/bash</span>
+</code></pre></div>
+<p>Or for sh compatibility:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="ch">#!/bin/sh</span>
+</code></pre></div>
+<p>Common mistakes:</p>
+<ul>
+<li>Missing shebang entirely</li>
+<li>Extra spaces before <code>#</code></li>
+<li>Not on the first line</li>
+</ul>
+</details>
+<details class="tip">
+<summary>Solution 4: Test Hook Manually</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Run the hook directly</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>.git/hooks/pre-push
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># Should show output and exit with 0 or 1</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span><span class="w">  </span><span class="c1"># Shows exit code of last command</span>
+</code></pre></div>
+</details>
+<h3 id="hook-blocks-valid-push">Hook Blocks Valid Push<a class="headerlink" href="#hook-blocks-valid-push" title="Permanent link">¶</a></h3>
+<div class="admonition failure">
+<p class="admonition-title">Problem: Hook fails but code is actually fine</p>
+</div>
+<details class="tip">
+<summary>Solution 1: Check Your Environment</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># Verify UV is installed and accessible</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>which<span class="w"> </span>uv
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="c1"># Should show: /path/to/uv (or C:\path\to\uv.exe on Windows)</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>
+<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a>uv<span class="w"> </span>--version
+<a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a><span class="c1"># Should show: uv 0.x.x</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a>
+<a id="__codelineno-46-8" name="__codelineno-46-8" href="#__codelineno-46-8"></a><span class="c1"># Verify dependencies are installed</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9" href="#__codelineno-46-9"></a>uv<span class="w"> </span>sync
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 2: Run Validation Manually</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="c1"># Run the same command the hook runs</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="c1"># If this fails, the issue is with your code/config, not the hook</span>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="c1"># If this succeeds, there's a hook environment issue</span>
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 3: Check Working Directory</summary>
+<p>Hooks run from the repository root. Verify:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># In your hook, add debug output:</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Working directory: </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">"</span>
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Files here: </span><span class="k">$(</span>ls<span class="k">)</span><span class="s2">"</span>
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 4: Emergency Bypass</summary>
+<p>If you're certain the code is fine:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>git<span class="w"> </span>push<span class="w"> </span>--no-verify
+</code></pre></div>
+<p>But investigate why the hook failed afterwards!</p>
+</details>
+<h3 id="windows-line-ending-issues">Windows Line Ending Issues<a class="headerlink" href="#windows-line-ending-issues" title="Permanent link">¶</a></h3>
+<div class="admonition failure">
+<p class="admonition-title">Problem: Hook fails with <code>^M: bad interpreter</code> error</p>
+</div>
+<p>This happens when the hook file has Windows line endings (CRLF) instead of Unix line endings (LF).</p>
+<details class="tip">
+<summary>Solution 1: Using dos2unix (Git Bash)</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Install dos2unix if needed (usually included in Git Bash)</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>dos2unix<span class="w"> </span>.git/hooks/pre-push
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 2: Using PowerShell</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="p">(</span><span class="nb">Get-Content</span> <span class="p">.</span><span class="n">git</span><span class="p">\</span><span class="n">hooks</span><span class="p">\</span><span class="n">pre-push</span> <span class="n">-Raw</span><span class="p">)</span> <span class="o">-replace</span> <span class="s2">"</span><span class="se">`r`n</span><span class="s2">"</span><span class="p">,</span><span class="s2">"</span><span class="se">`n</span><span class="s2">"</span> <span class="p">|</span> <span class="p">`</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>    <span class="nb">Set-Content</span> <span class="p">.</span><span class="n">git</span><span class="p">\</span><span class="n">hooks</span><span class="p">\</span><span class="n">pre-push</span> <span class="n">-NoNewline</span>
+</code></pre></div>
+</details>
+<details class="tip">
+<summary>Solution 3: Using Git Configuration</summary>
+<p>Configure Git to handle line endings automatically:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Set for this repo</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>git<span class="w"> </span>config<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># Ensure .githooks/ files use LF</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"* text=auto"</span><span class="w"> </span>&gt;<span class="w"> </span>.gitattributes
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">".githooks/* text eol=lf"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitattributes
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>git<span class="w"> </span>add<span class="w"> </span>.gitattributes
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Ensure hooks use LF line endings"</span>
+</code></pre></div>
+</details>
+<h3 id="hook-shows-error-but-push-continues">Hook Shows Error But Push Continues<a class="headerlink" href="#hook-shows-error-but-push-continues" title="Permanent link">¶</a></h3>
+<div class="admonition failure">
+<p class="admonition-title">Problem: Hook prints error message but push still succeeds</p>
+</div>
+<p>The hook is not exiting with a non-zero code!</p>
+<details class="tip">
+<summary>Solution: Add Explicit Exit</summary>
+<p><strong>Wrong ❌:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Error!"</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span><span class="c1"># Missing exit 1 here!</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="k">fi</span>
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a><span class="c1"># Script continues and returns 0 by default</span>
+</code></pre></div>
+<p><strong>Correct ✅:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Error!"</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># This blocks the push!</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="k">fi</span>
+</code></pre></div>
+<p>Or use <code>set -e</code> at the top:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="nb">set</span><span class="w"> </span>-e<span class="w">  </span><span class="c1"># Exit on any error</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="c1"># If this fails, script exits with non-zero automatically</span>
+</code></pre></div>
+</details>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">¶</a></h2>
+<h3 id="1-keep-hooks-fast">1. Keep Hooks Fast ⚡<a class="headerlink" href="#1-keep-hooks-fast" title="Permanent link">¶</a></h3>
+<p>Users will bypass slow hooks, defeating their purpose!</p>
+<table>
+<thead>
+<tr>
+<th>Duration</th>
+<th>User Experience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt; 10 seconds</td>
+<td>Excellent - barely noticeable</td>
+</tr>
+<tr>
+<td>10-30 seconds</td>
+<td>Good - acceptable wait time</td>
+</tr>
+<tr>
+<td>30-60 seconds</td>
+<td>Poor - users get impatient</td>
+</tr>
+<tr>
+<td>&gt; 60 seconds</td>
+<td>Terrible - users will bypass</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Speed Optimization Strategies</p>
+<ul>
+<li><strong>Run only on changed files</strong> (see <a href="#conditional-checks-only-changed-files">Conditional Checks</a>)</li>
+<li><strong>Use caching</strong> (UV caches dependencies automatically)</li>
+<li><strong>Move slow checks to CI only</strong> (keep hooks for fast checks)</li>
+<li><strong>Run checks in parallel</strong> when possible</li>
+</ul>
+</div>
+<h3 id="2-provide-clear-error-messages">2. Provide Clear Error Messages 💬<a class="headerlink" href="#2-provide-clear-error-messages" title="Permanent link">¶</a></h3>
+<p>Bad ❌:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Failed"</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Good ✅:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"❌ MkDocs build failed!"</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Common fixes:"</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Check mkdocs.yml for configuration errors"</span>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Validate markdown syntax in changed files"</span>
+<a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"  • Run 'uv run mkdocs build --strict' to see details"</span>
+<a id="__codelineno-57-7" name="__codelineno-57-7" href="#__codelineno-57-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">""</span>
+<a id="__codelineno-57-8" name="__codelineno-57-8" href="#__codelineno-57-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"Need help? See: docs/tutorials/git-hooks-pre-push-validation.md"</span>
+<a id="__codelineno-57-9" name="__codelineno-57-9" href="#__codelineno-57-9"></a><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Help Users Help Themselves</p>
+<p>Good error messages include:</p>
+<ul>
+<li><strong>What failed</strong> (specific check name)</li>
+<li><strong>Why it might have failed</strong> (common causes)</li>
+<li><strong>How to debug</strong> (command to run manually)</li>
+<li><strong>Where to get help</strong> (documentation link)</li>
+</ul>
+</div>
+<h3 id="3-match-ci-exactly">3. Match CI Exactly 🎯<a class="headerlink" href="#3-match-ci-exactly" title="Permanent link">¶</a></h3>
+<p>Run the <strong>exact same commands</strong> as your CI pipeline:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"><input id="__tabbed_6_2" name="__tabbed_6" type="radio"><div class="tabbed-labels"><label for="__tabbed_6_1">GitHub Actions</label><label for="__tabbed_6_2">Pre-Push Hook</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">.github/workflows/deploy.yml</span><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build MkDocs site</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run mkdocs build --strict</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><span class="filename">.git/hooks/pre-push</span><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>This ensures <strong>100% parity</strong> between local and remote validation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Don't Use Approximations</p>
+<p>❌ Don't run <code>mkdocs build</code> locally if CI runs <code>mkdocs build --strict</code>
+❌ Don't run tests on one Python version if CI uses another
+✅ Match the command exactly, including all flags and options</p>
+</div>
+<h3 id="4-document-hook-requirements">4. Document Hook Requirements 📝<a class="headerlink" href="#4-document-hook-requirements" title="Permanent link">¶</a></h3>
+<p>Add to your project README:</p>
+<div class="highlight"><span class="filename">README.md</span><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="gu">## Development Setup</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="gu">### Install Git Hooks</span>
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>This project uses Git hooks to validate code before pushing.
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>
+<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a><span class="gs">**Install hooks:**</span>
+<a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>
+<a id="__codelineno-60-9" name="__codelineno-60-9" href="#__codelineno-60-9"></a><span class="sb">```bash</span>
+<a id="__codelineno-60-10" name="__codelineno-60-10" href="#__codelineno-60-10"></a>bash<span class="w"> </span>.githooks/install.sh
+<a id="__codelineno-60-11" name="__codelineno-60-11" href="#__codelineno-60-11"></a><span class="sb">```</span>
+<a id="__codelineno-60-12" name="__codelineno-60-12" href="#__codelineno-60-12"></a>
+<a id="__codelineno-60-13" name="__codelineno-60-13" href="#__codelineno-60-13"></a><span class="gs">**Required tools:**</span>
+<a id="__codelineno-60-14" name="__codelineno-60-14" href="#__codelineno-60-14"></a>
+<a id="__codelineno-60-15" name="__codelineno-60-15" href="#__codelineno-60-15"></a><span class="k">-</span><span class="w"> </span>[<span class="nt">UV</span>](<span class="na">https://docs.astral.sh/uv/</span>) (Python package manager)
+<a id="__codelineno-60-16" name="__codelineno-60-16" href="#__codelineno-60-16"></a><span class="k">-</span><span class="w"> </span>Python 3.12+
+<a id="__codelineno-60-17" name="__codelineno-60-17" href="#__codelineno-60-17"></a><span class="k">-</span><span class="w"> </span>Make (optional, for build automation)
+<a id="__codelineno-60-18" name="__codelineno-60-18" href="#__codelineno-60-18"></a>
+<a id="__codelineno-60-19" name="__codelineno-60-19" href="#__codelineno-60-19"></a><span class="gs">**What the hook does:**</span>
+<a id="__codelineno-60-20" name="__codelineno-60-20" href="#__codelineno-60-20"></a>
+<a id="__codelineno-60-21" name="__codelineno-60-21" href="#__codelineno-60-21"></a><span class="k">-</span><span class="w"> </span>Validates MkDocs can build without errors
+<a id="__codelineno-60-22" name="__codelineno-60-22" href="#__codelineno-60-22"></a><span class="k">-</span><span class="w"> </span>Catches configuration issues before CI
+<a id="__codelineno-60-23" name="__codelineno-60-23" href="#__codelineno-60-23"></a><span class="k">-</span><span class="w"> </span>Saves time by providing immediate feedback
+<a id="__codelineno-60-24" name="__codelineno-60-24" href="#__codelineno-60-24"></a>
+<a id="__codelineno-60-25" name="__codelineno-60-25" href="#__codelineno-60-25"></a><span class="gs">**Bypass in emergencies only:**</span>
+<a id="__codelineno-60-26" name="__codelineno-60-26" href="#__codelineno-60-26"></a>
+<a id="__codelineno-60-27" name="__codelineno-60-27" href="#__codelineno-60-27"></a><span class="sb">```bash</span>
+<a id="__codelineno-60-28" name="__codelineno-60-28" href="#__codelineno-60-28"></a>git<span class="w"> </span>push<span class="w"> </span>--no-verify<span class="w">  </span><span class="c1"># NOT RECOMMENDED</span>
+<a id="__codelineno-60-29" name="__codelineno-60-29" href="#__codelineno-60-29"></a><span class="sb">```</span>
+<a id="__codelineno-60-30" name="__codelineno-60-30" href="#__codelineno-60-30"></a>
+<a id="__codelineno-60-31" name="__codelineno-60-31" href="#__codelineno-60-31"></a>This skips validation and should only be used for critical fixes.
+</code></pre></div>
+<h3 id="5-version-control-your-hooks">5. Version Control Your Hooks 🗂️<a class="headerlink" href="#5-version-control-your-hooks" title="Permanent link">¶</a></h3>
+<p>Store hooks in <code>.githooks/</code> or similar and commit them:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="c1"># Create tracked hooks directory</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>.githooks
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="c1"># Move hook to tracked location</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>mv<span class="w"> </span>.git/hooks/pre-push<span class="w"> </span>.githooks/pre-push
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>
+<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a><span class="c1"># Make it executable</span>
+<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.githooks/pre-push
+<a id="__codelineno-61-9" name="__codelineno-61-9" href="#__codelineno-61-9"></a>
+<a id="__codelineno-61-10" name="__codelineno-61-10" href="#__codelineno-61-10"></a><span class="c1"># Commit to version control</span>
+<a id="__codelineno-61-11" name="__codelineno-61-11" href="#__codelineno-61-11"></a>git<span class="w"> </span>add<span class="w"> </span>.githooks/pre-push
+<a id="__codelineno-61-12" name="__codelineno-61-12" href="#__codelineno-61-12"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add pre-push hook for MkDocs validation"</span>
+<a id="__codelineno-61-13" name="__codelineno-61-13" href="#__codelineno-61-13"></a>
+<a id="__codelineno-61-14" name="__codelineno-61-14" href="#__codelineno-61-14"></a><span class="c1"># Configure Git to use this directory</span>
+<a id="__codelineno-61-15" name="__codelineno-61-15" href="#__codelineno-61-15"></a>git<span class="w"> </span>config<span class="w"> </span>core.hooksPath<span class="w"> </span>.githooks
+</code></pre></div>
+<h2 id="comparison-hooks-vs-ci-only">Comparison: Hooks vs. CI-Only<a class="headerlink" href="#comparison-hooks-vs-ci-only" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Pre-Push Hook</th>
+<th>CI-Only</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Feedback Speed</strong></td>
+<td>10-60 seconds ⚡</td>
+<td>2-10+ minutes 🐌</td>
+</tr>
+<tr>
+<td><strong>Catch Errors</strong></td>
+<td>Before push ✅</td>
+<td>After push ❌</td>
+</tr>
+<tr>
+<td><strong>CI Load</strong></td>
+<td>Reduced 📉</td>
+<td>Higher 📈</td>
+</tr>
+<tr>
+<td><strong>Developer Experience</strong></td>
+<td>Immediate feedback 😊</td>
+<td>Delayed feedback 😞</td>
+</tr>
+<tr>
+<td><strong>Setup Complexity</strong></td>
+<td>Medium (manual install)</td>
+<td>Low (automatic)</td>
+</tr>
+<tr>
+<td><strong>Bypassable</strong></td>
+<td>Yes (<code>--no-verify</code>)</td>
+<td>No (authoritative)</td>
+</tr>
+<tr>
+<td><strong>Platform Issues</strong></td>
+<td>Possible (Windows/Mac differences)</td>
+<td>Rare (standardized environment)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition success">
+<p class="admonition-title">Best of Both Worlds</p>
+<p><strong>Use both:</strong></p>
+<ul>
+<li><strong>Pre-push hooks</strong> for fast, common checks (lint, quick tests, build validation)</li>
+<li><strong>CI</strong> for comprehensive, authoritative validation (all tests, security scans, deployment)</li>
+</ul>
+<p>Hooks catch 90% of issues instantly, CI provides final authority.</p>
+</div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h2>
+<p>Git hooks, especially pre-push hooks, are powerful tools for:</p>
+<p>✅ <strong>Catching errors early</strong> - Before they reach the remote repository
+✅ <strong>Saving time</strong> - Immediate local feedback vs. waiting for CI
+✅ <strong>Reducing CI load</strong> - Fewer failed pipeline runs
+✅ <strong>Enforcing standards</strong> - Consistent validation across the team</p>
+<h3 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="c1"># Create pre-push hook</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>nano<span class="w"> </span>.git/hooks/pre-push
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="c1"># Make executable</span>
+<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>chmod<span class="w"> </span>+x<span class="w"> </span>.git/hooks/pre-push
+<a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a>
+<a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a><span class="c1"># Test hook</span>
+<a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>your-branch
+<a id="__codelineno-62-9" name="__codelineno-62-9" href="#__codelineno-62-9"></a>
+<a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a><span class="c1"># Bypass hook (emergency only!)</span>
+<a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a>git<span class="w"> </span>push<span class="w"> </span>--no-verify
+</code></pre></div>
+<h3 id="key-takeaways">Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong>Hooks are scripts</strong> in <code>.git/hooks/</code> that run automatically during Git operations</li>
+<li><strong>Pre-push hooks</strong> run before <code>git push</code> completes and can block it</li>
+<li><strong>Exit codes matter:</strong> 0 = success (allow), non-zero = failure (block)</li>
+<li><strong>Share with your team</strong> by storing hooks in a tracked directory like <code>.githooks/</code></li>
+<li><strong>Match CI exactly</strong> to ensure local validation mirrors remote validation</li>
+</ol>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">¶</a></h2>
+<div class="grid cards" markdown>
+
+-   :material-hammer-wrench:{ .lg .middle } **Implement Your Hook**
+
+    ---
+
+    Follow the [implementation guide](#implementing-pre-push-hooks) to create a pre-push hook for your project
+
+-   :material-test-tube:{ .lg .middle } **Test It**
+
+    ---
+
+    Intentionally break something and verify the hook blocks the push
+
+-   :material-share-variant:{ .lg .middle } **Share with Team**
+
+    ---
+
+    Use [Solution 2: Git Config](#solution-2-git-config-git-29) or [Solution 3: Pre-Commit Framework](#solution-3-pre-commit-framework)
+
+-   :material-book-open-variant:{ .lg .middle } **Learn More**
+
+    ---
+
+    Explore [advanced patterns](#advanced-hook-patterns) for conditional checks and multi-step validation
+
+</div>
+
+<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git Hooks Official Documentation</a>{ target="_blank" }</li>
+<li><a href="https://pre-commit.com/">Pre-Commit Framework</a>{ target="_blank" }</li>
+<li><a href="https://www.atlassian.com/git/tutorials/git-hooks">Atlassian Git Hooks Tutorial</a>{ target="_blank" }</li>
+<li><a href="https://github.com/git/git/tree/master/templates/hooks">GitHub: Sample Git Hooks</a>{ target="_blank" }</li>
+</ul>
+<hr>
+<p><strong>Related Tutorials:</strong></p>
+<ul>
+<li><a href="../clean-code-before-pr/">Clean Code Before PR</a></li>
+<li><a href="../transitioning-to-uv/">Transitioning to UV</a></li>
+<li><a href="../mkdocs-jupyterlite-img-resolution/">MkDocs Hooks and JupyterLite Images</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://bsky.app/profile/prosperousheart.bsky.social" target="_blank" rel="noopener" title="bsky.app" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M407.8 294.7c-3.3-.4-6.7-.8-10-1.3 3.4.4 6.7.9 10 1.3M288 227.1c-26.1-50.7-97.1-145.2-163.1-191.8C61.6-9.4 37.5-1.7 21.6 5.5 3.3 13.8 0 41.9 0 58.4S9.1 194 15 213.9c19.5 65.7 89.1 87.9 153.2 80.7 3.3-.5 6.6-.9 10-1.4-3.3.5-6.6 1-10 1.4-93.9 14-177.3 48.2-67.9 169.9C220.6 589.1 265.1 437.8 288 361.1c22.9 76.7 49.2 222.5 185.6 103.4 102.4-103.4 28.1-156-65.8-169.9-3.3-.4-6.7-.8-10-1.3 3.4.4 6.7.9 10 1.3 64.1 7.1 133.6-15.1 153.2-80.7C566.9 194 576 75 576 58.4s-3.3-44.7-21.6-52.9c-15.8-7.1-40-14.9-103.2 29.8C385.1 81.9 314.1 176.4 288 227.1"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/prosperousheart/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/ProsperousHeart/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/in/kkeeton/" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/ProsperousHeart" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/ProsperousHeart" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.top", "navigation.tracking", "navigation.instant", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
