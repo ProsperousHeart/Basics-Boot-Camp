@@ -16,6 +16,7 @@ This page tests different approaches to embedding interactive Jupyter notebooks 
 </div>
 
 **Why this works:**
+
 - Path includes folder structure: `BC_Weeks/Week_1/filename.ipynb`
 - Notebooks interface is simpler than full Lab
 - Less cluttered when embedded
@@ -36,6 +37,7 @@ This page tests different approaches to embedding interactive Jupyter notebooks 
 </div>
 
 **Why this works:**
+
 - Same path as Option 1
 - Includes file browser, terminal, and other Lab features
 - Better for advanced users
