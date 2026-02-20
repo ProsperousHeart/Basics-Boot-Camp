@@ -1,6 +1,6 @@
-# Lesson Learned: JupyterLite `fullStaticUrl` Configuration
+# Lesson Learned: JupyterLite Deployment Issues
 
-This document explains an issue where JupyterLite's Lab interface failed to load on GitHub Pages while the Notebooks interface worked correctly.
+This document explains multiple issues encountered when deploying JupyterLite to GitHub Pages, where Lab and Tree interfaces failed to load while the Notebooks interface worked correctly.
 
 ---
 
@@ -95,9 +95,113 @@ Local development servers (like `mkdocs serve`) may handle relative path resolut
 
 ---
 
+## Issue 2: `.gitignore` Blocking Build Directory
+
+### The Problem
+
+Even after fixing the `fullStaticUrl` configuration, Lab and Tree interfaces still showed 404 errors for `bundle.js` files on GitHub Pages. The browser console showed:
+
+```
+GET .../jupyterlite/build/lab/bundle.js 404 (Not Found)
+GET .../jupyterlite/build/tree/bundle.js 404 (Not Found)
+```
+
+### Root Cause
+
+The project's `.gitignore` contained a generic `build/` rule (commonly used to ignore Python/Node build artifacts). This rule was inadvertently ignoring `docs/jupyterlite/build/` - the directory containing all JupyterLite JavaScript bundles.
+
+```gitignore
+# This rule in .gitignore:
+build/
+
+# Was ignoring:
+docs/jupyterlite/build/   # All JS bundles needed for JupyterLite!
+```
+
+Running `git status --ignored` revealed the issue:
+
+```
+Ignored files:
+    docs/jupyterlite/build/
+```
+
+### The Fix
+
+Add an exception to `.gitignore` to un-ignore the JupyterLite build directory:
+
+```gitignore
+build/
+!docs/jupyterlite/build/
+```
+
+Then add and commit the previously-ignored files:
+
+```bash
+git add docs/jupyterlite/build/
+git commit -m "Add JupyterLite build files for deployment"
+```
+
+---
+
+## Issue 3: Gitleaks False Positives
+
+### The Problem
+
+After adding the `docs/jupyterlite/build/` directory to git, the gitleaks security scan failed with 6 "generic-api-key" alerts:
+
+```
+Finding:     ...t.FourKeyMap=void 0;class i{construct...
+Secret:      REDACTED
+RuleID:      generic-api-key
+File:        docs/jupyterlite/build/3462.a328105.js
+```
+
+### Root Cause
+
+Gitleaks flagged `FourKeyMap` - a JavaScript class name in xterm.js (a terminal library used by JupyterLite). The word "Key" triggered the generic-api-key rule, but this refers to map/dictionary keys, not cryptographic or API keys.
+
+**Why it's a false positive:**
+
+- `FourKeyMap` is a data structure class with methods like `set(e,t,s,r,o)` and `get(e,t,i,s)`
+- Low entropy (3.875) - real secrets have high randomness
+- Doesn't match any known secret patterns (AWS `AKIA*`, GitHub `ghp_*`, etc.)
+- It's third-party open-source code from xterm.js
+
+### The Fix
+
+Create a `.gitleaks.toml` configuration file to exclude the JupyterLite build directory:
+
+```toml
+# .gitleaks.toml
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "JupyterLite build directory - minified JS with false positive class names"
+paths = [
+    '''docs/jupyterlite/build/.*''',
+]
+```
+
+**Note:** Gitleaks does NOT use `.gitleaksignore` files. It requires a `.gitleaks.toml` file with TOML syntax.
+
+---
+
+## Summary of All Fixes
+
+| Issue | Symptom | Fix |
+|-------|---------|-----|
+| Missing `fullStaticUrl` | Lab/Tree show blank | Add `"fullStaticUrl": "../build"` to `jupyter-lite.json` |
+| `.gitignore` blocking build | 404 errors for `bundle.js` | Add `!docs/jupyterlite/build/` exception |
+| Gitleaks false positives | Security scan fails | Create `.gitleaks.toml` with path allowlist |
+
+---
+
 ## Related Files
 
 - `docs/jupyterlite/jupyter-lite.json` - Root configuration
 - `docs/jupyterlite/lab/jupyter-lite.json` - Lab interface config (fixed)
 - `docs/jupyterlite/notebooks/jupyter-lite.json` - Notebooks interface config (reference)
 - `docs/jupyterlite/tree/jupyter-lite.json` - Tree interface config (reference)
+- `.gitignore` - Added exception for JupyterLite build
+- `.gitleaks.toml` - Gitleaks allowlist configuration
