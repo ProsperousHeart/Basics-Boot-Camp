@@ -9,7 +9,7 @@
         <meta name="author" content="Prosperous Heart">
       
       
-        <link rel="canonical" href="https://prosperousheart.github.io/Basics-Boot-Camp/Lessons_Learned/jupyterlite-fullStaticUrl-config/">
+        <link rel="canonical" href="https://prosperousheart.github.io/Basics-Boot-Camp/Lessons_Learned/jupyterlite-deployment-issues/">
       
       
         <link rel="prev" href="../test-embedding/">
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lesson-learned-jupyterlite-fullstaticurl-configuration" class="md-skip">
+        <a href="#lesson-learned-jupyterlite-deployment-issues" class="md-skip">
           Skip to content
         </a>
       
@@ -1871,6 +1871,117 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#issue-2-gitignore-blocking-build-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 2: .gitignore Blocking Build Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue 2: .gitignore Blocking Build Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-cause_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issue-3-gitleaks-false-positives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 3: Gitleaks False Positives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue 3: Gitleaks False Positives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-cause_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fix_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-all-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of All Fixes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2127,6 +2238,117 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#issue-2-gitignore-blocking-build-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 2: .gitignore Blocking Build Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue 2: .gitignore Blocking Build Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-cause_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fix_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issue-3-gitleaks-false-positives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 3: Gitleaks False Positives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Issue 3: Gitleaks False Positives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-problem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-cause_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-fix_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-all-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary of All Fixes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#related-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2206,8 +2428,8 @@
   
 
 
-<h1 id="lesson-learned-jupyterlite-fullstaticurl-configuration">Lesson Learned: JupyterLite <code>fullStaticUrl</code> Configuration<a class="headerlink" href="#lesson-learned-jupyterlite-fullstaticurl-configuration" title="Permanent link">¶</a></h1>
-<p>This document explains an issue where JupyterLite's Lab interface failed to load on GitHub Pages while the Notebooks interface worked correctly.</p>
+<h1 id="lesson-learned-jupyterlite-deployment-issues">Lesson Learned: JupyterLite Deployment Issues<a class="headerlink" href="#lesson-learned-jupyterlite-deployment-issues" title="Permanent link">¶</a></h1>
+<p>This document explains multiple issues encountered when deploying JupyterLite to GitHub Pages, where Lab and Tree interfaces failed to load while the Notebooks interface worked correctly.</p>
 <hr>
 <h2 id="the-problem">The Problem<a class="headerlink" href="#the-problem" title="Permanent link">¶</a></h2>
 <p>When hosting the site on GitHub Pages, only <strong>Option 1 (Notebooks interface)</strong> loaded correctly. <strong>Option 2 (Lab interface)</strong> and <strong>Option 3 (Tree view)</strong> showed blank pages or failed to initialize.</p>
@@ -2302,12 +2524,101 @@
 <li><strong>Verify the <code>../build</code> directory</strong> exists and contains the expected JavaScript bundles</li>
 </ol>
 <hr>
+<h2 id="issue-2-gitignore-blocking-build-directory">Issue 2: <code>.gitignore</code> Blocking Build Directory<a class="headerlink" href="#issue-2-gitignore-blocking-build-directory" title="Permanent link">¶</a></h2>
+<h3 id="the-problem_1">The Problem<a class="headerlink" href="#the-problem_1" title="Permanent link">¶</a></h3>
+<p>Even after fixing the <code>fullStaticUrl</code> configuration, Lab and Tree interfaces still showed 404 errors for <code>bundle.js</code> files on GitHub Pages. The browser console showed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>GET .../jupyterlite/build/lab/bundle.js 404 (Not Found)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>GET .../jupyterlite/build/tree/bundle.js 404 (Not Found)
+</code></pre></div>
+<h3 id="root-cause_1">Root Cause<a class="headerlink" href="#root-cause_1" title="Permanent link">¶</a></h3>
+<p>The project's <code>.gitignore</code> contained a generic <code>build/</code> rule (commonly used to ignore Python/Node build artifacts). This rule was inadvertently ignoring <code>docs/jupyterlite/build/</code> - the directory containing all JupyterLite JavaScript bundles.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># This rule in .gitignore:
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>build/
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a># Was ignoring:
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>docs/jupyterlite/build/   # All JS bundles needed for JupyterLite!
+</code></pre></div>
+<p>Running <code>git status --ignored</code> revealed the issue:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Ignored files:
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    docs/jupyterlite/build/
+</code></pre></div>
+<h3 id="the-fix_1">The Fix<a class="headerlink" href="#the-fix_1" title="Permanent link">¶</a></h3>
+<p>Add an exception to <code>.gitignore</code> to un-ignore the JupyterLite build directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>build/
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>!docs/jupyterlite/build/
+</code></pre></div>
+<p>Then add and commit the previously-ignored files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>add<span class="w"> </span>docs/jupyterlite/build/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add JupyterLite build files for deployment"</span>
+</code></pre></div>
+<hr>
+<h2 id="issue-3-gitleaks-false-positives">Issue 3: Gitleaks False Positives<a class="headerlink" href="#issue-3-gitleaks-false-positives" title="Permanent link">¶</a></h2>
+<h3 id="the-problem_2">The Problem<a class="headerlink" href="#the-problem_2" title="Permanent link">¶</a></h3>
+<p>After adding the <code>docs/jupyterlite/build/</code> directory to git, the gitleaks security scan failed with 6 "generic-api-key" alerts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Finding:     ...t.FourKeyMap=void 0;class i{construct...
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Secret:      REDACTED
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>RuleID:      generic-api-key
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>File:        docs/jupyterlite/build/3462.a328105.js
+</code></pre></div>
+<h3 id="root-cause_2">Root Cause<a class="headerlink" href="#root-cause_2" title="Permanent link">¶</a></h3>
+<p>Gitleaks flagged <code>FourKeyMap</code> - a JavaScript class name in xterm.js (a terminal library used by JupyterLite). The word "Key" triggered the generic-api-key rule, but this refers to map/dictionary keys, not cryptographic or API keys.</p>
+<p><strong>Why it's a false positive:</strong></p>
+<ul>
+<li><code>FourKeyMap</code> is a data structure class with methods like <code>set(e,t,s,r,o)</code> and <code>get(e,t,i,s)</code></li>
+<li>Low entropy (3.875) - real secrets have high randomness</li>
+<li>Doesn't match any known secret patterns (AWS <code>AKIA*</code>, GitHub <code>ghp_*</code>, etc.)</li>
+<li>It's third-party open-source code from xterm.js</li>
+</ul>
+<h3 id="the-fix_2">The Fix<a class="headerlink" href="#the-fix_2" title="Permanent link">¶</a></h3>
+<p>Create a <code>.gitleaks.toml</code> configuration file to exclude the JupyterLite build directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># .gitleaks.toml</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">[extend]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">useDefault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">[[allowlists]]</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"JupyterLite build directory - minified JS with false positive class names"</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">paths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="s1">'''docs/jupyterlite/build/.*'''</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">]</span>
+</code></pre></div>
+<p><strong>Note:</strong> Gitleaks does NOT use <code>.gitleaksignore</code> files. It requires a <code>.gitleaks.toml</code> file with TOML syntax.</p>
+<hr>
+<h2 id="summary-of-all-fixes">Summary of All Fixes<a class="headerlink" href="#summary-of-all-fixes" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing <code>fullStaticUrl</code></td>
+<td>Lab/Tree show blank</td>
+<td>Add <code>"fullStaticUrl": "../build"</code> to <code>jupyter-lite.json</code></td>
+</tr>
+<tr>
+<td><code>.gitignore</code> blocking build</td>
+<td>404 errors for <code>bundle.js</code></td>
+<td>Add <code>!docs/jupyterlite/build/</code> exception</td>
+</tr>
+<tr>
+<td>Gitleaks false positives</td>
+<td>Security scan fails</td>
+<td>Create <code>.gitleaks.toml</code> with path allowlist</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <h2 id="related-files">Related Files<a class="headerlink" href="#related-files" title="Permanent link">¶</a></h2>
 <ul>
 <li><code>docs/jupyterlite/jupyter-lite.json</code> - Root configuration</li>
 <li><code>docs/jupyterlite/lab/jupyter-lite.json</code> - Lab interface config (fixed)</li>
 <li><code>docs/jupyterlite/notebooks/jupyter-lite.json</code> - Notebooks interface config (reference)</li>
 <li><code>docs/jupyterlite/tree/jupyter-lite.json</code> - Tree interface config (reference)</li>
+<li><code>.gitignore</code> - Added exception for JupyterLite build</li>
+<li><code>.gitleaks.toml</code> - Gitleaks allowlist configuration</li>
 </ul>
 
 

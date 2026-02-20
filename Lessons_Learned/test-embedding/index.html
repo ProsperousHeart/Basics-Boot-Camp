@@ -15,7 +15,7 @@
         <link rel="prev" href="../Jupyter_In_mkdocs/">
       
       
-        <link rel="next" href="../jupyterlite-fullStaticUrl-config/">
+        <link rel="next" href="../jupyterlite-deployment-issues/">
       
       
         
@@ -1841,7 +1841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../jupyterlite-fullStaticUrl-config/" class="md-nav__link">
+      <a href="../jupyterlite-deployment-issues/" class="md-nav__link">
         
   
   
@@ -2159,10 +2159,12 @@
   </iframe>
 </div>
 
-<p><strong>Why this works:</strong>
-- Path includes folder structure: <code>BC_Weeks/Week_1/filename.ipynb</code>
-- Notebooks interface is simpler than full Lab
-- Less cluttered when embedded</p>
+<p><strong>Why this works:</strong></p>
+<ul>
+<li>Path includes folder structure: <code>BC_Weeks/Week_1/filename.ipynb</code></li>
+<li>Notebooks interface is simpler than full Lab</li>
+<li>Less cluttered when embedded</li>
+</ul>
 <hr>
 <h2 id="option-2-lab-interface-full-features">✅ Option 2: Lab Interface (Full Features)<a class="headerlink" href="#option-2-lab-interface-full-features" title="Permanent link">¶</a></h2>
 <p><strong>Full JupyterLab experience</strong> - More features, more cluttered when embedded</p>
@@ -2171,10 +2173,12 @@
   </iframe>
 </div>
 
-<p><strong>Why this works:</strong>
-- Same path as Option 1
-- Includes file browser, terminal, and other Lab features
-- Better for advanced users</p>
+<p><strong>Why this works:</strong></p>
+<ul>
+<li>Same path as Option 1</li>
+<li>Includes file browser, terminal, and other Lab features</li>
+<li>Better for advanced users</li>
+</ul>
 <hr>
 <h2 id="option-3-treefile-browser">📁 Option 3: Tree/File Browser<a class="headerlink" href="#option-3-treefile-browser" title="Permanent link">¶</a></h2>
 <p><strong>For browsing files only</strong> - Not for opening notebooks directly</p>
@@ -2193,23 +2197,25 @@
 <li><a href="../../jupyterlite/tree/index.html" target="_blank" rel="noopener noreferrer">Tree View - Browse all files</a> - Opens in new tab</li>
 <li><a href="../../jupyterlite/lab/index.html" target="_blank" rel="noopener noreferrer">JupyterLab - No file specified</a> - Opens in new tab</li>
 </ul>
-<p><strong>Pros:</strong> Clean interface, full-screen, no nested navigation
-<strong>Cons:</strong> User leaves the MkDocs site (use HTML with <code>target="_blank"</code> to open in new tab)</p>
+<p><strong>Pros:</strong> Clean interface, full-screen, no nested navigation</p>
+<p><strong>Cons:</strong> User leaves the MkDocs site (use HTML with <code>target="_blank"</code> to open in new tab)</p>
 <hr>
 <h2 id="recommendation">🏆 Recommendation<a class="headerlink" href="#recommendation" title="Permanent link">¶</a></h2>
-<p><strong>For this bootcamp, use Option 1 (Notebooks Interface)</strong>:
-- Cleaner embedded view
-- Less cluttered than Lab
-- MkDocs navigation stays visible
-- Fully interactive</p>
-<p><strong>Template for creating wrapper pages:</strong>
-</p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;iframe
+<p><strong>For this bootcamp, use Option 1 (Notebooks Interface)</strong>:</p>
+<ul>
+<li>Cleaner embedded view</li>
+<li>Less cluttered than Lab</li>
+<li>MkDocs navigation stays visible</li>
+<li>Fully interactive</li>
+</ul>
+<p><strong>Template for creating wrapper pages:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;iframe
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  src="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_X/NOTEBOOK_NAME.ipynb"
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  width="100%"
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  height="800px"
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  frameborder="0"&gt;
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>&lt;/iframe&gt;
-</code></pre></div><p></p>
+</code></pre></div>
 <hr>
 <h2 id="key-learnings">📝 Key Learnings<a class="headerlink" href="#key-learnings" title="Permanent link">¶</a></h2>
 <ol>

@@ -5,6 +5,7 @@
     "notebookPage": "tree",
     "fullStaticUrl": "../build",
     "settingsUrl": "../build/schemas",
-    "themesUrl": "./build/themes"
+    "themesUrl": "./build/themes",
+    "showLoadingIndicator": true
   }
 }
