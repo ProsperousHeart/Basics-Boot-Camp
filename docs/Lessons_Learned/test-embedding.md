@@ -71,6 +71,7 @@ Alternative: Link directly to JupyterLite instead of embedding:
 - <a href="../../jupyterlite/lab/index.html" target="_blank" rel="noopener noreferrer">JupyterLab - No file specified</a> - Opens in new tab
 
 **Pros:** Clean interface, full-screen, no nested navigation
+
 **Cons:** User leaves the MkDocs site (use HTML with `target="_blank"` to open in new tab)
 
 ---
@@ -78,12 +79,14 @@ Alternative: Link directly to JupyterLite instead of embedding:
 ## 🏆 Recommendation
 
 **For this bootcamp, use Option 1 (Notebooks Interface)**:
+
 - Cleaner embedded view
 - Less cluttered than Lab
 - MkDocs navigation stays visible
 - Fully interactive
 
 **Template for creating wrapper pages:**
+
 ```markdown
 <iframe
   src="../../../jupyterlite/notebooks/index.html?path=BC_Weeks/Week_X/NOTEBOOK_NAME.ipynb"
