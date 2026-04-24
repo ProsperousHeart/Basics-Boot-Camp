@@ -9,7 +9,7 @@ Experience Python programming hands-on with our interactive notebook environment
 JupyterLite brings the full Jupyter experience to your browser with:
 
 - ✅ **No installation required** - runs entirely in your browser
-- ✅ **No server needed** - powered by [WebAssembly](https://webassembly.org/) ([Pyodide](https://pyodide.com/))
+- ✅ **No server needed** - powered by [WebAssembly](https://webassembly.org/) ([Pyodide](https://pyodide.org/))
 - ✅ **Full Python support** - execute real Python code
 - ✅ **All course notebooks** - practice with the same materials
 - ✅ **Persistent storage** - your work is saved in browser storage
