@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Updated
 
 - fixed pyodide site URL per Issue 104
+- minor formatting fixes
+- add missing extensions to fix some formatting issues
 
 ## [2025-12-05]
 
