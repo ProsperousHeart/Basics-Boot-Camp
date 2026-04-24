@@ -66,7 +66,7 @@ Without pre-push validation:
       │                  Build runs again (2-10 minutes)     │
       │                                                      │
       │ 7. ✅ Success (finally!)                             │
-      │ <──────────────────────────────────────────────────┤│
+      │ <──────────────────────────────────────────────────┤ │
       │                                                      │
 ```
 </div>
@@ -137,7 +137,7 @@ With a pre-push hook:
       │                 │                 │              ├───────────────>│
       │                 │                 │              │                │
       │ 10. ✅ CI Success (first try!)    │              │                │
-      │ <──────────────────────────────────┴──────────────┴────────────────┤
+      │ <─────────────────────────────────┴──────────────┴────────────────┤
       │                 │                 │              │                │
 ```
 </div>
@@ -1180,10 +1180,10 @@ git push --no-verify
 
 ## Additional Resources
 
-- [Git Hooks Official Documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks){ target="_blank" }
-- [Pre-Commit Framework](https://pre-commit.com/){ target="_blank" }
-- [Atlassian Git Hooks Tutorial](https://www.atlassian.com/git/tutorials/git-hooks){ target="_blank" }
-- [GitHub: Sample Git Hooks](https://github.com/git/git/tree/master/templates/hooks){ target="_blank" }
+- [Git Hooks Official Documentation](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks){target="_blank" rel="noopener"}
+- [Pre-Commit Framework](https://pre-commit.com/){target="_blank" rel="noopener"}
+- [Atlassian Git Hooks Tutorial](https://www.atlassian.com/git/tutorials/git-hooks){target="_blank" rel="noopener"}
+- [GitHub: Sample Git Hooks](https://github.com/git/git/tree/master/templates/hooks){target="_blank" rel="noopener"}
 
 ---
 

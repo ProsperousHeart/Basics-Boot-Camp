@@ -2,7 +2,7 @@
 
 ## What Is This Page About?
 
-When you use the interactive notebooks in this bootcamp, you're running Python **directly in your web browser**—no installation required. This page explains the technology that makes this possible: **WebAssembly** and **Pyodide**.
+When you use the interactive notebooks in this bootcamp, you're running Python **directly in your web browser** - no installation required. This page explains the technology that makes this possible: **WebAssembly** and **Pyodide**.
 
 **Important**: You don't need to understand this technology to use the bootcamp. This is here for the curious learners who want to know "how does this actually work?"
 
@@ -11,6 +11,7 @@ When you use the interactive notebooks in this bootcamp, you're running Python *
 ## The Problem This Solves
 
 Traditionally, to run Python code, you need to:
+
 1. Download and install Python on your computer
 2. Set up a virtual environment
 3. Install required packages
@@ -79,15 +80,19 @@ Your Code → Python Interpreter (in browser) → WebAssembly → Browser's Java
 Not everything that works in regular Python works in Pyodide:
 
 ❌ **Packages with native C extensions** (unless specifically compiled for WASM)
+
 - Example: Some database drivers, certain image processing libraries
 
 ❌ **File system access is limited**
+
 - You can read/write files in browser storage, but not your actual computer's file system
 
 ❌ **No subprocess/shell commands**
+
 - Can't run `os.system()` or create child processes
 
 ❌ **Initial load time**
+
 - Pyodide is ~10-30 MB to download the first time (but caches for future visits)
 
 ✅ **For learning Python basics, none of these limitations matter!**
@@ -106,6 +111,7 @@ When you click "Open Interactive Notebook" in any lesson, here's what happens:
 
 ### Architecture Diagram
 
+<div class="ascii-art">
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Your Web Browser                         │
@@ -139,6 +145,7 @@ When you click "Open Interactive Notebook" in any lesson, here's what happens:
 
 NO SERVER REQUIRED - Everything runs client-side!
 ```
+</div>
 
 ---
 
@@ -210,12 +217,14 @@ If you want to learn more about the underlying technology:
 ## Summary
 
 **For Bootcamp Students:**
+
 - You're running **real Python** in your browser via Pyodide
 - No installation needed—just click and code
 - Your work is saved automatically in browser storage
 - This eliminates all setup barriers so you can focus on **learning Python**
 
 **The Technology Stack:**
+
 - **WebAssembly**: Lets non-JavaScript languages run in browsers
 - **Pyodide**: Python compiled to WebAssembly
 - **JupyterLite**: Jupyter notebooks powered by Pyodide
