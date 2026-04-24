@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2026-04-24]
+
+### Updated
+
+- fixed pyodide site URL per Issue 104
+
 ## [2025-12-05]
 
 ### Added
