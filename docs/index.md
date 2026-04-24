@@ -17,6 +17,7 @@ This MkDocs-powered site hosts all the training materials, homework assignments,
 ## About the Bootcamp
 
 This repo is for Python Basics Bootcamp students. Within this site, you have access to:
+
 - Training materials & homework assignments
 - Opportunity to showcase your work
 - Introduction to collaboration with GitHub
