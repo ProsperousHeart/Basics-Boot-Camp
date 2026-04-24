@@ -10,6 +10,7 @@ This guide explains the MkDocs configuration currently used in this Python Basic
 | **This Guide** | Explains features already configured in this project | Understanding what features do and learning more |
 
 **Think of it this way:**
+
 - 📦 **Setup Guide** = "How to build the site"
 - 📚 **This Guide** = "How the site works"
 
@@ -32,6 +33,7 @@ This project uses the Material for MkDocs announcement banner feature to display
 The announcement banner displays site-wide notifications, updates, or calls-to-action in a prominent colored bar above the navigation. Users can dismiss it by clicking the X button, and their preference is saved in browser localStorage.
 
 **Key features**:
+
 - **Dismissible**: Users can close it with an X button (top right)
 - **Persistent**: Once dismissed, stays hidden until user clears browser data
 - **Site-wide**: Appears on every page of the documentation
@@ -67,6 +69,7 @@ This tells MkDocs to look in the `overrides/` directory for custom template file
 ```
 
 **Template breakdown**:
+
 - `{% extends "base.html" %}` - Inherits from Material's base template
 - `{% block announce %}` - Defines the announcement content block
 - `<p>` - Paragraph containing your message (can include HTML)
@@ -139,6 +142,7 @@ Remove `custom_dir: overrides` from `mkdocs.yml` (also disables other customizat
 ### Styling and Customization
 
 The banner's appearance is controlled by Material for MkDocs theme. The default styling includes:
+
 - Indigo background color (matches your `primary` theme color)
 - White text
 - Full-width banner
@@ -180,6 +184,7 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 ### Troubleshooting
 
 **Banner not appearing?**
+
 1. Check `custom_dir: overrides` is in `mkdocs.yml` under `theme:`
 2. Verify `overrides/main.html` exists
 3. Ensure content exists in `{% block announce %}`
@@ -187,11 +192,13 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 5. Clear browser cache and localStorage
 
 **Banner appears but looks broken?**
+
 - Check HTML syntax in `overrides/main.html`
 - Verify all opening/closing tags match
 - Test with simple text first, then add complexity
 
 **Links not working?**
+
 - Use `{{ page.canonical_url }}` for relative links
 - Use full URLs for external links
 - Add `target="_blank"` for external links
@@ -278,11 +285,13 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 **What it does**: Embeds an interactive Jupyter notebook environment that runs entirely in the browser using WebAssembly (Pyodide).
 
 **Why it's awesome**:
+
 - Students can run Python code without installing anything
 - No server required - runs in the browser
 - Perfect for educational content
 
 **Learn more**:
+
 - [JupyterLite Docs](https://jupyterlite.readthedocs.io/)
 - [mkdocs-jupyterlite Plugin](https://github.com/jupyterlite/mkdocs-jupyterlite)
 
@@ -325,6 +334,7 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 ```
 
 **What they do**:
+
 - **highlight**: Syntax highlighting for code blocks with clickable line numbers
 - **inlinehilite**: Highlight code inline like `this`
 - **snippets**: Include external file snippets in your docs
@@ -344,6 +354,7 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 **What they do**: Create callout boxes for notes, warnings, tips, etc.
 
 **Example**:
+
 ```markdown
 !!! note "This is a note"
     Important information here!
@@ -366,6 +377,7 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 **What it does**: Creates tabbed content sections.
 
 **Example**:
+
 ```markdown
 === "Python"
     ```python
@@ -391,6 +403,7 @@ The banner's appearance is controlled by Material for MkDocs theme. The default 
 ```
 
 **What they do**:
+
 - **tables**: Enhanced Markdown table support
 - **toc**: Generates table of contents with permalink anchors (# symbols next to headings)
 
@@ -430,6 +443,7 @@ nav:
 ```
 
 **Key points**:
+
 - Indentation matters (YAML format)
 - First item under a section = section index page
 - Use descriptive titles followed by file paths
@@ -440,18 +454,21 @@ nav:
 ## Local Development
 
 ### Serve the site locally
+
 ```bash
 mkdocs serve
 ```
 Opens at `http://127.0.0.1:8000/` with live reload - changes appear instantly.
 
 ### Build static files
+
 ```bash
 mkdocs build
 ```
 Creates HTML files in `site/` directory.
 
 ### Deploy to GitHub Pages
+
 ```bash
 mkdocs gh-deploy
 ```
@@ -462,9 +479,11 @@ Builds and deploys to `gh-pages` branch.
 ## Customization Tips
 
 ### Change the color scheme
+
 Edit `theme.palette.primary` and `theme.palette.accent` in `mkdocs.yml`.
 
 ### Add a logo
+
 ```yaml
 theme:
   logo: assets/logo.png
@@ -472,6 +491,7 @@ theme:
 ```
 
 ### Add custom CSS
+
 Create `docs/stylesheets/extra.css`:
 ```yaml
 extra_css:
@@ -479,6 +499,7 @@ extra_css:
 ```
 
 ### Add Google Analytics
+
 ```yaml
 extra:
   analytics:
@@ -491,36 +512,43 @@ extra:
 ## Useful Resources
 
 ### Official Documentation
+
 - [MkDocs](https://www.mkdocs.org/) - Core documentation
 - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) - Theme documentation
 - [Material Reference](https://squidfunk.github.io/mkdocs-material/reference/) - All features
 
 ### Extensions
+
 - [PyMdown Extensions](https://facelessuser.github.io/pymdown-extensions/) - Markdown enhancements
 - [MkDocs Plugins](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Plugins) - Plugin catalog
 
 ### Interactive Features
+
 - [JupyterLite](https://jupyterlite.readthedocs.io/) - Browser-based Jupyter
 - [Pyodide](https://pyodide.org/) - Python in WebAssembly
 
 ## Troubleshooting
 
 ### Navigation not showing correctly?
+
 - Check `mkdocs.yml` indentation (must be spaces, not tabs)
 - Verify all file paths exist
 - Ensure `navigation.indexes` is enabled
 
 ### Search not working?
+
 - Rebuild the site: `mkdocs build --clean`
 - Clear browser cache
 - Check that `search` plugin is enabled
 
 ### JupyterLite not loading?
+
 - Check console for errors (F12 in browser)
 - Verify notebook paths in `notebook_patterns`
 - Ensure JupyterLite plugin is properly installed
 
 ### Images not displaying?
+
 - Use paths relative to markdown file location
 - Or use absolute paths from `docs/` directory
 - Check image file extensions are lowercase
@@ -528,6 +556,7 @@ extra:
 ---
 
 **Related Guides**:
+
 - [MkDocs Setup Guide](../guidelines/mkdocs-setup-guide.md) - Initial setup instructions
 - [Clean Code Before PR](clean-code-before-pr.md) - Contribution guidelines
 
